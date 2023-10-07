@@ -4,6 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:memehub_mobile_app/Views/signin_screen.dart';
 
 import 'Bloc/authentication/authentication_bloc.dart';
+import 'Views/signup_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: SigninScreen(),
+          home: SignupScreen(),
         ));
   }
 }
