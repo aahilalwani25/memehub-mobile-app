@@ -9,7 +9,23 @@ sealed class AuthenticationState extends Equatable {
 
 final class AuthenticationInitial extends AuthenticationState {}
 
-class AuthenticationWithGoogleState extends AuthenticationState{}
+class AuthenticationLoading extends AuthenticationState {}
 
-class AuthenticationWithTwitterState extends AuthenticationState{}
+class AuthenticationSuccess extends AuthenticationState {
+  final String message;
+
+  AuthenticationSuccess({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class AuthenticationFailure extends AuthenticationState {
+  final String error;
+
+  AuthenticationFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
 

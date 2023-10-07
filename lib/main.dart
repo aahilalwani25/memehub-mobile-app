@@ -15,7 +15,7 @@ void main() {
 Future initialization(BuildContext context) async {
   //load resources
   await Future.delayed(
-      Duration(seconds: 2), () => {FlutterNativeSplash.remove()});
+      const Duration(seconds: 2), () => {FlutterNativeSplash.remove()});
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           theme: ThemeData(
-            inputDecorationTheme: InputDecorationTheme(
+            inputDecorationTheme: const InputDecorationTheme(
               fillColor: Color.fromARGB(255, 238, 238, 238),
               filled: true
             ),
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
                 height: 0,
               ),
             ),
-            primaryColor: Color(0xFFF2F2F2),
+            primaryColor: const Color(0xFFF2F2F2),
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),

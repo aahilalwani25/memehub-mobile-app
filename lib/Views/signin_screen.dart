@@ -4,20 +4,20 @@ import 'package:memehub_mobile_app/global/styles.dart';
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     Styles styles = Styles(context: context);
-    final _formKey = GlobalKey<FormState>();
-    InputDecorationTheme _inputDecorationTheme =
+    final formKey = GlobalKey<FormState>();
+    InputDecorationTheme inputDecorationTheme =
         Theme.of(context).inputDecorationTheme;
 
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: Form(
-          key: _formKey,
+          key: formKey,
           child: Container(
             width: styles.getWidth(1),
             height: styles.getHeight(1),
@@ -62,7 +62,7 @@ class SigninScreen extends StatelessWidget {
                           height: 54,
                           padding: const EdgeInsets.all(5),
                           decoration: ShapeDecoration(
-                            color: Color(0xFF1877F2),
+                            color: const Color(0xFF1877F2),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -79,7 +79,7 @@ class SigninScreen extends StatelessWidget {
                           height: 54,
                           padding: const EdgeInsets.all(5),
                           decoration: ShapeDecoration(
-                            color: Color(0xFFF5F5F5),
+                            color: const Color(0xFFF5F5F5),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -93,7 +93,7 @@ class SigninScreen extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 40,
                     ),
                     width: styles.getWidth(0.5),
@@ -111,8 +111,8 @@ class SigninScreen extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.email),
                         hintText: 'Email',
-                        fillColor: _inputDecorationTheme.fillColor,
-                        filled: _inputDecorationTheme.filled,
+                        fillColor: inputDecorationTheme.fillColor,
+                        filled: inputDecorationTheme.filled,
                         border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
@@ -136,11 +136,11 @@ class SigninScreen extends StatelessWidget {
                         return null;
                       },
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.remove_red_eye),
+                        suffixIcon: const Icon(Icons.remove_red_eye),
                         prefixIcon: const Icon(Icons.lock),
                         hintText: 'Password',
-                        fillColor: _inputDecorationTheme.fillColor,
-                        filled: _inputDecorationTheme.filled,
+                        fillColor: inputDecorationTheme.fillColor,
+                        filled: inputDecorationTheme.filled,
                         border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
@@ -157,7 +157,7 @@ class SigninScreen extends StatelessWidget {
                   Container(
                       width: 151,
                       height: 45,
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
