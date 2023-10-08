@@ -4,8 +4,10 @@ import 'package:memehub_mobile_app/global/styles.dart';
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmpasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +33,8 @@ class SignupScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 alignment: Alignment.center,
-                width: styles.getWidth(0.65),
-                height: styles.getHeight(0.6),
+                width: styles.getWidth(0.8),
+                height: styles.getHeight(0.75),
                 child: Column(children: [
                   SizedBox(
                     height: 35,
@@ -55,13 +57,13 @@ class SignupScreen extends StatelessWidget {
                   ),
                    Container(
                     margin: const EdgeInsets.only(
-                      top: 40,
+                      top: 30,
                     ),
                     width: styles.getWidth(0.5),
                     height: styles.getHeight(0.1),
                     child: TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
+                      controller: _usernameController,
+                      keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null) {
                           return "Please enter your User name";
@@ -70,7 +72,7 @@ class SignupScreen extends StatelessWidget {
                         return null;
                       },
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.person),
                         hintText: 'User Name',
                         fillColor: inputDecorationTheme.fillColor,
                         filled: inputDecorationTheme.filled,
@@ -82,7 +84,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.only(
-                      top: 40,
+                      top: 5,
                     ),
                     width: styles.getWidth(0.5),
                     height: styles.getHeight(0.1),
@@ -142,7 +144,7 @@ class SignupScreen extends StatelessWidget {
                     width: styles.getWidth(0.5),
                     height: styles.getHeight(0.1),
                     child: TextFormField(
-                      controller: _passwordController,
+                      controller: _confirmpasswordController,
                       obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
