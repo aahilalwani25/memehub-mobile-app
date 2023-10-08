@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
+import 'signup_screen.dart';
+
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
 
@@ -183,7 +185,11 @@ class SigninScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (builder)=>SignupScreen())
+                            );
+                          },
                           child: const Text(
                             'Register',
                             style: TextStyle(color: Colors.black),

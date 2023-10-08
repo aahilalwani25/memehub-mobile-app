@@ -9,10 +9,10 @@ sealed class SignupState extends Equatable {
 
 final class SignupInitial extends SignupState {}
 
-class AcceptthetermsState extends SignupState{
+class AcceptTheTermsState extends SignupState{
 
   bool agree;
-  AcceptthetermsState({required this.agree});
+  AcceptTheTermsState({required this.agree});
 }
 
 class SignupSuccessfulState extends SignupState{
