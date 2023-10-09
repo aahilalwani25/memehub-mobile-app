@@ -18,10 +18,9 @@ class LoginButtonPressedEvent extends AuthenticationEvent{
   List<Object> get props => [email, password];
 }
 
-class LoginButtonWithFacebookPressedEvent extends AuthenticationEvent{
-  
-}
+class LoginButtonWithFacebookPressedEvent extends AuthenticationEvent{}
 
 class LoginButtonWithGooglePressedEvent extends AuthenticationEvent{}
+
 
 

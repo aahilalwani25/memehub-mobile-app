@@ -29,3 +29,5 @@ class AuthenticationFailure extends AuthenticationState {
   List<Object> get props => [error];
 }
 
+class LoadingState extends AuthenticationState{}
+

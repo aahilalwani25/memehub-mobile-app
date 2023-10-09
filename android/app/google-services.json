@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "204864276768",
+    "project_id": "memehub-15e30",
+    "storage_bucket": "memehub-15e30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204864276768:android:b86db6f5602de1fc206f45",
+        "android_client_info": {
+          "package_name": "com.memehub.memehub_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204864276768-0ntvfat1l096rsbk97agc1rcanfi7s64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.memehub.memehub_mobile_app",
+            "certificate_hash": "864d14be538b4bfc79d7b161690f80c4c84ae780"
+          }
+        },
+        {
+          "client_id": "204864276768-viv30meqkmrih1dm1e3bmffe7cuun693.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNGMhPaCdhVGmW3IWxHHs0p0pRbAy8qbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204864276768-viv30meqkmrih1dm1e3bmffe7cuun693.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "204864276768-5alih9t93d9m5sc7ddlv9r2b6p2husjf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.memehub.memehubMobileApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
