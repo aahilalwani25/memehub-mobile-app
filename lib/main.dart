@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             primaryColor: const Color(0xFFF2F2F2),
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
             useMaterial3: true,
           ),
           home: SigninScreen(),

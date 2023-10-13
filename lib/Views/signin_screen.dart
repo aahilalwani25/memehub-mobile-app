@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/authentication/authentication_bloc.dart';
 import 'package:memehub_mobile_app/Views/user_home.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
-
 import 'signup_screen.dart';
 
 class SigninScreen extends StatelessWidget {
@@ -26,8 +25,28 @@ class SigninScreen extends StatelessWidget {
             // TODO: implement listener
 
             if (state is AuthenticationSuccess) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (builder) => Home()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (builder) => Home()));
+            }
+
+            if (state is AuthenticationLoadingState) {
+              showDialog(
+                  context: context,
+                  builder: (builder) {
+                    return AlertDialog(
+                      content: SizedBox(
+                        height: styles.getHeight(0.1),
+                        child: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(),
+                            Text('Loading..'),
+                          ],
+                        ),
+                      ),
+                    );
+                  });
             }
           },
           builder: (context, state) {
@@ -188,7 +207,12 @@ class SigninScreen extends StatelessWidget {
                               ),
                               onPressed: () {
                                 //if validation is true
-                                if (formKey.currentState!.validate()) {}
+                                if (formKey.currentState!.validate()) {
+                                  context.read<AuthenticationBloc>().add(
+                                      LoginButtonPressedEvent(
+                                          email: _emailController.text,
+                                          password: _passwordController.text));
+                                }
                               },
                               child: const Text(
                                 'Login',

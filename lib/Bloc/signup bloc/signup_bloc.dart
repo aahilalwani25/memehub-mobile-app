@@ -12,12 +12,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
     on<AcceptthetermsEvent>((event, emit) => emit(AcceptTheTermsState(agree: event.agree)));
 
-  on<RegisterEvent>((event, emit) => {
-    //if login successful
-    emit(SignupSuccessfulState(success:'Login successful'))
-
-    //if login unsuccessful
-    //emit(SignupUnsuccessfulState(error: 'Not registered'))
+  on<RegisterEvent>((event, emit){
   });
   }
 }

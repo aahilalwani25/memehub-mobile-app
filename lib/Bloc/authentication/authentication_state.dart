@@ -9,7 +9,7 @@ sealed class AuthenticationState extends Equatable {
 
 final class AuthenticationInitial extends AuthenticationState {}
 
-class AuthenticationLoading extends AuthenticationState {}
+class AuthenticationLoadingState extends AuthenticationState {}
 
 class AuthenticationSuccess extends AuthenticationState {
   final String message;
@@ -28,6 +28,4 @@ class AuthenticationFailure extends AuthenticationState {
   @override
   List<Object> get props => [error];
 }
-
-class LoadingState extends AuthenticationState{}
 

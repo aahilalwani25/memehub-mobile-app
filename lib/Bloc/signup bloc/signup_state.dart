@@ -29,7 +29,7 @@ class SignupUnsuccessfulState extends SignupState{
   String error;
 
   SignupUnsuccessfulState({required this.error});
-
+  
   @override
   List<Object> get props => [error];
 }
