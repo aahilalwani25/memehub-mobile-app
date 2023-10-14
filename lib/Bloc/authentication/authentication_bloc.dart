@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:memehub_mobile_app/Controllers/RegisterController.dart';
 import 'package:memehub_mobile_app/Controllers/auth_controller.dart';
 import 'package:http/http.dart' as http;
+import 'package:memehub_mobile_app/Model/register.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
@@ -47,3 +49,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     });
   }
 }
+
+ 
+  

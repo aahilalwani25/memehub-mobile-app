@@ -33,3 +33,7 @@ class SignupUnsuccessfulState extends SignupState{
   @override
   List<Object> get props => [error];
 }
+
+class SignupLoadingState extends SignupState{
+  
+}

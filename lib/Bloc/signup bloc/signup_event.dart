@@ -17,13 +17,13 @@ class AcceptthetermsEvent extends SignupEvent{
  
 }
 
-class RegisterEvent extends SignupEvent{
-  String username,email ,password ;
-  bool AcceptthetermsEvent;
-  RegisterEvent ({ required this.username, required this.email, required this.password,required this.AcceptthetermsEvent });
+class RegisterButtonPressedEvent extends SignupEvent{
+  String name,email,password,password_confirmation ;
+  bool accepttheterms;
+  RegisterButtonPressedEvent({ required this.name, required this.email, required this.password,required this.password_confirmation, required this.accepttheterms });
 
   @override
-  List<Object> get props => [username,email,password,AcceptthetermsEvent];
+  List<Object> get props => [name,email,password,password_confirmation,accepttheterms];
 }
 
-class LoadingEvent extends SignupEvent{}
+class SignupLoadingEvent extends SignupEvent{}
