@@ -7,7 +7,7 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
-  GoogleAuthController _authController= GoogleAuthController();
+  final GoogleAuthController _authController= GoogleAuthController();
 
   AuthenticationBloc() : super(AuthenticationInitial()) {
 
