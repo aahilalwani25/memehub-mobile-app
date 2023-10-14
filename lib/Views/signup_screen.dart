@@ -25,12 +25,12 @@ class SignupScreen extends StatelessWidget {
             height: styles.getHeight(1),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/images/background_image.jpg')),
+                  image: AssetImage('assets/images/background2_image.jpg')),
             ),
             child: Center(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.transparent,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 alignment: Alignment.center,
                 width: styles.getWidth(0.8),
