@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:memehub_mobile_app/Controllers/RegisterController.dart';
 import 'package:memehub_mobile_app/Controllers/auth_controller.dart';
 import 'package:http/http.dart' as http;
-import 'package:memehub_mobile_app/Model/register.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
@@ -30,9 +28,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
       //if user successfully logs in
       if(response.statusCode==200){
-        emit(AuthenticationSuccess(message: 'Login Successfully'));
+        emit(const AuthenticationSuccess(message: 'Login Successfully'));
       }else{
-        emit(AuthenticationFailure(error: 'Either username or password is wrong'));
+        emit(const AuthenticationFailure(error: 'Either username or password is wrong'));
       }
 
     });
@@ -42,9 +40,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       bool isSignedIn = await _authController.signInWithGoogle();
 
       if(isSignedIn){
-        emit(AuthenticationSuccess(message: 'SignedIn'));
+        emit(const AuthenticationSuccess(message: 'SignedIn'));
       }else{
-        emit(AuthenticationFailure(error: 'Not Logged In'));
+        emit(const AuthenticationFailure(error: 'Not Logged In'));
       }
     });
   }
