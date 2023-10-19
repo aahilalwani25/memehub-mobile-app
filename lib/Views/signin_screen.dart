@@ -26,7 +26,7 @@ class SigninScreen extends StatelessWidget {
 
             if (state is AuthenticationSuccess) {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) => Home()));
+                  .push(MaterialPageRoute(builder: (builder) => const Home()));
             }
 
             if (state is AuthenticationLoadingState) {
@@ -57,7 +57,7 @@ class SigninScreen extends StatelessWidget {
                 height: styles.getHeight(1),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/background2_image.jpg')),
+                      image: AssetImage('assets/images/background2_image.jpeg')),
                 ),
                 child: Center(
                   child: Container(
