@@ -62,7 +62,7 @@ Widget build(BuildContext context){
                             'Sam William',
                             style: TextStyle(
                               fontSize: 24,
-                              color: Colors.blue,
+                              color: Colors.black,
                               fontWeight: FontWeight.w500,
                             ),
                             ),
@@ -72,7 +72,7 @@ Widget build(BuildContext context){
                             ),
                             MaterialButton(
                               onPressed: () {},
-                              color: Colors.blue,
+                              color: Colors.black,
                               minWidth: double.infinity,
                               padding: const EdgeInsets.symmetric(
                                 vertical: 16,
@@ -105,7 +105,7 @@ Widget build(BuildContext context){
                             '58',
                             style: TextStyle(
                               fontSize: 24,
-                              color: Colors.blue,
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(
@@ -131,7 +131,7 @@ Widget build(BuildContext context){
                             '500',
                             style: TextStyle(
                               fontSize: 24,
-                              color: Colors.blue,
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(
@@ -157,7 +157,7 @@ Widget build(BuildContext context){
                             '900',
                             style: TextStyle(
                               fontSize: 24,
-                              color: Colors.blue,
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(
@@ -183,15 +183,12 @@ Widget build(BuildContext context){
     ),
     
     ),
-    appBar: AppBar(
-       
-    backgroundColor: Colors.blue, // Set the app bar color to blue
-      ),
+    
       
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue, // Set the bottom navigation bar's background color to blue
-        selectedItemColor: Colors.white, // Set the selected icon color to white
-        unselectedItemColor: Colors.white, // Set the unselected icon color to white
+        
+        selectedItemColor: Colors.black, // Set the selected icon color to white
+        unselectedItemColor: Colors.black, // Set the unselected icon color to white
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
