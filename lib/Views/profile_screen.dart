@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 
@@ -17,7 +16,7 @@ Widget build(BuildContext context){
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background2.jpeg'),
+          image: AssetImage('assets/images/background2_image.jpeg'),
           alignment: Alignment.topCenter,
           fit: BoxFit.fitWidth,
         ),
@@ -96,7 +95,7 @@ Widget build(BuildContext context){
                   const SizedBox(
                     height: 30,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
@@ -117,14 +116,6 @@ Widget build(BuildContext context){
                             ),
                           ],  
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
                       Column(
                         children: [
                           Text(
@@ -143,14 +134,6 @@ Widget build(BuildContext context){
                             ),
                           ],  
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
                       Column(
                         children: [
                           Text(
@@ -170,6 +153,16 @@ Widget build(BuildContext context){
                           ],
                            
                       ),
+                    ]
+                  ),
+                  
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      
                     ],
                   ),
                 ],

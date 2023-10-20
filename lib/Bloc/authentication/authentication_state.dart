@@ -14,7 +14,7 @@ class AuthenticationLoadingState extends AuthenticationState {}
 class AuthenticationSuccess extends AuthenticationState {
   final String message;
 
-  AuthenticationSuccess({required this.message});
+  const AuthenticationSuccess({required this.message});
 
   @override
   List<Object> get props => [message];
@@ -23,7 +23,7 @@ class AuthenticationSuccess extends AuthenticationState {
 class AuthenticationFailure extends AuthenticationState {
   final String error;
 
-  AuthenticationFailure({required this.error});
+  const AuthenticationFailure({required this.error});
 
   @override
   List<Object> get props => [error];

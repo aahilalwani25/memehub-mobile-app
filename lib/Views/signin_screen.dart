@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/authentication/authentication_bloc.dart';
 import 'package:memehub_mobile_app/Views/user_home.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
+import 'package:memehub_mobile_app/global/components/toast_message.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 import 'signup_screen.dart';
 
@@ -25,9 +26,14 @@ class SigninScreen extends StatelessWidget {
           listener: (context, state) {
             // TODO: implement listener
 
+            if(state is AuthenticationFailure){
+              ToastMessage(context: context, message: "Either username or password is wrong", type: 'error');
+            }
+
             if (state is AuthenticationSuccess) {
+              ToastMessage(context: context, message: "Signed in Successfully", type: 'error');
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) => Home()));
+                  .push(MaterialPageRoute(builder: (builder) => const Home()));
             }
 
             if (state is AuthenticationLoadingState) {
@@ -58,7 +64,7 @@ class SigninScreen extends StatelessWidget {
                 height: styles.getHeight(1),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/background2_image.jpg')),
+                      image: AssetImage('assets/images/background2_image.jpeg')),
                 ),
                 child: Center(
                   child: Container(
