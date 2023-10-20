@@ -19,8 +19,6 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Styles styles = Styles(context: context);
     final formKey = GlobalKey<FormState>();
-    InputDecorationTheme inputDecorationTheme =
-        Theme.of(context).inputDecorationTheme;
 
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,

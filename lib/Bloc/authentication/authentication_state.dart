@@ -12,12 +12,13 @@ final class AuthenticationInitial extends AuthenticationState {}
 class AuthenticationLoadingState extends AuthenticationState {}
 
 class AuthenticationSuccess extends AuthenticationState {
-  final String message;
+  final String message, name;
+  final int id;
 
-  const AuthenticationSuccess({required this.message});
+  const AuthenticationSuccess({required this.message, required this.id, required this.name});
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message, id, name];
 }
 
 class AuthenticationFailure extends AuthenticationState {
@@ -27,5 +28,14 @@ class AuthenticationFailure extends AuthenticationState {
 
   @override
   List<Object> get props => [error];
+}
+
+class AuthenticationWithGoogleSuccessState extends AuthenticationState{
+  final String message;
+
+  const AuthenticationWithGoogleSuccessState({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }
 
