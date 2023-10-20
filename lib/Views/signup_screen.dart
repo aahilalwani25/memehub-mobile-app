@@ -29,13 +29,13 @@ class SignupScreen extends StatelessWidget {
             // TODO: implement listener
 
             if(state is SignupSuccessfulState){
-              ToastMessage(context: context, message: "Either username or password is wrong", type: 'error');
+              ToastMessage(context: context, message: state.success, type: 'success').show();
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (builder) => SigninScreen()));
             }
 
             if (state is SignupUnsuccessfulState) {
-              ToastMessage(context: context, message: "Signed in Successfully", type: 'error');
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) => SigninScreen()));
+              ToastMessage(context: context, message: state.error, type: 'error').show();
             }
 
             if (state is SignupLoadingState) {
@@ -67,7 +67,7 @@ class SignupScreen extends StatelessWidget {
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                         image:
-                            AssetImage('assets/images/background2_image.jpeg')),
+                            AssetImage('assets/images/bg_img_transparent.png')),
                   ),
                   child: Center(
                     child: Container(
@@ -99,6 +99,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                         Input(
                           styles: styles,
+                          hintText: 'Username',
                           context: context,
                           icon: Icon(Icons.person),
                           controller: _usernameController,
@@ -113,6 +114,7 @@ class SignupScreen extends StatelessWidget {
                         ).show(),
                         Input(
                           styles: styles,
+                          hintText: 'Email',
                           context: context,
                           icon: Icon(Icons.email),
                           controller: _emailController,
@@ -127,6 +129,8 @@ class SignupScreen extends StatelessWidget {
                         ).show(),
                         Input(
                           styles: styles,
+                          hintText: 'Password',
+                          obscureText: true,
                           context: context,
                           icon: Icon(Icons.password),
                           controller: _passwordController,
@@ -141,6 +145,8 @@ class SignupScreen extends StatelessWidget {
                         ).show(),
                         Input(
                           styles: styles,
+                          obscureText: true,
+                          hintText: 'Confirm Password',
                           context: context,
                           icon: Icon(Icons.password),
                           controller: _confirmpasswordController,
@@ -148,6 +154,8 @@ class SignupScreen extends StatelessWidget {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Please enter your Confirm Password";
+                            }else if(value!=_passwordController.text){
+                              return "Passwords do not match!";
                             }
 
                             return null;
@@ -173,7 +181,17 @@ class SignupScreen extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  // Validate returns true if the form is valid, otherwise false.
+                                  if (formKey.currentState!.validate()) {
+                                    context.read<SignupBloc>().add(RegisterButtonPressedEvent(name:
+                                     _usernameController.text,
+                                     email: _emailController.text,
+                                     password: _passwordController.text, 
+                                     password_confirmation: _confirmpasswordController.text, 
+                                     accepttheterms: true));
+                                  }
+                                },
                                 child: const Text(
                                   'Register',
                                   style: TextStyle(color: Colors.black),

@@ -16,7 +16,7 @@ Widget build(BuildContext context){
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background2_image.jpeg'),
+          image: AssetImage('assets/images/bg_img_transparent.png'),
           alignment: Alignment.topCenter,
           fit: BoxFit.fitWidth,
         ),

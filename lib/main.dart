@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:memehub_mobile_app/Bloc/signup%20bloc/signup_bloc.dart';
 import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
 import 'Views/signin_screen.dart';
@@ -37,9 +38,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => AuthenticationBloc(),
           ),
-          // BlocProvider(
-          //   create: (context) => SubjectBloc(),
-          // ),
+          BlocProvider(
+            create: (context) => SignupBloc(),
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(

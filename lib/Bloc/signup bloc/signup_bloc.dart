@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 part 'signup_event.dart';
@@ -19,7 +20,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       //http://127.0.0.1:8000/api/user/register
       emit(SignupLoadingState());
       final response= await http.post(
-        Uri.parse('http://192.168.100.69:8000/api/user/register'),
+        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:8000/api/user/register'),
         headers: {
           'Accept': 'application/json'
         },
@@ -27,7 +28,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           'email': event.email,
           'name': event.name,
           'password': event.password,
-          'confirm password' : event.password_confirmation,
+          'password_confirmation' : event.password_confirmation,
 
         },
       );
@@ -35,8 +36,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       //if user successfully registers in
       if(response.statusCode==200){
         emit(SignupSuccessfulState(success: 'Registered Successfully'));
-      }else{
-        emit(SignupUnsuccessfulState(error: 'Either name  is wrong'));
+      }
+      else if(response.statusCode==422){
+        emit(SignupUnsuccessfulState(error: 'The email has already been taken.'));
       }
 
 

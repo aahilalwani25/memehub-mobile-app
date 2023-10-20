@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/authentication/authentication_bloc.dart';
+import 'package:memehub_mobile_app/Views/profile_screen.dart';
 import 'package:memehub_mobile_app/Views/user_home.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
 import 'package:memehub_mobile_app/global/components/toast_message.dart';
@@ -26,14 +27,20 @@ class SigninScreen extends StatelessWidget {
           listener: (context, state) {
             // TODO: implement listener
 
-            if(state is AuthenticationFailure){
-              ToastMessage(context: context, message: "Either username or password is wrong", type: 'error');
+            if (state is AuthenticationFailure) {
+              ToastMessage(
+                  context: context,
+                  message: "Either username or password is wrong",
+                  type: 'error');
             }
 
             if (state is AuthenticationSuccess) {
-              ToastMessage(context: context, message: "Signed in Successfully", type: 'error');
+              ToastMessage(
+                  context: context,
+                  message: "Signed in Successfully",
+                  type: 'error');
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) => const Home()));
+                  .push(MaterialPageRoute(builder: (builder) => const ProfileScreen()));
             }
 
             if (state is AuthenticationLoadingState) {
@@ -64,7 +71,8 @@ class SigninScreen extends StatelessWidget {
                 height: styles.getHeight(1),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/background2_image.jpeg')),
+                      image:
+                          AssetImage('assets/images/bg_img_transparent.png')),
                 ),
                 child: Center(
                   child: Container(
@@ -142,39 +150,37 @@ class SigninScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                    Input(
+                      Input(
+                        hintText: 'Email',
+                        styles: styles,
+                        context: context,
+                        icon: Icon(Icons.email),
+                        controller: _emailController,
+                        textInputType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your  Email";
+                          }
 
-                    styles: styles,
-                    context: context,
-                    icon: Icon(Icons.email),
-                     controller: _emailController,
-                     textInputType: TextInputType.emailAddress,
-                     validator: (value) {
-                       if (value!.isEmpty) {
-                         return "Please enter your  Email";
-                       }
+                          return null;
+                        },
+                      ).show(),
+                      Input(
+                        styles: styles,
+                        context: context,
+                        hintText: 'Password',
+                        obscureText: true,
+                        icon: Icon(Icons.password),
+                        controller: _passwordController,
+                        textInputType: TextInputType.visiblePassword,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your Password";
+                          }
 
-                       return null;
-                     },
-                     
-                   ).show(),
-
-                     Input(
-                    styles: styles,
-                    context: context,
-                    icon: Icon(Icons.password),
-                     controller: _passwordController,
-                     textInputType: TextInputType.visiblePassword,
-                     validator: (value) {
-                       if (value!.isEmpty) {
-                         return "Please enter your Password";
-                       }
-
-                       return null;
-                     },
-                     
-                   ).show(),
-
+                          return null;
+                        },
+                      ).show(),
                       Container(
                         alignment: const Alignment(0.75, 0),
                         child: Text(

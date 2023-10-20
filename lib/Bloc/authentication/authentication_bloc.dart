@@ -2,8 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:memehub_mobile_app/Controllers/auth_controller.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
+
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
@@ -16,7 +18,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       //http://192.168.0.106:8000/api/user/login
       emit(AuthenticationLoadingState());
       final response= await http.post(
-        Uri.parse('http://192.168.100.69:8000/api/user/login'),
+        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:8000/api/user/login'),
         headers: {
           'Accept': 'application/json'
         },
