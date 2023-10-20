@@ -56,13 +56,14 @@ class SignupScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium!,
                     ),
                   ),
-                   Input(
+                    Input(
                     styles: styles,
                     context: context,
+                    icon: Icon(Icons.person),
                      controller: _usernameController,
                      textInputType: TextInputType.name,
                      validator: (value) {
-                       if (value == null) {
+                       if (value!.isEmpty) {
                          return "Please enter your Username";
                        }
 
@@ -70,89 +71,51 @@ class SignupScreen extends StatelessWidget {
                      },
                      
                    ).show(),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: 5,
-                    ),
-                    width: styles.getWidth(0.5),
-                    height: styles.getHeight(0.1),
-                    child: TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value == null) {
-                          return "Please enter your email";
-                        }
+                   Input(
+                    styles: styles,
+                    context: context,
+                    icon: Icon(Icons.email),
+                     controller: _emailController,
+                     textInputType: TextInputType.emailAddress,
+                     validator: (value) {
+                       if (value!.isEmpty) {
+                         return "Please enter your Email";
+                       }
 
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.email),
-                        hintText: 'Email',
-                        fillColor: inputDecorationTheme.fillColor,
-                        filled: inputDecorationTheme.filled,
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: 5,
-                    ),
-                    width: styles.getWidth(0.5),
-                    height: styles.getHeight(0.1),
-                    child: TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value) {
-                        if (value == null) {
-                          return "Please enter your Password";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.remove_red_eye),
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'Password',
-                        fillColor: inputDecorationTheme.fillColor,
-                        filled: inputDecorationTheme.filled,
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: 5,
-                    ),
-                    width: styles.getWidth(0.5),
-                    height: styles.getHeight(0.1),
-                    child: TextFormField(
-                      controller: _confirmpasswordController,
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value) {
-                        if (value == null) {
-                          return "Please enter your Confirm Password";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.remove_red_eye),
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'Confirm Password',
-                        fillColor: inputDecorationTheme.fillColor,
-                        filled: inputDecorationTheme.filled,
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                      ),
-                    ),
-                  ),
+                       return null;
+                     },
+                     
+                   ).show(),
+                  Input(
+                    styles: styles,
+                    context: context,
+                    icon: Icon(Icons.password),
+                     controller: _passwordController,
+                     textInputType: TextInputType.visiblePassword,
+                     validator: (value) {
+                       if (value!.isEmpty) {
+                         return "Please enter your Password";
+                       }
+
+                       return null;
+                     },
+                     
+                   ).show(),
+                   Input(
+                    styles: styles,
+                    context: context,
+                    icon: Icon(Icons.password),
+                     controller: _confirmpasswordController,
+                     textInputType: TextInputType.visiblePassword,
+                     validator: (value) {
+                       if (value!.isEmpty) {
+                         return "Please enter your Confirm Password";
+                       }
+
+                       return null;
+                     },
+                     
+                   ).show(),
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: (value){

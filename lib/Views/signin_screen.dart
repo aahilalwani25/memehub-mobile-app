@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/authentication/authentication_bloc.dart';
 import 'package:memehub_mobile_app/Views/user_home.dart';
+import 'package:memehub_mobile_app/global/components/input_text.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 import 'signup_screen.dart';
 
@@ -135,61 +136,39 @@ class SigninScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 40,
-                        ),
-                        width: styles.getWidth(0.5),
-                        height: styles.getHeight(0.1),
-                        child: TextFormField(
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Please enter your email";
-                            }
+                    Input(
 
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.email),
-                            hintText: 'Email',
-                            fillColor: inputDecorationTheme.fillColor,
-                            filled: inputDecorationTheme.filled,
-                            border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30))),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 5,
-                        ),
-                        width: styles.getWidth(0.5),
-                        height: styles.getHeight(0.1),
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          keyboardType: TextInputType.visiblePassword,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Please enter your Password";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            suffixIcon: const Icon(Icons.remove_red_eye),
-                            prefixIcon: const Icon(Icons.lock),
-                            hintText: 'Password',
-                            fillColor: inputDecorationTheme.fillColor,
-                            filled: inputDecorationTheme.filled,
-                            border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30))),
-                          ),
-                        ),
-                      ),
+                    styles: styles,
+                    context: context,
+                    icon: Icon(Icons.email),
+                     controller: _emailController,
+                     textInputType: TextInputType.emailAddress,
+                     validator: (value) {
+                       if (value!.isEmpty) {
+                         return "Please enter your  Email";
+                       }
+
+                       return null;
+                     },
+                     
+                   ).show(),
+
+                     Input(
+                    styles: styles,
+                    context: context,
+                    icon: Icon(Icons.password),
+                     controller: _passwordController,
+                     textInputType: TextInputType.visiblePassword,
+                     validator: (value) {
+                       if (value!.isEmpty) {
+                         return "Please enter your Password";
+                       }
+
+                       return null;
+                     },
+                     
+                   ).show(),
+
                       Container(
                         alignment: const Alignment(0.75, 0),
                         child: Text(

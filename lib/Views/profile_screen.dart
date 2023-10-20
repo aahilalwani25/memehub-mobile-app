@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+ 
 
+  const ProfileScreen({super.key});
+  
+  
 @override
+
 Widget build(BuildContext context){
   return Scaffold(
     body: SingleChildScrollView(
@@ -22,6 +26,7 @@ Widget build(BuildContext context){
           const SizedBox(
           height: 260
           ),
+          
         Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 20),
@@ -90,7 +95,7 @@ Widget build(BuildContext context){
                   const SizedBox(
                     height: 30,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
@@ -148,9 +153,18 @@ Widget build(BuildContext context){
                           ],
                            
                       ),
-                    ],
+                    ]
                   ),
                   
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      
+                    ],
+                  ),
                 ],
               ),
               ),
@@ -160,8 +174,40 @@ Widget build(BuildContext context){
         ],
       ),
     ),
+    
     ),
-  );
-  
+    appBar: AppBar(
+       
+    backgroundColor: Colors.blue, // Set the app bar color to blue
+      ),
+      
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue, // Set the bottom navigation bar's background color to blue
+        selectedItemColor: Colors.white, // Set the selected icon color to white
+        unselectedItemColor: Colors.white, // Set the unselected icon color to white
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Add',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sentiment_satisfied),
+            label: 'Emoji',
+          ),
+        ],
+      ),
+    
+      
+    );
+  }
 }
-}
+    
+ 

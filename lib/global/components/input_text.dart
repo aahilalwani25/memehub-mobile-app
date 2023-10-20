@@ -17,7 +17,7 @@ class Input {
       this.hintText,
       this.validator,
       this.textInputType,
-      this.obscureText = false,
+      this.obscureText = true,
       required this.styles,
       this.icon});
 
