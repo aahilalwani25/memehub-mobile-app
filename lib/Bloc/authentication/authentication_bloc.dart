@@ -16,7 +16,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       //http://192.168.0.106:8000/api/user/login
       emit(AuthenticationLoadingState());
       final response= await http.post(
-        Uri.parse('http://192.168.0.106:8000/api/user/login'),
+        Uri.parse('http://192.168.100.69:8000/api/user/login'),
         headers: {
           'Accept': 'application/json'
         },

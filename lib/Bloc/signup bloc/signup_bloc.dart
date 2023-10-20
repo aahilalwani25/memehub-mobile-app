@@ -19,7 +19,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       //http://127.0.0.1:8000/api/user/register
       emit(SignupLoadingState());
       final response= await http.post(
-        Uri.parse('http://192.168.0.106:8000/api/user/register'),
+        Uri.parse('http://192.168.100.69:8000/api/user/register'),
         headers: {
           'Accept': 'application/json'
         },

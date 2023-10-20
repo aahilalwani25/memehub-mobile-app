@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:memehub_mobile_app/Views/profile_screen.dart';
 import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
+import 'Views/signin_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,9 @@ void main() async{
 Future initialization(BuildContext context) async {
   //load resources
   await Future.delayed(
-      const Duration(seconds: 2), () => {FlutterNativeSplash.remove()});
+      const Duration(seconds: 2), () => {
+        FlutterNativeSplash.remove()
+      });
 }
 
 class MyApp extends StatelessWidget {
@@ -72,7 +74,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
             useMaterial3: true,
           ),
-          home: const ProfileScreen(),
+          home: SigninScreen(),
         ));
   }
 }

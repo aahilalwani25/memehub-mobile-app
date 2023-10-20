@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memehub_mobile_app/global/components/input_text.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -55,33 +56,20 @@ class SignupScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium!,
                     ),
                   ),
-                   Container(
-                    margin: const EdgeInsets.only(
-                      top: 30,
-                    ),
-                    width: styles.getWidth(0.5),
-                    height: styles.getHeight(0.1),
-                    child: TextFormField(
-                      controller: _usernameController,
-                      keyboardType: TextInputType.name,
-                      validator: (value) {
-                        if (value == null) {
-                          return "Please enter your User name";
-                        }
+                   Input(
+                    styles: styles,
+                    context: context,
+                     controller: _usernameController,
+                     textInputType: TextInputType.name,
+                     validator: (value) {
+                       if (value == null) {
+                         return "Please enter your Username";
+                       }
 
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.person),
-                        hintText: 'User Name',
-                        fillColor: inputDecorationTheme.fillColor,
-                        filled: inputDecorationTheme.filled,
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                      ),
-                    ),
-                  ),
+                       return null;
+                     },
+                     
+                   ).show(),
                   Container(
                     margin: const EdgeInsets.only(
                       top: 5,
