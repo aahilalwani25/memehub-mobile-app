@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/Views/profile_screen.dart';
 
-class mainscreen extends StatelessWidget {
-  const mainscreen({super.key});
+class Home extends StatelessWidget {
+  String name;
+  int id;
+  Home({super.key, required this.id, required this.name});
 
   @override
    Widget build(BuildContext context) {
@@ -49,12 +51,12 @@ class mainscreen extends StatelessWidget {
                 return const CupertinoPageScaffold(child:createpostscreen());
                 },
             );
-            /*case 4:
+            case 3:
             return CupertinoTabView(
               builder: (context){
-                return const CupertinoPageScaffold(child:Searchscreen());
+                return CupertinoPageScaffold(child:ProfileScreen(id: id, name: name,));
                 },
-            );*/
+            );
           }
           return Container();
         },
