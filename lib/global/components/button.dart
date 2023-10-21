@@ -10,7 +10,7 @@ class Button {
 
   Widget show() {
     return Container(
-        width: 151,
+        width: 200,
         height: 45,
         margin: const EdgeInsets.only(top: 10),
         child: ElevatedButton(

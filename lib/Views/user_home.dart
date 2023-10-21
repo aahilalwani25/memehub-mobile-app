@@ -6,9 +6,12 @@ import 'package:memehub_mobile_app/tab/home_tab.dart';
 import 'package:memehub_mobile_app/tab/settings_tab.dart';
 import 'package:memehub_mobile_app/tab/trending_tab.dart';
 import 'main_user.dart';
+import 'profile_screen.dart';
 
-class mainscreen extends StatelessWidget {
-  const mainscreen({super.key});
+class Home extends StatelessWidget {
+  String name;
+  int id;
+  Home({super.key, required this.id, required this.name});
 
   @override
   
@@ -59,12 +62,12 @@ class mainscreen extends StatelessWidget {
                 return const CupertinoPageScaffold(child:createpostscreen());
                 },
             );
-            /*case 4:
+            case 3:
             return CupertinoTabView(
               builder: (context){
-                return const CupertinoPageScaffold(child:Searchscreen());
+                return CupertinoPageScaffold(child:ProfileScreen(id: id, name: name,));
                 },
-            );*/
+            );
           }
           return Container();
         },
