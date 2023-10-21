@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/authentication/authentication_bloc.dart';
 import 'package:memehub_mobile_app/Views/profile_screen.dart';
+import 'package:memehub_mobile_app/Views/user_home.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
 import 'package:memehub_mobile_app/global/components/toast_message.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
@@ -39,7 +40,7 @@ class SigninScreen extends StatelessWidget {
                   message: state.message,
                   type: 'error');
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) =>ProfileScreen(id: state.id, name: state.name,)));
+                  .push(MaterialPageRoute(builder: (builder) => const mainscreen()));
             }
 
             if (state is AuthenticationLoadingState) {
