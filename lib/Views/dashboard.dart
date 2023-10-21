@@ -8,10 +8,10 @@ import 'package:memehub_mobile_app/tab/trending_tab.dart';
 import 'main_user.dart';
 import 'profile_screen.dart';
 
-class Home extends StatelessWidget {
+class Dashboard extends StatelessWidget {
   String name;
   int id;
-  Home({super.key, required this.id, required this.name});
+  Dashboard({super.key, required this.id, required this.name});
 
   @override
   
