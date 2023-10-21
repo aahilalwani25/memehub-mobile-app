@@ -99,7 +99,7 @@ class SignupScreen extends StatelessWidget {
                           styles: styles,
                           hintText: 'Username',
                           context: context,
-                          icon: Icon(Icons.person),
+                          icon: const Icon(Icons.person),
                           controller: _usernameController,
                           textInputType: TextInputType.name,
                           validator: (value) {
@@ -114,7 +114,7 @@ class SignupScreen extends StatelessWidget {
                           styles: styles,
                           hintText: 'Email',
                           context: context,
-                          icon: Icon(Icons.email),
+                          icon: const Icon(Icons.email),
                           controller: _emailController,
                           textInputType: TextInputType.emailAddress,
                           validator: (value) {
@@ -130,7 +130,7 @@ class SignupScreen extends StatelessWidget {
                           hintText: 'Password',
                           obscureText: true,
                           context: context,
-                          icon: Icon(Icons.password),
+                          icon: const Icon(Icons.password),
                           controller: _passwordController,
                           textInputType: TextInputType.visiblePassword,
                           validator: (value) {
@@ -146,7 +146,7 @@ class SignupScreen extends StatelessWidget {
                           obscureText: true,
                           hintText: 'Confirm Password',
                           context: context,
-                          icon: Icon(Icons.password),
+                          icon: const Icon(Icons.password),
                           controller: _confirmpasswordController,
                           textInputType: TextInputType.visiblePassword,
                           validator: (value) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/authentication/authentication_bloc.dart';
-import 'package:memehub_mobile_app/Views/profile_screen.dart';
 import 'package:memehub_mobile_app/Views/user_home.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
 import 'package:memehub_mobile_app/global/components/toast_message.dart';
@@ -152,7 +151,7 @@ class SigninScreen extends StatelessWidget {
                         hintText: 'Email',
                         styles: styles,
                         context: context,
-                        icon: Icon(Icons.email),
+                        icon: const Icon(Icons.email),
                         controller: _emailController,
                         textInputType: TextInputType.emailAddress,
                         validator: (value) {
@@ -168,7 +167,7 @@ class SigninScreen extends StatelessWidget {
                         context: context,
                         hintText: 'Password',
                         obscureText: true,
-                        icon: Icon(Icons.password),
+                        icon: const Icon(Icons.password),
                         controller: _passwordController,
                         textInputType: TextInputType.visiblePassword,
                         validator: (value) {

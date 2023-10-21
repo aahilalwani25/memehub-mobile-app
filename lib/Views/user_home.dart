@@ -1,16 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:memehub_mobile_app/Views/profile_screen.dart';
+import 'package:memehub_mobile_app/Views/createpost_screen.dart';
+import 'package:memehub_mobile_app/Views/search_screen.dart';
+import 'package:memehub_mobile_app/tab/home_tab.dart';
+import 'package:memehub_mobile_app/tab/settings_tab.dart';
+import 'package:memehub_mobile_app/tab/trending_tab.dart';
+import 'main_user.dart';
 
 class mainscreen extends StatelessWidget {
   const mainscreen({super.key});
 
   @override
-   Widget build(BuildContext context) {
+  
+
+   Widget build(BuildContext context)
+  {
+     
     return CupertinoTabScaffold(
+     
       tabBar:CupertinoTabBar(
         activeColor: Colors.black,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -61,39 +71,61 @@ class mainscreen extends StatelessWidget {
     );
    }
 }
-class homescreen extends StatelessWidget{
-  const homescreen({Key? key}) : super(key: key);
-  @override
-  Widget  build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(child: Text("Homescreen"),),
-      
-      );
-  }
-}
- 
-class Searchscreen extends StatelessWidget{
-  const Searchscreen({Key? key}) : super(key: key);
-  @override
-  Widget  build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(child: Text("Search screen"),),
-      
-      );
-  }
-}
-class createpostscreen extends StatelessWidget{
-  const createpostscreen({Key? key}) : super(key: key);
-  @override
-  Widget  build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(child: Text("createpostscreen"),),
-      
-      );
-  }
-}
 
+ 
+
+
+
+Widget build(BuildContext context){
+  return DefaultTabController(
+
+    length: 3,
+    child: Scaffold(
+     appBar: AppBar(
+      title: const Text('HOME SCREEN'),
+     ),
+     body: const Column(
+      children: [
+        TabBar(tabs:[
+          Tab(
+            icon:  Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+          ),
+          Tab(
+            icon:  Icon(
+              Icons.arrow_upward_outlined,
+              color: Colors.black,
+            ),
+          ),
+          Tab(
+            icon:  Icon(
+              Icons.settings,
+              color: Colors.black,
+            ),
+          )
+        ] 
+        ),
+      Expanded(
+        child: TabBarView(
+          children:[
+            //1tab
+            home(),
+
+            //2 tab
+            Trending(),
+            //3tab
+            settings(),
+          ]
+      
+          ),
+          ),
+      ],
+     ),
+    ),
+    
+  );
+
+}
 

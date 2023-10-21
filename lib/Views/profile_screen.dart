@@ -96,7 +96,7 @@ Widget build(BuildContext context){
                   const SizedBox(
                     height: 30,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
@@ -160,7 +160,7 @@ Widget build(BuildContext context){
                   const SizedBox(
                     height: 30,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       
