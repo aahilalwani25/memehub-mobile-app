@@ -30,7 +30,7 @@ class Input {
         top: 10,
         bottom: 15,
       ),
-      width: styles.getWidth(0.58),
+      width: styles.getWidth(0.6),
       height: styles.getHeight(0.07),
       child: TextFormField(
         style: TextStyle(

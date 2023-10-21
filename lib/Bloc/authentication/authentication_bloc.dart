@@ -36,6 +36,7 @@ class AuthenticationBloc
               message: message, id: id, name: name));
         }
       }else{
+        print(response.body);
           emit(const AuthenticationFailure(
               error: 'Either username or password is wrong'));
       }
