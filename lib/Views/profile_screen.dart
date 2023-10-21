@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 
 class ProfileScreen extends StatelessWidget {
- 
 
-  const ProfileScreen({super.key});
+  String name;
+  int id;
+  ProfileScreen({super.key, required this.id, required this.name});
   
   
 @override
@@ -16,7 +17,7 @@ Widget build(BuildContext context){
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background2_image.jpeg'),
+          image: AssetImage('assets/images/bg_img_transparent.png'),
           alignment: Alignment.topCenter,
           fit: BoxFit.fitWidth,
         ),
@@ -57,9 +58,9 @@ Widget build(BuildContext context){
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.max,
                         children: [
-                          const Text(
-                            'Sam William',
-                            style: TextStyle(
+                          Text(
+                            name,
+                            style: const TextStyle(
                               fontSize: 24,
                               color: Colors.black,
                               fontWeight: FontWeight.w500,

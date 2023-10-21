@@ -7,6 +7,7 @@ import 'package:memehub_mobile_app/Views/profile_screen.dart';
 import 'package:memehub_mobile_app/Views/user_home.dart';
 import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
+import 'Bloc/signup bloc/signup_bloc.dart';
 import 'Views/signin_screen.dart';
 
 void main() async{
@@ -39,9 +40,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => AuthenticationBloc(),
           ),
-          // BlocProvider(
-          //   create: (context) => SubjectBloc(),
-          // ),
+          BlocProvider(
+            create: (context) => SignupBloc(),
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(
