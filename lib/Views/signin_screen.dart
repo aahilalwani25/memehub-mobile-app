@@ -33,7 +33,7 @@ class SigninScreen extends StatelessWidget {
             if (state is AuthenticationSuccess) {
               ToastMessage(context: context, message: "Signed in Successfully", type: 'error');
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) => const Home()));
+                  .push(MaterialPageRoute(builder: (builder) => const homescreen()));
             }
 
             if (state is AuthenticationLoadingState) {

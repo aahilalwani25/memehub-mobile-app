@@ -178,7 +178,7 @@ Widget build(BuildContext context){
     ),
     
       
-      bottomNavigationBar: BottomNavigationBar(
+      /*bottomNavigationBar: BottomNavigationBar(
         
         selectedItemColor: Colors.black, // Set the selected icon color to white
         unselectedItemColor: Colors.black, // Set the unselected icon color to white
@@ -198,9 +198,10 @@ Widget build(BuildContext context){
           BottomNavigationBarItem(
             icon: Icon(Icons.sentiment_satisfied),
             label: 'Emoji',
+            
           ),
         ],
-      ),
+      ),*/
     
       
     );
