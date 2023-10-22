@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -166,6 +167,50 @@ Widget build(BuildContext context){
                       
                     ],
                   ),
+                  
+                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                     SizedBox(
+                    height: 16,
+                  ),
+                  Text('Posts',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                  
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 28,
+                        ),
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/firstpicture.jpeg',
+                            height: 200,
+                            fit: BoxFit.fitHeight,
+                          ),
+
+
+                        ),
+                        )
+                      ],
+                    ),
+                  ),
+                  ],
+
+                 ),
+
                 ],
               ),
               ),
@@ -178,35 +223,10 @@ Widget build(BuildContext context){
     
     ),
     
-      
-      /*bottomNavigationBar: BottomNavigationBar(
-        
-        selectedItemColor: Colors.black, // Set the selected icon color to white
-        unselectedItemColor: Colors.black, // Set the unselected icon color to white
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.sentiment_satisfied),
-            label: 'Emoji',
-            
-          ),
-        ],
-      ),*/
-    
+
       
     );
   }
 }
-    
- 
+
+
