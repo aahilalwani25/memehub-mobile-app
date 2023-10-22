@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import '../global/styles.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 @override
 
 Widget build(BuildContext context){
+  Styles styles= Styles(context: context);
   return Scaffold(
     body: SingleChildScrollView(
     child: Container(
@@ -168,7 +170,7 @@ Widget build(BuildContext context){
                     ],
                   ),
                   
-                 Row(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                      SizedBox(
@@ -185,9 +187,9 @@ Widget build(BuildContext context){
                     height: 16,
                   ),
                   SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
                           width: 28,
@@ -198,7 +200,26 @@ Widget build(BuildContext context){
                           child: Image.asset(
                             'assets/images/firstpicture.jpeg',
                             height: 200,
+                            width: styles.getWidth(0.7),
                             fit: BoxFit.fitHeight,
+                            
+                          ),
+
+
+                        ),
+                        ),
+                        SizedBox(
+                          height: 28,
+                        ),
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/firstpicture.jpeg',
+                            height: 200,
+                            width: styles.getWidth(0.7),
+                            fit: BoxFit.fitHeight,
+                            
                           ),
 
 

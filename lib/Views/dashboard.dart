@@ -59,7 +59,7 @@ class Dashboard extends StatelessWidget {
             case 2:
             return CupertinoTabView(
               builder: (context){
-                return const CupertinoPageScaffold(child:createpostscreen());
+                return CupertinoPageScaffold(child:CreatePostScreen(name: name,));
                 },
             );
             case 3:
