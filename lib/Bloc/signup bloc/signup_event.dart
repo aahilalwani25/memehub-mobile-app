@@ -17,6 +17,16 @@ class AcceptthetermsEvent extends SignupEvent{
  
 }
 
+class AcceptTheTermsNotAcceptedEvent extends SignupEvent{
+  String error;
+
+  AcceptTheTermsNotAcceptedEvent({required this.error});
+
+@override
+  List<Object> get props => [error];
+ 
+}
+
 class RegisterButtonPressedEvent extends SignupEvent{
   String name,email,password,password_confirmation ;
   bool accepttheterms;

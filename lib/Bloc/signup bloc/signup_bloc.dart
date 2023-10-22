@@ -12,7 +12,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       // TODO: implement event handler
     });
 
-    on<AcceptthetermsEvent>((event, emit) => emit(AcceptTheTermsState(agree: event.agree)));
+    //on<AcceptthetermsEvent>((event, emit) => emit(AcceptTheTermsState(agree: event.agree)));
 
   
     on<RegisterButtonPressedEvent>((event, emit) async{
@@ -40,8 +40,14 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       else if(response.statusCode==422){
         emit(SignupUnsuccessfulState(error: 'The email has already been taken.'));
       }
+    });
 
+    on<AcceptthetermsEvent>((event, emit){
+      emit(AcceptTheTermsState(agree: event.agree));
+    });
 
+    on<AcceptTheTermsNotAcceptedEvent>((event, emit){
+      emit(AcceptTheTermsNotAcceptedState(error: event.error));
     });
   }
 

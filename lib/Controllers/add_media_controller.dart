@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-class UploadMediaController {
+class AddMediaController {
   File? media;
 
-  UploadMediaController();
+  AddMediaController();
 
   final picker = ImagePicker();
 
@@ -12,7 +12,9 @@ class UploadMediaController {
   Future<File> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
+    if (pickedFile == null) {
+      media = null;
+    }else{
       media = File(pickedFile.path);
     }
 

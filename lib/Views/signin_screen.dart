@@ -69,7 +69,6 @@ class SigninScreen extends StatelessWidget {
                 width: styles.getWidth(1),
                 height: styles.getHeight(1),
                 decoration: const BoxDecoration(
-                  
                   image: DecorationImage(
                   fit: BoxFit.cover,
                       image:

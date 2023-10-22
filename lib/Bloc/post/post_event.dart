@@ -17,3 +17,10 @@ class PrivacyButtonPressedEvent extends PostEvent{
 }
 
 class AddPhotoButtonPressed extends PostEvent{}
+
+class PostButtonPressedEvent extends PostEvent{
+  File? imageFile;
+  String? description;
+
+  PostButtonPressedEvent({required this.imageFile, this.description});
+}

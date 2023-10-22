@@ -18,3 +18,16 @@ class PrivacyChangedState extends PostState{
   List<Object> get props => [privacy];
 }
 
+class PhotoAddedState extends PostState{
+  File photoFile;
+
+  PhotoAddedState({required this.photoFile});
+
+  @override
+  List<Object> get props => [photoFile];
+}
+
+class PostSuccessfullyState extends PostState{
+  
+}
+
