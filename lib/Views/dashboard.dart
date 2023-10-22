@@ -2,9 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/Views/createpost_screen.dart';
 import 'package:memehub_mobile_app/Views/search_screen.dart';
-import 'package:memehub_mobile_app/tab/home_tab.dart';
-import 'package:memehub_mobile_app/tab/settings_tab.dart';
-import 'package:memehub_mobile_app/tab/trending_tab.dart';
 import 'main_user.dart';
 import 'profile_screen.dart';
 

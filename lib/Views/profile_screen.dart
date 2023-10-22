@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -168,35 +167,61 @@ Widget build(BuildContext context){
                     ],
                   ),
                   
-                 Row(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     SizedBox(
+                     const SizedBox(
                     height: 16,
                   ),
-                  Text('Posts',
+                  const Text('Posts',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
                   ),
                   
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.vertical,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 28,
                         ),
-                        Padding(padding: EdgeInsets.symmetric(horizontal: 8),
+                        Padding(padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
                             'assets/images/firstpicture.jpeg',
+                            height: 200,
+                            fit: BoxFit.fitHeight,
+                          ),
+
+
+                        ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          width: 28,
+                        ),
+                        Padding(padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/homepicture1.jpeg',
                             height: 200,
                             fit: BoxFit.fitHeight,
                           ),
