@@ -51,3 +51,10 @@ class SignupUnsuccessfulState extends SignupState{
 class SignupLoadingState extends SignupState{
   
 }
+
+class GenderState extends SignupState{
+  int genderId;
+  GenderState({required this.genderId});
+  @override
+  List<Object> get props => [genderId];
+}

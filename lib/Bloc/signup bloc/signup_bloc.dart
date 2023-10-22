@@ -49,6 +49,11 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     on<AcceptTheTermsNotAcceptedEvent>((event, emit){
       emit(AcceptTheTermsNotAcceptedState(error: event.error));
     });
+
+    on<GenderSelectedEvent>((event, emit){
+      print(event.genderId);
+      emit(GenderState(genderId: event.genderId));
+    });
   }
 
 }

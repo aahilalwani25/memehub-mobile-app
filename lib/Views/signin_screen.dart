@@ -37,7 +37,7 @@ class SigninScreen extends StatelessWidget {
               ToastMessage(
                   context: context,
                   message: state.message,
-                  type: 'error');
+                  type: 'success').show();
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (builder) => Dashboard(id: state.id,name: state.name,)));
             }

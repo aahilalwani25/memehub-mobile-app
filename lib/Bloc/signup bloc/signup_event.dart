@@ -27,6 +27,13 @@ class AcceptTheTermsNotAcceptedEvent extends SignupEvent{
  
 }
 
+class GenderSelectedEvent extends SignupEvent{
+  int genderId;
+  GenderSelectedEvent({required this.genderId});
+  @override
+  List<Object> get props => [genderId];
+}
+
 class RegisterButtonPressedEvent extends SignupEvent{
   String name,email,password,password_confirmation ;
   bool accepttheterms;

@@ -157,7 +157,7 @@ class SignupScreen extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Please enter your Confirm Password";
-                          } else if (value!=_passwordController.text) {
+                          } else if (value != _passwordController.text) {
                             return "Passwords do not match!";
                           }
 
@@ -186,6 +186,37 @@ class SignupScreen extends StatelessWidget {
                       //     (state is AcceptTheTermsNotAcceptedState)? Text(state.error):Container()
                       //   ],
                       // ),
+
+                      const Text('Gender'),
+                      ListTile(
+                        title: const Text('Male'),
+                        leading: Radio(
+                          value: 1,
+                          groupValue:
+                              (state is GenderState) ? state.genderId : 0,
+                          onChanged: (value) {
+                            context
+                                .read<SignupBloc>()
+                                .add(GenderSelectedEvent(genderId: value!));
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        title: const Text('Female'),
+                        leading: Radio(
+                          value: 2,
+                          groupValue:
+                              (state is GenderState) ? state.genderId : 0,
+                          
+                          onChanged: (value) {
+                            context
+                                .read<SignupBloc>()
+                                .add(GenderSelectedEvent(genderId: value!));
+                          },
+                        ),
+                      ),
+
+                      
                       Container(
                           width: 151,
                           height: 45,
@@ -197,21 +228,21 @@ class SignupScreen extends StatelessWidget {
                               onPressed: () {
                                 // Validate returns true if the form is valid, otherwise false.
                                 if (formKey.currentState!.validate()) {
-                                //   if (state is AcceptTheTermsState) {
-                                //     if (state.agree != true) {
-                                //       context.read<SignupBloc>().add(
-                                //           AcceptTheTermsNotAcceptedEvent(
-                                //               error: 'Accept the terms'));
-                                //     }
-                                //   else {
-                                    context.read<SignupBloc>().add(
-                                        RegisterButtonPressedEvent(
-                                            name: _usernameController.text,
-                                            email: _emailController.text,
-                                            password: _passwordController.text,
-                                            password_confirmation:
-                                                _confirmpasswordController.text,
-                                            accepttheterms: true));
+                                  //   if (state is AcceptTheTermsState) {
+                                  //     if (state.agree != true) {
+                                  //       context.read<SignupBloc>().add(
+                                  //           AcceptTheTermsNotAcceptedEvent(
+                                  //               error: 'Accept the terms'));
+                                  //     }
+                                  //   else {
+                                  context.read<SignupBloc>().add(
+                                      RegisterButtonPressedEvent(
+                                          name: _usernameController.text,
+                                          email: _emailController.text,
+                                          password: _passwordController.text,
+                                          password_confirmation:
+                                              _confirmpasswordController.text,
+                                          accepttheterms: true));
                                 }
                                 // }}
                               },
