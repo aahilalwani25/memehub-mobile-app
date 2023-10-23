@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Bloc/post/post_bloc.dart';
 
-class home extends StatelessWidget {
-  const home({Key? key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class home extends StatelessWidget {
                             title: Text('ID: $id'),
                           ),
                           ListTile(
-                            title: Text('description: ${description}'),
+                            title: Text('description: $description'),
                           ),
                           Image.network(imageUrl),
                         ],
@@ -48,7 +48,7 @@ class home extends StatelessWidget {
               );
             
             } else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),

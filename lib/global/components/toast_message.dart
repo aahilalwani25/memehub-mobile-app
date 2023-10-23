@@ -25,7 +25,7 @@ class ToastMessage{
         style: const TextStyle(color: Colors.white),
       )),
       backgroundColor: backgroundColor,
-      margin: EdgeInsets.only(bottom: 80, left: 20, right: 20),
+      margin: const EdgeInsets.only(bottom: 80, left: 20, right: 20),
       behavior: SnackBarBehavior.floating,
       //width: 300 * 0.9,
     ));

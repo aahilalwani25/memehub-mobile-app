@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/Views/createpost_screen.dart';
 import 'package:memehub_mobile_app/Views/search_screen.dart';
-import 'main_user.dart';
+import 'tab_bars.dart';
 import 'profile_screen.dart';
 
 class Dashboard extends StatelessWidget {

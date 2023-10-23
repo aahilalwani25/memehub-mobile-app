@@ -42,7 +42,7 @@ class homescreen extends StatelessWidget{
         child: TabBarView(
           children:[
             //1tab
-            home(),
+            Home(),
 
             //2 tab
             Trending(),

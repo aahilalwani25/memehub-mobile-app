@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
-import 'package:memehub_mobile_app/Bloc/signup%20bloc/signup_bloc.dart';
-import 'package:memehub_mobile_app/Controllers/add_media_controller.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
 class CreatePostScreen extends StatelessWidget {
   String name;
-  TextEditingController _description_controller = TextEditingController();
+  final TextEditingController _description_controller = TextEditingController();
   var privacies = [
     'Public', //id=1
     'Private' //id=2
   ];
 
-  CreatePostScreen({Key? key, required String this.name}) : super(key: key);
+  CreatePostScreen({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Styles styles = Styles(context: context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Create Post'),
-          actions: [
+          title: const Text('Create Post'),
+          actions: const [
             
           ],
         ),
@@ -43,7 +41,7 @@ class CreatePostScreen extends StatelessWidget {
                   context.read<PostBloc>()
                   .add(PostButtonPressedEvent(imageFile:null, description: _description_controller.text));
                 },
-                child: Text(
+                child: const Text(
                   'POST',
                   style: TextStyle(color: Colors.white),
                 )),
@@ -65,7 +63,7 @@ class CreatePostScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         DropdownButton(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
                           // Initial Value
                           value: (state is PrivacyChangedState)
                               ? state.privacy
