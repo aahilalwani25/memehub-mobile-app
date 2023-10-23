@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
+import 'package:memehub_mobile_app/Bloc/signup%20bloc/signup_bloc.dart';
 import 'package:memehub_mobile_app/Controllers/add_media_controller.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
@@ -25,7 +26,10 @@ class CreatePostScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // context.read<PostBloc>()
+                  // .add(PostButtonPressedEvent(imageFile: , description: _description_controller.text));
+                },
                 child: Text(
                   'POST',
                   style: TextStyle(color: Colors.white),

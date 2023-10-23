@@ -23,4 +23,9 @@ class PostButtonPressedEvent extends PostEvent{
   String? description;
 
   PostButtonPressedEvent({required this.imageFile, this.description});
+  // @override
+  // List<Object?> get props => [imageFile, description];
+}
+
+class PostFetchedEvent extends PostEvent{
 }

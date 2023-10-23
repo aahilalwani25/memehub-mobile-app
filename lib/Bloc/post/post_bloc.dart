@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:bloc/bloc.dart';
@@ -48,6 +49,39 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         emit(PostSuccessfullyState());
       } else {
         print('Image upload failed');
+      }
+    });
+
+    on<PostFetchedEvent>((event, emit) async {
+      //print('message');
+      final url = Uri.parse(
+          'http://${dotenv.env['IP_ADDRESS']}:8000/api/user/profile/all-post');
+
+      final response = await http.post(url);
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+
+        if (data['status'] == 200) {
+          List<dynamic> postDataList = data['\$data'];
+
+          emit(PostFetchedState(postDataList: postDataList));
+          //print(postDataList);
+
+          // for (var postData in postDataList) {
+          //   final id =
+          //       postData['id'] as int; // Access 'id' directly as an integer
+          //   final description = postData['description'];
+          //   final privacy = postData['privacy'];
+
+          //   // Do something with id, description, and privacy here
+          //   print('ID: $id, Description: $description, Privacy: $privacy');
+          // }
+        }
+      } else {
+        // print(response.body);
+        //   emit(const AuthenticationFailure(
+        //       error: 'Either username or password is wrong'));
       }
     });
   }
