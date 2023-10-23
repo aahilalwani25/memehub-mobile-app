@@ -36,12 +36,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       var request = http.MultipartRequest('POST', url);
 
       // Add the image file to the request
-      request.files.add(
-        await http.MultipartFile.fromPath('image', event.imageFile!.path),
-      );
+      // request.files.add(
+      //   await http.MultipartFile.fromPath('image', event.imageFile),
+      // );
 
       request.fields.addAll({
+        'image': 'null',
         "description": event.description!,
+        "profile_id_fk":'2',
       });
       var response = await request.send();
 

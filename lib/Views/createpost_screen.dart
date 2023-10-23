@@ -22,18 +22,7 @@ class CreatePostScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text('Create Post'),
           actions: [
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                ),
-                onPressed: () {
-                  // context.read<PostBloc>()
-                  // .add(PostButtonPressedEvent(imageFile: , description: _description_controller.text));
-                },
-                child: Text(
-                  'POST',
-                  style: TextStyle(color: Colors.white),
-                ))
+            
           ],
         ),
         body: BlocConsumer<PostBloc, PostState>(
@@ -46,6 +35,18 @@ class CreatePostScreen extends StatelessWidget {
                 child: Column(
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                ),
+                onPressed: () {
+                  context.read<PostBloc>()
+                  .add(PostButtonPressedEvent(imageFile:null, description: _description_controller.text));
+                },
+                child: Text(
+                  'POST',
+                  style: TextStyle(color: Colors.white),
+                )),
                     Container(
                       child: Row(children: [
                         //profile pic

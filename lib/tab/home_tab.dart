@@ -1,48 +1,55 @@
+// 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../Bloc/post/post_bloc.dart';
 
 class home extends StatelessWidget {
-  const home({super.key});
+  const home({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    //context.read<PostBloc>().add(PostFetchedEvent());
     return Scaffold(
       body: BlocProvider<PostBloc>(
-        create: (context)=>
-          PostBloc()..add(PostFetchedEvent()),
+        create: (context) => PostBloc()..add(PostFetchedEvent()), // Use FetchPostsEvent to start data fetching
         child: BlocBuilder<PostBloc, PostState>(
           builder: (context, state) {
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child:Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
+            if (state is PostFetchedState) {
+              final postDataList = state.postDataList;
+              return SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: postDataList!.map((postData) {
+                    final id = postData['id'] as int;
+                    final description = postData['description'];
+                    final type = postData['type'];
+                    final imageUrl = postData['url'];
 
-                  (state is PostFetchedState)?
-                  Column(
-                    children: [
-                      ListTile(
-                        title: Text('${state.postDataList![0]['id']}'),
-                      ),
-
-                      (state.postDataList![0]['type']=="image")?
-                        Image.network("https://picsum.photos/250"):
-                      ListTile(
-                        title: Text('${state.postDataList![1]['description']}'),
-                      )
-                    ],
-                  )
-                  :
-                  const SizedBox(
-                    width: 28,
-                  ),
-                  
-                ],
-              ),
-            );
+                    if (type == "image") {
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text('ID: $id'),
+                          ),
+                          ListTile(
+                            title: Text('description: ${description}'),
+                          ),
+                          Image.network(imageUrl),
+                        ],
+                      );
+                    } else {
+                      return ListTile(
+                        title: Text('ID: $id'),
+                        subtitle: Text(description),
+                      );
+                    }
+                  }).toList(),
+                ),
+              );
+            
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
           },
         ),
       ),
