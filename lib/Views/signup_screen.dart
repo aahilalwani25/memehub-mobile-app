@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/Views/signin_screen.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
+import 'package:memehub_mobile_app/global/components/radio_button.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Bloc/signup bloc/signup_bloc.dart';
@@ -16,6 +17,7 @@ class SignupScreen extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmpasswordController =
       TextEditingController();
+  final TextEditingController _dateOfBirthController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class SignupScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     alignment: Alignment.center,
                     width: styles.getWidth(0.8),
-                    height: styles.getHeight(0.75),
+                    height: styles.getHeight(0.85),
                     child: Column(children: [
                       SizedBox(
                         height: 35,
@@ -188,35 +190,40 @@ class SignupScreen extends StatelessWidget {
                       // ),
 
                       const Text('Gender'),
-                      ListTile(
-                        title: const Text('Male'),
-                        leading: Radio(
+                      RadioButton(
+                          title: 'Male',
                           value: 1,
                           groupValue:
                               (state is GenderState) ? state.genderId : 0,
-                          onChanged: (value) {
-                            context
-                                .read<SignupBloc>()
-                                .add(GenderSelectedEvent(genderId: value!));
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Female'),
-                        leading: Radio(
+                          state: state,
+                          context: context),
+                      RadioButton(
+                          title: 'Female',
                           value: 2,
                           groupValue:
                               (state is GenderState) ? state.genderId : 0,
-                          
-                          onChanged: (value) {
-                            context
-                                .read<SignupBloc>()
-                                .add(GenderSelectedEvent(genderId: value!));
-                          },
+                          state: state,
+                          context: context),
+
+                      TextFormField(
+                        //keyboardType: TextInputType.datetime,
+                        //controller: _dateOfBirthController,
+                        decoration: const InputDecoration(
+                          labelText: 'Date of Birth',
+                          suffixIcon: Icon(Icons.calendar_today),
                         ),
+                        onTap:() {
+                          context.read<SignupBloc>().add(DoBPressed(context: context));
+                        },
+                        readOnly: true, // Prevent manual input
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please select your Date of Birth';
+                          }
+                          return null;
+                        },
                       ),
 
-                      
                       Container(
                           width: 151,
                           height: 45,
@@ -228,13 +235,6 @@ class SignupScreen extends StatelessWidget {
                               onPressed: () {
                                 // Validate returns true if the form is valid, otherwise false.
                                 if (formKey.currentState!.validate()) {
-                                  //   if (state is AcceptTheTermsState) {
-                                  //     if (state.agree != true) {
-                                  //       context.read<SignupBloc>().add(
-                                  //           AcceptTheTermsNotAcceptedEvent(
-                                  //               error: 'Accept the terms'));
-                                  //     }
-                                  //   else {
                                   context.read<SignupBloc>().add(
                                       RegisterButtonPressedEvent(
                                           name: _usernameController.text,

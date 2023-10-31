@@ -58,3 +58,10 @@ class GenderState extends SignupState{
   @override
   List<Object> get props => [genderId];
 }
+
+class NewDobState extends SignupState{
+  DateTime dob;
+  NewDobState({required this.dob});
+  @override
+  List<Object> get props => [dob];
+}

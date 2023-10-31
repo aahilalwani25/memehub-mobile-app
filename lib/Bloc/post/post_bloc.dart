@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:memehub_mobile_app/Controllers/add_media_controller.dart';
+import 'package:memehub_mobile_app/Controllers/media_controller.dart';
 import 'package:http/http.dart' as http;
 part 'post_event.dart';
 part 'post_state.dart';
@@ -66,6 +66,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
         if (data['status'] == 200) {
           List<dynamic> postDataList = data['\$data'];
+          print(postDataList);
 
           emit(PostFetchedState(postDataList: postDataList));
           //print(postDataList);

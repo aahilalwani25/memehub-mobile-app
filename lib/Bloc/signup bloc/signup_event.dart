@@ -44,3 +44,11 @@ class RegisterButtonPressedEvent extends SignupEvent{
 }
 
 class SignupLoadingEvent extends SignupEvent{}
+
+class DoBPressed extends SignupEvent{
+  BuildContext context;
+
+  DoBPressed({required this.context});
+  @override
+  List<Object> get props => [context];
+}

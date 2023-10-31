@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../tab/home_tab.dart';
-import '../tab/settings_tab.dart';
-import '../tab/trending_tab.dart';
+import 'tab/home_tab.dart';
+import 'tab/settings_tab.dart';
+import 'tab/trending_tab.dart';
 
 class homescreen extends StatelessWidget{
   const homescreen({Key? key}) : super(key: key);

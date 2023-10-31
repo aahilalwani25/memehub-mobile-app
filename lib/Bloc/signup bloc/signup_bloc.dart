@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,48 +15,56 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
     //on<AcceptthetermsEvent>((event, emit) => emit(AcceptTheTermsState(agree: event.agree)));
 
-  
-    on<RegisterButtonPressedEvent>((event, emit) async{
+    on<RegisterButtonPressedEvent>((event, emit) async {
       //login logic here
       //http://127.0.0.1:8000/api/user/register
       emit(SignupLoadingState());
-      final response= await http.post(
+      final response = await http.post(
         Uri.parse('http://${dotenv.env['IP_ADDRESS']}:8000/api/user/register'),
-        headers: {
-          'Accept': 'application/json'
-        },
+        headers: {'Accept': 'application/json'},
         body: {
           'email': event.email,
           'name': event.name,
           'password': event.password,
-          'password_confirmation' : event.password_confirmation,
-
+          'password_confirmation': event.password_confirmation,
         },
       );
 
       //if user successfully registers in
-      if(response.statusCode==200){
+      if (response.statusCode == 200) {
         emit(SignupSuccessfulState(success: 'Registered Successfully'));
-      }
-      else if(response.statusCode==422){
-        emit(SignupUnsuccessfulState(error: 'The email has already been taken.'));
+      } else if (response.statusCode == 422) {
+        emit(SignupUnsuccessfulState(
+            error: 'The email has already been taken.'));
       }
     });
 
-    on<AcceptthetermsEvent>((event, emit){
+    on<AcceptthetermsEvent>((event, emit) {
       emit(AcceptTheTermsState(agree: event.agree));
     });
 
-    on<AcceptTheTermsNotAcceptedEvent>((event, emit){
+    on<AcceptTheTermsNotAcceptedEvent>((event, emit) {
       emit(AcceptTheTermsNotAcceptedState(error: event.error));
     });
 
-    on<GenderSelectedEvent>((event, emit){
+    on<GenderSelectedEvent>((event, emit) {
       print(event.genderId);
       emit(GenderState(genderId: event.genderId));
     });
+
+    on<DoBPressed>((event, emit) async {
+      DateTime selectedDate = DateTime.now(); // Initial date
+
+      DateTime? picked = await showDatePicker(
+        context: event.context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1900), // Set the earliest year you want to allow
+        lastDate: DateTime.now(), // Set the latest year you want to allow
+      );
+
+      if (picked != null && picked != selectedDate) {
+        emit(NewDobState(dob: DateTime(picked.year, picked.month, picked.day)));
+      }
+    });
   }
-
 }
-
-  

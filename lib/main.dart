@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+          color: Colors.black,
           theme: ThemeData(
             inputDecorationTheme: const InputDecorationTheme(
               fillColor: Color.fromARGB(255, 238, 238, 238),
@@ -61,22 +62,22 @@ class MyApp extends StatelessWidget {
                 height: 0,
               ),
               bodyMedium: TextStyle(
-                color: Color(0xFF736F6F),
+                color: Color.fromARGB(255, 214, 214, 214),
                 fontSize: 20,
                 fontFamily: 'Sakkal Majalla',
                 fontWeight: FontWeight.w400,
                 height: 0,
               ),
               bodySmall: TextStyle(
-                color: Color(0xFF736F6F),
+                color: Color.fromARGB(255, 214, 214, 214),
                 fontSize: 15,
                 fontFamily: 'Sakkal Majalla',
                 fontWeight: FontWeight.w400,
                 height: 0,
               ),
             ),
-            primaryColor: const Color(0xFFF2F2F2),
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+            primaryColor: Color.fromARGB(255, 209, 209, 209), //Change theme mode here
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             useMaterial3: true,
           ),
           home: SigninScreen(),
