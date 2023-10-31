@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
                 height: 0,
               ),
             ),
-            primaryColor: Color.fromARGB(255, 209, 209, 209), //Change theme mode here
+            primaryColor: const Color.fromARGB(255, 209, 209, 209), //Change theme mode here
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             useMaterial3: true,
           ),

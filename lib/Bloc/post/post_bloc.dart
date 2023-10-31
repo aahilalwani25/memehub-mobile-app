@@ -30,27 +30,39 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
 
     on<PostButtonPressedEvent>((event, emit) async {
-      final url = Uri.parse(
-          'http://${dotenv.env['IP_ADDRESS']}:8000/api/user/profile/post');
+      try {
+        final url = Uri.parse(
+            'http://${dotenv.env['IP_ADDRESS']}:8000/api/user/profile/post');
 
-      var request = http.MultipartRequest('POST', url);
+        var request = http.MultipartRequest('POST', url);
+        print(event.imageFile!.path);
+        request.headers.addAll({'Content-Type': 'multipart/form-data'});
+        // Add the image file to the request
+        request.fields["description"] = event.description!;
+        request.fields["profile_id_fk"] = '2';
+        request.files.add(
+          await http.MultipartFile.fromPath('image', event.imageFile!.path),
+        );
+        request.send().then((response) {
+          http.Response.fromStream(response).then((onValue) {
+            try {
+              // get your response here...
+              print(onValue.statusCode);
+              print(onValue.body);
+          emit(PostSuccessfullyState());
+            } catch (e) {
+              // handle exeption
+            }
+          });
+        });
 
-      // Add the image file to the request
-      // request.files.add(
-      //   await http.MultipartFile.fromPath('image', event.imageFile),
-      // );
-
-      request.fields.addAll({
-        'image': 'null',
-        "description": event.description!,
-        "profile_id_fk":'2',
-      });
-      var response = await request.send();
-
-      if (response.statusCode == 200) {
-        emit(PostSuccessfullyState());
-      } else {
-        print('Image upload failed');
+        
+        // } else {
+        //   print(response.statusCode);
+        //   print((response));
+        // }
+      } catch (e) {
+        print("error: $e");
       }
     });
 

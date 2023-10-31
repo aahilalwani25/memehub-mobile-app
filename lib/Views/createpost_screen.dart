@@ -19,9 +19,7 @@ class CreatePostScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Create Post'),
-          actions: const [
-            
-          ],
+          actions: const [],
         ),
         body: BlocConsumer<PostBloc, PostState>(
           listener: (context, state) {
@@ -34,17 +32,20 @@ class CreatePostScreen extends StatelessWidget {
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                ),
-                onPressed: () {
-                  context.read<PostBloc>()
-                  .add(PostButtonPressedEvent(imageFile:null, description: _description_controller.text));
-                },
-                child: const Text(
-                  'POST',
-                  style: TextStyle(color: Colors.white),
-                )),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                        ),
+                        onPressed: () {
+                          context.read<PostBloc>().add(PostButtonPressedEvent(
+                              imageFile: (state is PhotoAddedState)
+                                  ? state.photoFile
+                                  : null,
+                              description: _description_controller.text));
+                        },
+                        child: const Text(
+                          'POST',
+                          style: TextStyle(color: Colors.white),
+                        )),
                     Container(
                       child: Row(children: [
                         //profile pic
@@ -63,14 +64,15 @@ class CreatePostScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         DropdownButton(
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
                           // Initial Value
                           value: (state is PrivacyChangedState)
                               ? state.privacy
                               : 'Public',
                           // Down Arrow Icon
                           icon: const Icon(Icons.keyboard_arrow_down),
-              
+
                           // Array list of items
                           items: privacies.map((String items) {
                             return DropdownMenuItem(
@@ -81,9 +83,8 @@ class CreatePostScreen extends StatelessWidget {
                           // After selecting the desired option,it will
                           // change button value to selected value
                           onChanged: (String? newValue) {
-                            context
-                                .read<PostBloc>()
-                                .add(PrivacyButtonPressedEvent(privacy: newValue!));
+                            context.read<PostBloc>().add(
+                                PrivacyButtonPressedEvent(privacy: newValue!));
                           },
                         ),
                       ],
@@ -98,12 +99,13 @@ class CreatePostScreen extends StatelessWidget {
                             border: InputBorder.none),
                       ),
                     ),
-              
-                    (state is PhotoAddedState)?
-                    
-                    Image.file(state.photoFile, width: styles.getWidth(1), height: styles.getHeight(0.6),)
-                    
-                    :Container(),
+                    (state is PhotoAddedState)
+                        ? Image.file(
+                            state.photoFile,
+                            width: styles.getWidth(1),
+                            height: styles.getHeight(0.6),
+                          )
+                        : Container(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -117,7 +119,7 @@ class CreatePostScreen extends StatelessWidget {
                                 // final upload = await UploadMediaController()
                                 //     .getImageFromGallery();
                                 // print(upload);
-              
+
                                 context
                                     .read<PostBloc>()
                                     .add(AddPhotoButtonPressed());
