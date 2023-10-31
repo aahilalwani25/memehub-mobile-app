@@ -20,10 +20,11 @@ class AddPhotoButtonPressed extends PostEvent{}
 
 class PostButtonPressedEvent extends PostEvent{
   File? imageFile;
+  int id;
   String? description;
   
 
-  PostButtonPressedEvent({required this.imageFile, this.description});
+  PostButtonPressedEvent({required this.imageFile, this.description, required this.id});
   // @override
   // List<Object?> get props => [imageFile, description];
 }

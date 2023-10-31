@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:memehub_mobile_app/Controllers/media_controller.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 part 'post_event.dart';
 part 'post_state.dart';
 
@@ -31,32 +32,44 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
     on<PostButtonPressedEvent>((event, emit) async {
       try {
+        print(event.description);
+        final client = http.Client();
         final url = Uri.parse(
-            'http://${dotenv.env['IP_ADDRESS']}:8000/api/user/profile/post');
+            'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/profile/post');
 
         var request = http.MultipartRequest('POST', url);
         print(event.imageFile!.path);
-        request.headers.addAll({'Content-Type': 'multipart/form-data'});
+        request.headers.addAll({
+          'Content-Type': 'multipart/form-data',
+          "Accept": "application/json"
+        });
         // Add the image file to the request
         request.fields["description"] = event.description!;
-        request.fields["profile_id_fk"] = '2';
-        request.files.add(
-          await http.MultipartFile.fromPath('image', event.imageFile!.path),
-        );
-        request.send().then((response) {
+        request.fields["prof_id_fk"] = event.id.toString();
+        request.files.add(await http.MultipartFile.fromPath(
+          'image', event.imageFile!.path,
+          // contentType: MediaType('image', 'jpeg')
+        ));
+        client.send(request).then((response) {
           http.Response.fromStream(response).then((onValue) {
             try {
               // get your response here...
-              print(onValue.statusCode);
-              print(onValue.body);
-          emit(PostSuccessfullyState());
+              if (onValue.statusCode == 200) {
+                print("Success");
+                emit(PostSuccessfullyState());
+              } else {
+                print(onValue.statusCode);
+                throw Exception(onValue.body);
+              }
+              //print(onValue.body);
+              
             } catch (e) {
               // handle exeption
+              print(e);
             }
           });
         });
 
-        
         // } else {
         //   print(response.statusCode);
         //   print((response));
@@ -69,7 +82,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<PostFetchedEvent>((event, emit) async {
       //print('message');
       final url = Uri.parse(
-          'http://${dotenv.env['IP_ADDRESS']}:8000/api/user/profile/all-post');
+          'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/profile/all-post');
 
       final response = await http.post(url);
 

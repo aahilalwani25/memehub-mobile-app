@@ -18,7 +18,7 @@ class AuthenticationBloc
       //http://192.168.0.106:8000/api/user/login
       emit(AuthenticationLoadingState());
       final response = await http.post(
-        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:8000/api/user/login'),
+        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/login'),
         headers: {'Accept': 'application/json'},
         body: {'email': event.email, 'password': event.password},
       );
