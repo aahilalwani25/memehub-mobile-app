@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'tab/home_tab.dart';
-import 'tab/settings_tab.dart';
 import 'tab/trending_tab.dart';
 
 class homescreen extends StatelessWidget{
@@ -30,12 +28,12 @@ class homescreen extends StatelessWidget{
               color: Colors.black,
             ),
           ),
-          Tab(
-            icon:  Icon(
-              Icons.settings,
-              color: Colors.black,
-            ),
-          )
+          // Tab(
+          //   icon:  Icon(
+          //     Icons.settings,
+          //     color: Colors.black,
+          //   ),
+          // )
         ] 
         ),
       Expanded(
@@ -43,11 +41,8 @@ class homescreen extends StatelessWidget{
           children:[
             //1tab
             Home(),
-
             //2 tab
             Trending(),
-            //3tab
-            settings(),
           ]
       
           ),

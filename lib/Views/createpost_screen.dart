@@ -4,10 +4,10 @@ import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
 class CreatePostScreen extends StatelessWidget {
-  String name;
-  int id;
-  TextEditingController _description_controller = TextEditingController();
-  var privacies = [
+  final String name;
+  final int id;
+  final TextEditingController _description_controller = TextEditingController();
+  final privacies = [
     'Public', //id=1
     'Private' //id=2
   ];

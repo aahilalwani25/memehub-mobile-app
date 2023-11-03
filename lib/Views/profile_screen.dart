@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../global/styles.dart';
 
 class ProfileScreen extends StatelessWidget {
-  String name;
-  int id;
+  final String name;
+  final int id;
   ProfileScreen({super.key, required this.id, required this.name});
 
   @override

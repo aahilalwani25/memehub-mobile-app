@@ -19,6 +19,7 @@ class SigninScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Styles styles = Styles(context: context);
     final formKey = GlobalKey<FormState>();
+    print('hello');
 
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,

@@ -51,7 +51,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           // contentType: MediaType('image', 'jpeg')
         ));
         client.send(request).then((response) {
-          http.Response.fromStream(response).then((onValue) {
+          http.Response.fromStream(response)
+          .then((onValue) {
             try {
               // get your response here...
               if (onValue.statusCode == 200) {
@@ -59,9 +60,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
                 emit(PostSuccessfullyState());
               } else {
                 print(onValue.statusCode);
-                throw Exception(onValue.body);
+                //throw Exception(onValue.body);
               }
-              //print(onValue.body);
+              
               
             } catch (e) {
               // handle exeption
@@ -69,11 +70,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
             }
           });
         });
-
-        // } else {
-        //   print(response.statusCode);
-        //   print((response));
-        // }
       } catch (e) {
         print("error: $e");
       }

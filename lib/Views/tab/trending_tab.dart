@@ -25,7 +25,7 @@ class Trending extends StatelessWidget {
                     int id = postData['id'] as int;
                     String description = postData['description'];
                     String type = postData['type'];
-                    String imageUrl = postData['url'];
+                    //String imageUrl = postData['url'];
                     //print(id);
 
                     if (type == "image") {
