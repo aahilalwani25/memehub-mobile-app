@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SinglePost extends StatelessWidget {
-  final String? imageUrl=null, description=null;
-  SinglePost(String description, String imageUrl, {super.key});
+  final String? imageUrl, description;
+  SinglePost(this.description,this.imageUrl,{super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class SinglePost extends StatelessWidget {
         ListTile(
           title: Text(description!),
         ),
-        Image.network(imageUrl!),
+        Image.network('https://picsum.photos/250?image=9'),
         Row(
           children: [
             Expanded(
