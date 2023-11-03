@@ -5,13 +5,15 @@ import 'package:memehub_mobile_app/global/styles.dart';
 
 class CreatePostScreen extends StatelessWidget {
   String name;
-  final TextEditingController _description_controller = TextEditingController();
+  int id;
+  TextEditingController _description_controller = TextEditingController();
   var privacies = [
     'Public', //id=1
     'Private' //id=2
   ];
 
-  CreatePostScreen({Key? key, required this.name}) : super(key: key);
+  CreatePostScreen({Key? key, required this.name, required this.id})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,6 @@ class CreatePostScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Create Post'),
-          actions: const [],
         ),
         body: BlocConsumer<PostBloc, PostState>(
           listener: (context, state) {
@@ -40,7 +41,8 @@ class CreatePostScreen extends StatelessWidget {
                               imageFile: (state is PhotoAddedState)
                                   ? state.photoFile
                                   : null,
-                              description: _description_controller.text));
+                              description: _description_controller.text,
+                              id: id));
                         },
                         child: const Text(
                           'POST',
@@ -89,10 +91,12 @@ class CreatePostScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    Container(
                       width: styles.getWidth(1),
                       height: styles.getHeight(0.3),
-                      child: const TextField(
+                      child: TextField(
+                        controller: _description_controller,
+                        keyboardType: TextInputType.multiline,
                         maxLines: 10,
                         decoration: InputDecoration(
                             hintText: "What's on your giggle?",

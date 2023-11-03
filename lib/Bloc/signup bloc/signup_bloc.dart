@@ -20,7 +20,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       //http://127.0.0.1:8000/api/user/register
       emit(SignupLoadingState());
       final response = await http.post(
-        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:8000/api/user/register'),
+        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/register'),
         headers: {'Accept': 'application/json'},
         body: {
           'email': event.email,
