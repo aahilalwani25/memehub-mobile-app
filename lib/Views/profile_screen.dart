@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memehub_mobile_app/Views/tab/grid_view.dart';
 import '../global/styles.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -9,11 +10,15 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Styles styles = Styles(context: context);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.edit),),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.settings),),
+
+
         ],
         title: Text(
           name,
@@ -45,13 +50,31 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Row(
+                        Row(
                           children: [
-                            CircleAvatar(
-                              radius: 48,
-                              backgroundImage: AssetImage(
-                                  'assets/images/profilepicture.jpeg'),
-                            ),
+                            Stack(children: [
+                              CircleAvatar(
+                                radius: 48,
+                                backgroundImage: AssetImage(
+                                    'assets/images/profilepicture.jpeg'),
+                              ),
+                              Positioned(
+                                  bottom: 0, // Adjust the position as needed
+                                  right: 0, // Adjust the position as needed
+                                  child: Container(
+                                    padding: EdgeInsets.all(4),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors
+                                          .black, // Background color of the edit symbol
+                                    ),
+                                    child: Icon(
+                                      Icons.add_a_photo,
+                                      size: 20, // You can use any icon you like
+                                      color: Colors.white, // Icon color
+                                    ),
+                                  ))
+                            ]),
                             SizedBox(
                               width: 20,
                             ),
@@ -241,72 +264,75 @@ class ProfileScreen extends StatelessWidget {
                             const SizedBox(
                               height: 16,
                             ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const SizedBox(
-                                    width: 28,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.asset(
-                                        'assets/images/firstpicture.jpeg',
-                                        height: 200,
-                                        width: styles.getWidth(0.7),
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 28,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.asset(
-                                        'assets/images/firstpicture.jpeg',
-                                        height: 200,
-                                        width: styles.getWidth(0.7),
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const SizedBox(
-                                    width: 28,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.asset(
-                                        'assets/images/homepicture1.jpeg',
-                                        height: 200,
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+
+                            postgrid(),
+
+                            //  SingleChildScrollView(
+                            //     scrollDirection: Axis.vertical,
+                            //     child: Column(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: [
+                            //         const SizedBox(
+                            //           width: 28,
+                            //         ),
+                            //         Padding(
+                            //           padding: const EdgeInsets.symmetric(
+                            //               horizontal: 8),
+                            //           child: ClipRRect(
+                            //             borderRadius: BorderRadius.circular(20),
+                            //             child: Image.asset(
+                            //               'assets/images/firstpicture.jpeg',
+                            //               height: 200,
+                            //               width: styles.getWidth(0.7),
+                            //               fit: BoxFit.fitHeight,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //         const SizedBox(
+                            //           height: 28,
+                            //         ),
+                            //         Padding(
+                            //           padding: const EdgeInsets.symmetric(
+                            //               horizontal: 8),
+                            //           child: ClipRRect(
+                            //             borderRadius: BorderRadius.circular(20),
+                            //             child: Image.asset(
+                            //               'assets/images/firstpicture.jpeg',
+                            //               height: 200,
+                            //               width: styles.getWidth(0.7),
+                            //               fit: BoxFit.fitHeight,
+                            //             ),
+                            //           ),
+                            //         )
+                            //       ],
+                            //     ),
+                            //   ),
+                            //   const SizedBox(
+                            //     height: 16,
+                            //   ),
+                            //   SingleChildScrollView(
+                            //     scrollDirection: Axis.vertical,
+                            //     child: Row(
+                            //       mainAxisAlignment: MainAxisAlignment.start,
+                            //       children: [
+                            //         const SizedBox(
+                            //           width: 28,
+                            //         ),
+                            //         Padding(
+                            //           padding: const EdgeInsets.symmetric(
+                            //               horizontal: 8),
+                            //           child: ClipRRect(
+                            //             borderRadius: BorderRadius.circular(20),
+                            //             child: Image.asset(
+                            //               'assets/images/homepicture1.jpeg',
+                            //               height: 200,
+                            //               fit: BoxFit.fitHeight,
+                            //             ),
+                            //           ),
+                            //         )
+                            //       ],
+                            //     ),
+                            //   ),
                           ],
                         ),
                       ],
