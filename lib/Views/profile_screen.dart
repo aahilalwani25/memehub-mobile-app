@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memehub_mobile_app/Views/tab/edit_profile.dart';
 import 'package:memehub_mobile_app/Views/tab/grid_view.dart';
 import '../global/styles.dart';
 
@@ -15,7 +16,9 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.edit),),
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (builder)=> EditProfilePage()));
+          }, icon: const Icon(Icons.edit),),
           IconButton(onPressed: () {}, icon: const Icon(Icons.settings),),
 
 
