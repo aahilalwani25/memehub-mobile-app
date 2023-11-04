@@ -21,6 +21,7 @@ class Searchscreen extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .9,
                   child: TextField(
+                    //enabled: false,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         icon: Icon(Icons.search),
