@@ -19,7 +19,7 @@ class SigninScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Styles styles = Styles(context: context);
     final formKey = GlobalKey<FormState>();
-    print('hello');
+    // print('hello');
 
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
@@ -29,18 +29,21 @@ class SigninScreen extends StatelessWidget {
 
             if (state is AuthenticationFailure) {
               ToastMessage(
-                  context: context,
-                  message: "Either username or password is wrong",
-                  type: 'error').show();
+                      context: context,
+                      message: "Either username or password is wrong",
+                      type: 'error')
+                  .show();
             }
 
             if (state is AuthenticationSuccess) {
               ToastMessage(
-                  context: context,
-                  message: state.message,
-                  type: 'success').show();
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (builder) => Dashboard(id: state.id,name: state.name,)));
+                      context: context, message: state.message, type: 'success')
+                  .show();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (builder) => Dashboard(
+                        id: state.id,
+                        name: state.name,
+                      )));
             }
 
             if (state is AuthenticationLoadingState) {
@@ -71,7 +74,7 @@ class SigninScreen extends StatelessWidget {
                 height: styles.getHeight(1),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                  fit: BoxFit.cover,
+                      fit: BoxFit.cover,
                       image:
                           AssetImage('assets/images/bg_img_transparent.png')),
                 ),
@@ -110,7 +113,7 @@ class SigninScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               child: Container(
-                                width: 120,
+                                width: 100,
                                 height: 54,
                                 padding: const EdgeInsets.all(5),
                                 decoration: ShapeDecoration(
@@ -130,13 +133,13 @@ class SigninScreen extends StatelessWidget {
                                 context
                                     .read<AuthenticationBloc>()
                                     .add(LoginButtonWithGooglePressedEvent());
-                
+
                                 // if(state is AuthenticationState){
-                
+
                                 // }
                               },
                               child: Container(
-                                width: 54,
+                                width: 100,
                                 height: 54,
                                 padding: const EdgeInsets.all(5),
                                 decoration: ShapeDecoration(
@@ -164,7 +167,7 @@ class SigninScreen extends StatelessWidget {
                             if (value!.isEmpty) {
                               return "Please enter your  Email";
                             }
-                
+
                             return null;
                           },
                         ).show(),
@@ -180,7 +183,7 @@ class SigninScreen extends StatelessWidget {
                             if (value!.isEmpty) {
                               return "Please enter your Password";
                             }
-                
+
                             return null;
                           },
                         ).show(),
@@ -198,7 +201,6 @@ class SigninScreen extends StatelessWidget {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black,
-                                  
                                 ),
                                 onPressed: () {
                                   //if validation is true
@@ -206,12 +208,16 @@ class SigninScreen extends StatelessWidget {
                                     context.read<AuthenticationBloc>().add(
                                         LoginButtonPressedEvent(
                                             email: _emailController.text,
-                                            password: _passwordController.text));
+                                            password:
+                                                _passwordController.text));
                                   }
                                 },
                                 child: Text(
                                   'Login',
-                                  style: TextStyle(color: Colors.white, fontSize: styles.getHeight(0.02),),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: styles.getHeight(0.02),
+                                  ),
                                 ))),
                         Container(
                           margin: const EdgeInsets.only(top: 10),
@@ -235,7 +241,10 @@ class SigninScreen extends StatelessWidget {
                                 },
                                 child: Text(
                                   'Register',
-                                  style: TextStyle(color: Colors.black, fontSize: styles.getHeight(0.02),),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: styles.getHeight(0.02),
+                                  ),
                                 )))
                       ]),
                     ),
