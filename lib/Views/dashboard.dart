@@ -8,7 +8,7 @@ import 'profile_screen.dart';
 class Dashboard extends StatelessWidget {
   final String name;
   final int id;
-  Dashboard({super.key, required this.id, required this.name});
+  const Dashboard({super.key, required this.id, required this.name});
 
   @override
   
@@ -50,7 +50,7 @@ class Dashboard extends StatelessWidget {
             case 1:
             return CupertinoTabView(
               builder: (context){
-                return const CupertinoPageScaffold(child:Searchscreen());
+                return CupertinoPageScaffold(child:SearchScreen(id: id,));
                 },
             );
             case 2:
@@ -62,7 +62,7 @@ class Dashboard extends StatelessWidget {
             case 3:
             return CupertinoTabView(
               builder: (context){
-                return CupertinoPageScaffold(child:ProfileScreen(id: id, name: name,));
+                return CupertinoPageScaffold(child:ProfileScreen(my_profile_id_fk: id, my_homie_id_fk: id, name: name,));
                 },
             );
           }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
+import 'package:memehub_mobile_app/Bloc/profile/profile_bloc.dart';
 import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
 import 'Bloc/signup bloc/signup_bloc.dart';
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => PostBloc(),
+          ),
+          BlocProvider(
+            create: (context) => ProfileBloc(),
           ),
         ],
         child: MaterialApp(

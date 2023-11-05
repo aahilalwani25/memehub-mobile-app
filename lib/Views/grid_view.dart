@@ -7,12 +7,14 @@ class postgrid extends StatelessWidget {
     'assets/images/homepicture1.jpeg',
     'assets/images/homepicture2.jpeg'
   ];
+
+  postgrid({super.key});
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
     
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3, // Number of columns in the grid
       ),
       itemCount: images.length, // Number of pictures in the grid
@@ -20,7 +22,7 @@ class postgrid extends StatelessWidget {
         
         // Replace this with your image loading logic
         return Container(
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.black),

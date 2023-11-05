@@ -6,34 +6,36 @@ class EditProfilePage extends StatelessWidget {
   final TextEditingController bioController = TextEditingController();
   final TextEditingController linkController = TextEditingController();
 
+  EditProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: <Widget>[
           
          TextField(
             controller: nameController,
-            decoration: InputDecoration(labelText: 'Name'),
+            decoration: const InputDecoration(labelText: 'Name'),
           ),
           TextField(
             controller: usernameController,
-            decoration: InputDecoration(labelText: 'Username'),
+            decoration: const InputDecoration(labelText: 'Username'),
           ),
           TextField(
             controller: bioController,
-            decoration: InputDecoration(labelText: 'Bio'),
+            decoration: const InputDecoration(labelText: 'Bio'),
             maxLines: 4,
           ),
           TextField(
             controller: linkController,
-            decoration: InputDecoration(labelText: 'Link'),
+            decoration: const InputDecoration(labelText: 'Link'),
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
               // Save the edited profile data here
@@ -44,7 +46,7 @@ class EditProfilePage extends StatelessWidget {
 
               // You can now use the 'name', 'username', 'bio', and 'link' variables to save or update the user's profile data.
             },
-            child: Text('Save'),
+            child: const Text('Save'),
           ),
         ],
       ),

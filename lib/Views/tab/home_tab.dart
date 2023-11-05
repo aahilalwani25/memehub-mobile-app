@@ -18,12 +18,14 @@ class Home extends StatelessWidget {
           builder: (context, state) {
             if (state is PostFetchedState) {
               final postDataList = state.postDataList;
+              
               //print(postDataList);
               return SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: postDataList!.map((postData) {
+                    print(postData);
                     int id = postData['id'] as int;
                     String description = postData['description'];
                     String type = postData['type'];

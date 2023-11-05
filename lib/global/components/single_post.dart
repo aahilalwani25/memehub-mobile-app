@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SinglePost extends StatelessWidget {
   final String? imageUrl, description;
-  SinglePost(this.description,this.imageUrl,{super.key});
+  const SinglePost(this.description,this.imageUrl,{super.key});
 
   @override
   Widget build(BuildContext context) {

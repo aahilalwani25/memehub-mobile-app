@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Settingpage extends StatelessWidget {
+  const Settingpage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,14 +10,14 @@ class Settingpage extends StatelessWidget {
        
         actions: [
           IconButton(
-            icon: Icon(Icons.power_settings_new,color: Colors.red,),
+            icon: const Icon(Icons.power_settings_new,color: Colors.red,),
             onPressed: () {
               _showSettingsBottomSheet(context);
             },
           ),
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Text('Your app content goes here'),
       ),
     );
@@ -30,16 +32,16 @@ class Settingpage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.security),
-                title: Text('Privacy'),
+                leading: const Icon(Icons.security),
+                title: const Text('Privacy'),
                 onTap: () {
                   // Handle the privacy action here
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Logout'),
+                leading: const Icon(Icons.logout),
+                title: const Text('Logout'),
                 onTap: () {
                   // Handle the logout action here
                   Navigator.pop(context);

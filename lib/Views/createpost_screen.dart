@@ -91,14 +91,14 @@ class CreatePostScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       width: styles.getWidth(1),
                       height: styles.getHeight(0.3),
                       child: TextField(
                         controller: _description_controller,
                         keyboardType: TextInputType.multiline,
                         maxLines: 10,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: "What's on your giggle?",
                             border: InputBorder.none),
                       ),
