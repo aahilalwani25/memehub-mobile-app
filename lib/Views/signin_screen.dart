@@ -75,8 +75,7 @@ class SigninScreen extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image:
-                          AssetImage('assets/images/bg_img_transparent.png')),
+                      image: AssetImage('assets/images/funny_bg.jpg')),
                 ),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 0.3, sigmaY: 0.3),
