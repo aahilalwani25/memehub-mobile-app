@@ -12,43 +12,43 @@ class EditProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Edit Profile'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(labelText: 'Name'),
-            ),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
-            ),
-            TextField(
-              controller: bioController,
-              decoration: InputDecoration(labelText: 'Bio'),
-            ),
-            TextField(
-              controller: linkController,
-              decoration: InputDecoration(labelText: 'Link'),
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                // Save the edited profile data here
-                String name = nameController.text;
-                String username = usernameController.text;
-                String bio = bioController.text;
-                String link = linkController.text;
+      body: ListView(
+        padding: EdgeInsets.all(16.0),
+        children: <Widget>[
+          
+         TextField(
+            controller: nameController,
+            decoration: InputDecoration(labelText: 'Name'),
+          ),
+          TextField(
+            controller: usernameController,
+            decoration: InputDecoration(labelText: 'Username'),
+          ),
+          TextField(
+            controller: bioController,
+            decoration: InputDecoration(labelText: 'Bio'),
+            maxLines: 4,
+          ),
+          TextField(
+            controller: linkController,
+            decoration: InputDecoration(labelText: 'Link'),
+          ),
+          SizedBox(height: 20.0),
+          ElevatedButton(
+            onPressed: () {
+              // Save the edited profile data here
+              String name = nameController.text;
+              String username = usernameController.text;
+              String bio = bioController.text;
+              String link = linkController.text;
 
-                // You can now use the 'name', 'username', 'bio', and 'link' variables to save or update the user's profile data.
-              },
-              child: Text('Save'),
-            ),
-          ],
-        ),
+              // You can now use the 'name', 'username', 'bio', and 'link' variables to save or update the user's profile data.
+            },
+            child: Text('Save'),
+          ),
+        ],
       ),
     );
   }
 }
+

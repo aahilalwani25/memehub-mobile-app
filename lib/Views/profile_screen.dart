@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/Views/tab/edit_profile.dart';
 import 'package:memehub_mobile_app/Views/tab/grid_view.dart';
+import 'package:memehub_mobile_app/Views/tab/settings_tab.dart';
 import '../global/styles.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -19,7 +20,9 @@ class ProfileScreen extends StatelessWidget {
           IconButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (builder)=> EditProfilePage()));
           }, icon: const Icon(Icons.edit),),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings),),
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (builder)=> Settingpage()));
+          }, icon: const Icon(Icons.settings),),
 
 
         ],
