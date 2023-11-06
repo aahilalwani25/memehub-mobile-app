@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                   children: postDataList!.map((postData) {
                     print(postData);
                     int id = postData['id'] as int;
-                    String description = postData['description'];
+                    String description = postData['description'].toString();
                     String type = postData['type'];
                     String imageUrl = postData['url'];
                     //print(id);
