@@ -29,6 +29,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
       if (response.statusCode == 200) {
         final body = jsonDecode(response.body);
+        print(body);
         if (body["message"]) {
           emit(HomieRequestedState());
         }

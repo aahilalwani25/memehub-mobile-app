@@ -27,6 +27,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           'name': event.name,
           'password': event.password,
           'password_confirmation': event.password_confirmation,
+          
         },
       );
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/profile/profile_bloc.dart';
 import 'package:memehub_mobile_app/Views/edit_profile.dart';
+import 'package:memehub_mobile_app/Views/friends_view.dart';
 import 'package:memehub_mobile_app/Views/grid_view.dart';
 
 import 'package:memehub_mobile_app/Views/tab/settings_tab.dart';
@@ -52,6 +53,10 @@ class ProfileScreen extends StatelessWidget {
       body: BlocConsumer<ProfileBloc, ProfileState>(
         listener: (context, state) {
           // TODO: implement listener
+          context.read<ProfileBloc>().add(AddHomieButtonPressed(
+                my_homie_id_fk: my_homie_id_fk,
+                my_profile_id_fk: my_profile_id_fk,
+              ));
         },
         builder: (context, state) {
           return SingleChildScrollView(
@@ -104,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 20,
                                 ),
-                                const Expanded(
+                                Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -135,23 +140,33 @@ class ProfileScreen extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            Column(
-                                              children: [
-                                                Text(
-                                                  '500',
-                                                  style: TextStyle(
-                                                    fontSize: 24,
-                                                    color: Colors.black,
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (builder) =>
+                                                            HomiesScreen(
+                                                                id: my_profile_id_fk)));
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    '500',
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      color: Colors.black,
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(height: 4),
-                                                Text(
-                                                  'Homies',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
+                                                  SizedBox(height: 4),
+                                                  Text(
+                                                    'Homies',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                             Column(
                                               children: [
@@ -187,14 +202,19 @@ class ProfileScreen extends StatelessWidget {
                                 (my_homie_id_fk != my_profile_id_fk)
                                     ? ElevatedButton(
                                         onPressed: () {
-                                          context.read<ProfileBloc>().add(AddHomieButtonPressed(
-                                            my_homie_id_fk: my_homie_id_fk,
-                                            my_profile_id_fk: my_profile_id_fk,
-                                          ));
+                                          context
+                                              .read<ProfileBloc>()
+                                              .add(AddHomieButtonPressed(
+                                                my_homie_id_fk: my_homie_id_fk,
+                                                my_profile_id_fk:
+                                                    my_profile_id_fk,
+                                              ));
                                         },
                                         child: (state is HomieRequestedState)
                                             ? const Text("Requested")
-                                            :  (state is Loading)?const CircularProgressIndicator():const Text("Add homie"))
+                                            : (state is Loading)
+                                                ? const CircularProgressIndicator()
+                                                : const Text("Add homie"))
                                     : Container(),
                               ],
                             ),
