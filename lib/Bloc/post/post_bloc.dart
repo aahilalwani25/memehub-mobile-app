@@ -44,7 +44,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         });
         // Add the image file to the request
         request.fields["description"] = event.description!;
-        request.fields["prof_id_fk"] = event.id.toString();
+        request.fields["profile_id_fk"] = event.id.toString();
         request.files.add(await http.MultipartFile.fromPath(
           'image', event.imageFile!.path,
           // contentType: MediaType('image', 'jpeg')
@@ -59,6 +59,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
                 emit(PostSuccessfullyState());
               } else {
                 print(onValue.statusCode);
+                print(onValue.body);
                 //throw Exception(onValue.body);
               }
               

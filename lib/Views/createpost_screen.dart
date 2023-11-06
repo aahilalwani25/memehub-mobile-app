@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
+import '../global/components/toast_message.dart';
+
 class CreatePostScreen extends StatelessWidget {
   final String name;
   final int id;
@@ -25,6 +27,13 @@ class CreatePostScreen extends StatelessWidget {
         body: BlocConsumer<PostBloc, PostState>(
           listener: (context, state) {
             // TODO: implement listener
+            if (state is PostSuccessfullyState) {
+              ToastMessage(
+                      context: context,
+                      message: "Post successful",
+                      type: 'success')
+                  .show();
+            }
           },
           builder: (context, state) {
             return SafeArea(
