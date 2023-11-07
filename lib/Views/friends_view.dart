@@ -19,25 +19,29 @@ class _Homies_ScreenState extends State<HomiesScreen> {
           ListTile(
             leading: CircleAvatar(
               backgroundImage: AssetImage("assets/images/profilepicture.jpeg"),
-            ), 
+            ),
             title: Text("Ayub Latif"),
             trailing: Row(
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow,
-                    
-                  ),
-                  onPressed: () {  },
-                  child: Text('Confirm')),
-                ElevatedButton(
-                  onPressed: () {  },
-                  child: Text('Confirm')),
+                // ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.yellow,
+                //     ),
+                //     onPressed: () {},
+                //     child: Text('Confirm')),
+                // ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.red,
+                //     ),
+                //     onPressed: () {},
+                //     child: Text(
+                //       'Confirm',
+                //       style: TextStyle(color: Colors.white),
+                //     )),
               ],
             ),
-            ),
-            
-            Divider(),
+          ),
+          Divider(),
         ],
       ),
     );

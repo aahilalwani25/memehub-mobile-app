@@ -22,7 +22,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       final response = await http.post(
         Uri.parse('http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/register'),
         headers: {'Accept': 'application/json'},
-        body: {
+        body: {""
           'email': event.email,
           'name': event.name,
           'password': event.password,
