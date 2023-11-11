@@ -14,18 +14,12 @@ class _dobState extends State<dob> {
   @override
   Widget build(BuildContext context) {
     final String formattedDate = DateFormat.yMd().format(_selectedDateTime);
-    final selectedText = Text('You selected: $formattedDate');
+    
 
-    final birthdayTile = new Material(
-      color: Colors.transparent,
-      child: CupertinoDateTextBox(
+    return CupertinoDateTextBox(
           initialValue: _selectedDateTime,
           onDateChange: onBirthdayChange,
-          hintText: DateFormat.yMd().format(_selectedDateTime)),
-    );
-
-    return new Scaffold(
-      body: birthdayTile,
+          hintText: DateFormat.yMd().format(_selectedDateTime),
     );
   }
 
