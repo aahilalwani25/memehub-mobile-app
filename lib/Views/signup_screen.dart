@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:memehub_mobile_app/Views/signin_screen.dart';
+import 'package:memehub_mobile_app/global/components/dob_date.dart';
+import 'package:memehub_mobile_app/global/components/gender.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
 import 'package:memehub_mobile_app/global/components/radio_button.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
@@ -70,7 +72,7 @@ class SignupScreen extends StatelessWidget {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/bg_img_transparent.png')),
+                    image: AssetImage('assets/images/funny_bg.jpg')),
               ),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 0.3, sigmaY: 0.3),
@@ -86,7 +88,7 @@ class SignupScreen extends StatelessWidget {
                       SizedBox(
                         height: 35,
                         child: Text(
-                          'Create an account',
+                          'Join Us',
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -97,7 +99,7 @@ class SignupScreen extends StatelessWidget {
                       SizedBox(
                         height: 35,
                         child: Text(
-                          'Gather friends, meme party starts!',
+                          'Help us to share joy :)',
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyMedium!,
                         ),
@@ -148,24 +150,25 @@ class SignupScreen extends StatelessWidget {
                           return null;
                         },
                       ).show(),
-                      Input(
-                        styles: styles,
-                        obscureText: true,
-                        hintText: 'Confirm Password',
-                        context: context,
-                        icon: const Icon(Icons.password),
-                        controller: _confirmpasswordController,
-                        textInputType: TextInputType.visiblePassword,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Please enter your Confirm Password";
-                          } else if (value != _passwordController.text) {
-                            return "Passwords do not match!";
-                          }
+                      // Input(
+                      //   styles: styles,
+                      //   obscureText: true,
+                      //   hintText: 'Confirm Password',
+                      //   context: context,
+                      //   icon: const Icon(Icons.password),
+                      //   controller: _confirmpasswordController,
+                      //   textInputType: TextInputType.visiblePassword,
+                      //   validator: (value) {
+                      //     if (value!.isEmpty) {
+                      //       return "Please enter your Confirm Password";
+                      //     } else if (value != _passwordController.text) {
+                      //       return "Passwords do not match!";
+                      //     }
 
-                          return null;
-                        },
-                      ).show(),
+                      //     return null;
+                      //   },
+                      // ).show(),
+
                       // Row(
                       //   children: [
                       //     Checkbox(
@@ -189,40 +192,56 @@ class SignupScreen extends StatelessWidget {
                       //   ],
                       // ),
 
-                      const Text('Gender'),
-                      RadioButton(
-                          title: 'Male',
-                          value: 1,
-                          groupValue:
-                              (state is GenderState) ? state.genderId : 0,
-                          state: state,
-                          context: context),
-                      RadioButton(
-                          title: 'Female',
-                          value: 2,
-                          groupValue:
-                              (state is GenderState) ? state.genderId : 0,
-                          state: state,
-                          context: context),
+                      // const Text('Gender'),
+                      // RadioButton(
+                      //     title: 'Male',
+                      //     value: 1,
+                      //     groupValue:
+                      //         (state is GenderState) ? state.genderId : 0,
+                      //     state: state,
+                      //     context: context),
+                      // RadioButton(
+                      // title: 'Female',
+                      // value: 2,
+                      // groupValue:
+                      //     (state is GenderState) ? state.genderId : 0,
+                      // state: state,
+                      // context: context),
 
-                      TextFormField(
-                        //keyboardType: TextInputType.datetime,
-                        //controller: _dateOfBirthController,
-                        decoration: const InputDecoration(
-                          labelText: 'Date of Birth',
-                          suffixIcon: Icon(Icons.calendar_today),
+                      Container(
+                        height: 95, // Set an appropriate height
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: GenderSelector(),
                         ),
-                        onTap:() {
-                          context.read<SignupBloc>().add(DoBPressed(context: context));
-                        },
-                        readOnly: true, // Prevent manual input
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please select your Date of Birth';
-                          }
-                          return null;
-                        },
                       ),
+
+                      Container(
+                        height: 80, // Set an appropriate height
+                        width: styles.getWidth(0.72),
+                        child: dob(),
+                      ),
+
+                      // TextFormField(
+                      //   //keyboardType: TextInputType.datetime,
+                      //   //controller: _dateOfBirthController,
+                      //   decoration: const InputDecoration(
+                      //     labelText: 'Date of Birth',
+                      //     suffixIcon: Icon(Icons.calendar_today),
+                      //   ),
+                      //   onTap: () {
+                      //     context
+                      //         .read<SignupBloc>()
+                      //         .add(DoBPressed(context: context));
+                      //   },
+                      //   readOnly: true, // Prevent manual input
+                      //   validator: (value) {
+                      //     if (value!.isEmpty) {
+                      //       return 'Please select your Date of Birth';
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
 
                       Container(
                           width: 151,

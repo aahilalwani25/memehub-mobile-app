@@ -47,6 +47,8 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   image_picker: ^1.0.4
   http_parser: ^4.0.2
+  material_design_icons_flutter: ^7.0.7296
+  cupertino_date_textbox: ^1.0.3
   native_notify: ^0.0.3
  
   # flutter_native_splash: ^2.3.3
