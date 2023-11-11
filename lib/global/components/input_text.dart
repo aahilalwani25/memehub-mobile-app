@@ -30,7 +30,7 @@ class Input {
         top: 10,
         bottom: 15,
       ),
-      width: styles.getWidth(0.6),
+      width: styles.getWidth(0.72),
       height: styles.getHeight(0.07),
       child: TextFormField(
         style: TextStyle(
@@ -41,7 +41,6 @@ class Input {
         keyboardType: textInputType ?? TextInputType.name,
         validator: validator,
         decoration: InputDecoration(
-          
           prefixIcon: icon,
           hintText: hintText,
           fillColor: inputDecorationTheme.fillColor,

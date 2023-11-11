@@ -40,13 +40,16 @@ dependencies:
   equatable: ^2.0.5
   flutter_svg: ^2.0.7
   google_sign_in: ^6.1.5
-  http: ^1.1.0
+  http: ^0.13.4
   firebase_auth: ^4.10.1
   flutter_dotenv: ^5.1.0
   firebase_core: ^2.17.0
   flutter_secure_storage: ^9.0.0
   image_picker: ^1.0.4
   http_parser: ^4.0.2
+  material_design_icons_flutter: ^7.0.7296
+  cupertino_date_textbox: ^1.0.3
+  native_notify: ^0.0.3
  
   # flutter_native_splash: ^2.3.3
 
