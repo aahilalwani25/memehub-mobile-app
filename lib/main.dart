@@ -5,16 +5,21 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/profile/profile_bloc.dart';
+import 'package:memehub_mobile_app/Views/tab/connect_with_screen.dart';
 import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
 import 'Bloc/signup bloc/signup_bloc.dart';
 import 'Views/signin_screen.dart';
+import 'package:native_notify/native_notify.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //FlutterNativeSplash.removeAfter(initialization);
   await dotenv.load(fileName: '.env');
+  WidgetsFlutterBinding.ensureInitialized();
+  // NativeNotify.initialize(3757, 'vdT6M831jk2JKPbXtET3Hi');
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
@@ -84,7 +89,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             useMaterial3: true,
           ),
-          home: SigninScreen(),
+          home: ConnectWithScreen(),
         ));
   }
 
