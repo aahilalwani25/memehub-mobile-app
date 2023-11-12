@@ -88,73 +88,75 @@ class SigninScreen extends StatelessWidget {
                       width: styles.getWidth(0.9),
                       height: styles.getHeight(0.6),
                       child: Column(children: [
-                        SizedBox(
-                          height: 35,
-                          child: Text(
-                            'Login',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 35,
-                          child: Text(
-                            'or connect with',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodyMedium!,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              child: Container(
-                                width: 100,
-                                height: 54,
-                                padding: const EdgeInsets.all(5),
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFF1877F2),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/facebook_logo.png',
-                                  height: 40,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                context
-                                    .read<AuthenticationBloc>()
-                                    .add(LoginButtonWithGooglePressedEvent());
+                        // SizedBox(
+                        //   height: 35,
+                        //   child: Text(
+                        //     'Login',
+                        //     textAlign: TextAlign.center,
+                        //     style: Theme.of(context)
+                        //         .textTheme
+                        //         .titleLarge!
+                        //         .copyWith(fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
 
-                                // if(state is AuthenticationState){
+                        // SizedBox(
+                        //   height: 35,
+                        //   child: Text(
+                        //     'or connect with',
+                        //     textAlign: TextAlign.center,
+                        //     style: Theme.of(context).textTheme.bodyMedium!,
+                        //   ),
+                        // ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     GestureDetector(
+                        //       child: Container(
+                        //         width: 100,
+                        //         height: 54,
+                        //         padding: const EdgeInsets.all(5),
+                        //         decoration: ShapeDecoration(
+                        //           color: const Color(0xFF1877F2),
+                        //           shape: RoundedRectangleBorder(
+                        //             borderRadius: BorderRadius.circular(10),
+                        //           ),
+                        //         ),
+                        //         child: Image.asset(
+                        //           'assets/images/facebook_logo.png',
+                        //           height: 40,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     GestureDetector(
+                        //       onTap: () {
+                        //         context
+                        //             .read<AuthenticationBloc>()
+                        //             .add(LoginButtonWithGooglePressedEvent());
 
-                                // }
-                              },
-                              child: Container(
-                                width: 100,
-                                height: 54,
-                                padding: const EdgeInsets.all(5),
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFF5F5F5),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/google_logo.png',
-                                  height: 40,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                        //         // if(state is AuthenticationState){
+
+                        //         // }
+                        //       },
+                        //       child: Container(
+                        //         width: 100,
+                        //         height: 54,
+                        //         padding: const EdgeInsets.all(5),
+                        //         decoration: ShapeDecoration(
+                        //           color: const Color(0xFFF5F5F5),
+                        //           shape: RoundedRectangleBorder(
+                        //             borderRadius: BorderRadius.circular(10),
+                        //           ),
+                        //         ),
+                        //         child: Image.asset(
+                        //           'assets/images/google_logo.png',
+                        //           height: 40,
+                        //         ),
+                        //       ),
+                        //     )
+                        //   ],
+                        // ),
+
                         Input(
                           hintText: 'Email',
                           styles: styles,

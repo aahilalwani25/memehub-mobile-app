@@ -13,13 +13,12 @@ class _dobState extends State<dob> {
 
   @override
   Widget build(BuildContext context) {
-    final String formattedDate = DateFormat.yMd().format(_selectedDateTime);
-    
+    // final String formattedDate = DateFormat.yMd().format(_selectedDateTime);
 
     return CupertinoDateTextBox(
-          initialValue: _selectedDateTime,
-          onDateChange: onBirthdayChange,
-          hintText: DateFormat.yMd().format(_selectedDateTime),
+      initialValue: _selectedDateTime,
+      onDateChange: onBirthdayChange,
+      hintText: DateFormat.yMd().format(_selectedDateTime),
     );
   }
 

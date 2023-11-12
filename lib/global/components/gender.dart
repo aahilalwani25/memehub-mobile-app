@@ -11,8 +11,8 @@ class CustomRadio extends StatelessWidget {
     return Card(
         color: _gender.isSelected ? Color(0xFF3B4257) : Colors.white,
         child: Container(
-          height: 80,
-          width: 80,
+          height: 60, //80
+          width: 60, //80
           alignment: Alignment.center,
           margin: new EdgeInsets.all(5.0),
           child: Column(
@@ -55,9 +55,9 @@ class _GenderSelectorState extends State<GenderSelector> {
   @override
   void initState() {
     super.initState();
-    genders.add(new Gender("Male", MdiIcons.genderMale, false));
-    genders.add(new Gender("Female", MdiIcons.genderFemale, false));
-    genders.add(new Gender("Others", MdiIcons.genderTransgender, false));
+    genders.add(new Gender("", MdiIcons.genderMale, false));
+    genders.add(new Gender("", MdiIcons.genderFemale, false));
+    genders.add(new Gender("", MdiIcons.genderTransgender, false));
   }
 
   @override

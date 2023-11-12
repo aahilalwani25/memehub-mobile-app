@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:memehub_mobile_app/Views/signin_screen.dart';
 import 'package:memehub_mobile_app/global/components/dob_date.dart';
 import 'package:memehub_mobile_app/global/components/gender.dart';
@@ -85,24 +86,24 @@ class SignupScreen extends StatelessWidget {
                     width: styles.getWidth(0.8),
                     height: styles.getHeight(0.85),
                     child: Column(children: [
+                      // SizedBox(
+                      //   height: 35,
+                      //   child: Text(
+                      //     'Join Us',
+                      //     textAlign: TextAlign.center,
+                      //     style: Theme.of(context)
+                      //         .textTheme
+                      //         .titleLarge!
+                      //         .copyWith(fontWeight: FontWeight.bold),
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 35,
-                        child: Text(
-                          'Join Us',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 35,
-                        child: Text(
-                          'Help us to share joy :)',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyMedium!,
-                        ),
+                        child: Text('Help us to share joy :)',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyMedium!
+                            // .copyWith(color: Colors.purple),
+                            ),
                       ),
                       Input(
                         styles: styles,
@@ -209,7 +210,7 @@ class SignupScreen extends StatelessWidget {
                       // context: context),
 
                       Container(
-                        height: 95, // Set an appropriate height
+                        height: 70, // 80
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: GenderSelector(),
@@ -221,6 +222,28 @@ class SignupScreen extends StatelessWidget {
                         width: styles.getWidth(0.72),
                         child: dob(),
                       ),
+
+                      Container(
+                        width: styles.getWidth(0.72),
+                        child: IntlPhoneField(
+                          decoration: const InputDecoration(
+                            labelText: 'Phone Number',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
+                            ),
+                          ),
+                          initialCountryCode: 'PK',
+                          onChanged: (phone) {
+                            print(phone.completeNumber);
+                          },
+                        ),
+                      ),
+
+                      // Container(
+                      //   height: 80, // Set an appropriate height
+                      //   width: styles.getWidth(0.72),
+                      //   child: dob(),
+                      // ),
 
                       // TextFormField(
                       //   //keyboardType: TextInputType.datetime,
