@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:memehub_mobile_app/Views/request_list.dart';
+import 'package:memehub_mobile_app/global/components/button.dart';
 
 class HomiesScreen extends StatefulWidget {
   final int id;
+
   HomiesScreen({required this.id, super.key});
 
   @override
@@ -16,32 +19,7 @@ class _Homies_ScreenState extends State<HomiesScreen> {
       body: Column(
         children: [
           Text('Requested'),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profilepicture.jpeg"),
-            ),
-            title: Text("Ayub Latif"),
-            trailing: Row(
-              children: [
-                // ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.yellow,
-                //     ),
-                //     onPressed: () {},
-                //     child: Text('Confirm')),
-                // ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.red,
-                //     ),
-                //     onPressed: () {},
-                //     child: Text(
-                //       'Confirm',
-                //       style: TextStyle(color: Colors.white),
-                //     )),
-              ],
-            ),
-          ),
-          Divider(),
+          RequestList(id: 4,)
         ],
       ),
     );
