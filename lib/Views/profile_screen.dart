@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/profile/profile_bloc.dart';
 import 'package:memehub_mobile_app/Views/edit_profile.dart';
-import 'package:memehub_mobile_app/Views/friends_view.dart';
+import 'package:memehub_mobile_app/Views/homies_list.dart';
 import 'package:memehub_mobile_app/Views/grid_view.dart';
 
 import 'package:memehub_mobile_app/Views/tab/settings_tab.dart';
@@ -146,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (builder) =>
-                                                            HomiesScreen(
+                                                            HommiesScreen(
                                                                 id: my_profile_id_fk)));
                                               },
                                               child: Column(
