@@ -50,8 +50,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           // contentType: MediaType('image', 'jpeg')
         ));
         client.send(request).then((response) {
-          http.Response.fromStream(response)
-          .then((onValue) {
+          http.Response.fromStream(response).then((onValue) {
             try {
               // get your response here...
               if (onValue.statusCode == 200) {
@@ -62,8 +61,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
                 print(onValue.body);
                 //throw Exception(onValue.body);
               }
-              
-              
             } catch (e) {
               // handle exeption
               print(e);

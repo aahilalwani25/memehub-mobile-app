@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:memehub_mobile_app/Bloc/hommies/hommies_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/profile/profile_bloc.dart';
 import 'package:memehub_mobile_app/Views/tab/connect_with_screen.dart';
@@ -12,7 +13,7 @@ import 'Bloc/signup bloc/signup_bloc.dart';
 import 'Views/signin_screen.dart';
 import 'package:native_notify/native_notify.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //FlutterNativeSplash.removeAfter(initialization);
@@ -22,16 +23,14 @@ void main() async{
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const MyApp());
 }
 
 Future initialization(BuildContext context) async {
   //load resources
   await Future.delayed(
-      const Duration(seconds: 2), () => {
-        FlutterNativeSplash.remove()
-      });
+      const Duration(seconds: 2), () => {FlutterNativeSplash.remove()});
 }
 
 class MyApp extends StatelessWidget {
@@ -54,14 +53,13 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => ProfileBloc(),
           ),
+          BlocProvider(create: (context) => HommiesBloc())
         ],
         child: MaterialApp(
           color: Colors.black,
           theme: ThemeData(
             inputDecorationTheme: const InputDecorationTheme(
-              fillColor: Color.fromARGB(255, 238, 238, 238),
-              filled: true
-            ),
+                fillColor: Color.fromARGB(255, 238, 238, 238), filled: true),
             textTheme: const TextTheme(
               titleLarge: TextStyle(
                 color: Colors.black,
@@ -85,13 +83,12 @@ class MyApp extends StatelessWidget {
                 height: 0,
               ),
             ),
-            primaryColor: const Color.fromARGB(255, 209, 209, 209), //Change theme mode here
+            primaryColor: const Color.fromARGB(
+                255, 209, 209, 209), //Change theme mode here
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             useMaterial3: true,
           ),
           home: ConnectWithScreen(),
         ));
   }
-
 }
-
