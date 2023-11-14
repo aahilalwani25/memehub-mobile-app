@@ -18,7 +18,7 @@ void main() async{
   //FlutterNativeSplash.removeAfter(initialization);
   await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
-  // NativeNotify.initialize(3757, 'vdT6M831jk2JKPbXtET3Hi');
+   NativeNotify.initialize(3757, 'vdT6M831jk2JKPbXtET3Hi');
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
