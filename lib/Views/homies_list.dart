@@ -46,7 +46,7 @@ class _Homies_ScreenState extends State<Homies> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: hommiesList.map((hommieData) {
-                      
+                      print(hommieData);
                       // int id = postData['id'] as int;
                       // String name = postData['description'].toString();
                       // String type = postData['type'];
