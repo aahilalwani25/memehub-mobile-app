@@ -1,0 +1,1 @@
+enum ReactionEvent { singleTap, doubleTap }

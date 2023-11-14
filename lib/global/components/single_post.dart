@@ -53,9 +53,13 @@ class SinglePost extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: IconButton(
-                icon: const Icon(Icons.emoji_emotions_outlined),
-                onPressed: () {},
+              child: GestureDetector(
+                onTap: () => {
+                  
+                },
+                child: const Icon(Icons.emoji_emotions_outlined),
+                
+                
               ),
             ),
             Expanded(

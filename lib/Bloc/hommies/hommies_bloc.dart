@@ -28,11 +28,12 @@ class HommiesBloc extends Bloc<HommiesEvent, HommiesState> {
       body: {
         "my_profile_id": "4"
       });
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> data = json.decode(response.body);
 
-        if (data['status'] == 200) {
+        if (data['status'] == "200") {
           List<dynamic> hommiesList = data['list'];
           print(hommiesList);
           emit(HommieFetchedState(hommies: hommiesList));
