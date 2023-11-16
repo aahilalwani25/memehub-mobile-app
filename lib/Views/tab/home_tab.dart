@@ -53,8 +53,8 @@ class _HomeState extends State<Home> {
                   children: postDataList!.map((postData) {
                     print(postData);
                     int id = postData['id'] as int;
-                    int post_id_fk = postData['post_id_fk'] as int;
-                    int profile_id_fk = postData['profile_id_fk'] as int;
+                    //int post_id_fk = postData['post_id_fk'] as int;
+                    //int profile_id_fk = postData['profile_id_fk'] as int;
                     String description = postData['description'].toString();
                     String type = postData['type'];
                     String imageUrl = postData['url'];
@@ -63,8 +63,8 @@ class _HomeState extends State<Home> {
                       return SinglePost(
                         description: description,
                         imageUrl: imageUrl,
-                        post_id_fk: post_id_fk,
-                        profile_id_fk: profile_id_fk,
+                        //post_id_fk: post_id_fk,
+                        //profile_id_fk: profile_id_fk,
                       );
                     } else {
                       return ListTile(

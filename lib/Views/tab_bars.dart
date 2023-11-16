@@ -9,7 +9,7 @@ class homescreen extends StatelessWidget{
   Widget build(BuildContext context){
   return DefaultTabController(
 
-    length: 3,
+    length: 2,
     child: Scaffold(
      appBar: AppBar(
       title: const Text('HOME SCREEN'),
@@ -41,7 +41,8 @@ class homescreen extends StatelessWidget{
         child: TabBarView(
           children:[
             //1tab
-            Home(profile_id: profile_id,),
+            Home(),
+            // Home(profile_id: profile_id,),
             //2 tab
             Trending(),
           ]
