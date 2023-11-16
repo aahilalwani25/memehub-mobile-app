@@ -38,3 +38,12 @@ class PostFetchedState extends PostState {
 }
 
 class SharedState extends PostState{}
+
+class ReactionState extends PostState{
+  
+  int reaction_type_id_fk = 0;
+  ReactionState({required this.reaction_type_id_fk});
+
+  @override
+  List<Object?> get props => [reaction_type_id_fk];
+}

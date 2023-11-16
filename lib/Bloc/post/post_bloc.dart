@@ -105,5 +105,31 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         //       error: 'Either username or password is wrong'));
       }
     });
+    on<ReactionEvent>((event, emit) async {
+      print(event.post_id_fk);
+      print(event.profile_id_fk);
+      print(event.reaction_type_id_fk);
+      final response = await http.post(
+        Uri.parse(
+            'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/profile/add-reaction'),
+        headers: {'Accept': 'application/json'},
+        body: {
+          'post_id_fk': event.post_id_fk.toString(),
+          'profile_id_fk': event.profile_id_fk.toString(),
+          'reaction_type_id_fk': event.reaction_type_id_fk.toString()
+        },
+      );
+      Map<String, dynamic> data = json.decode(response.body);
+
+      if (data['status'] == 200 && data['response'] == true) {
+        print(data);
+
+        emit(ReactionState(reaction_type_id_fk: event.reaction_type_id_fk));
+      }
+      if (data['status'] == 201 && data['response'] == false) {
+        print(data);
+        emit(ReactionState(reaction_type_id_fk: event.reaction_type_id_fk));
+      }
+    });
   }
 }

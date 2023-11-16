@@ -6,7 +6,8 @@ import 'package:memehub_mobile_app/global/components/single_post.dart';
 import '../../Bloc/post/post_bloc.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final int profile_id;
+  const Home({Key? key, required this.profile_id}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -53,8 +54,8 @@ class _HomeState extends State<Home> {
                   children: postDataList!.map((postData) {
                     print(postData);
                     int id = postData['id'] as int;
-                    //int post_id_fk = postData['post_id_fk'] as int;
-                    //int profile_id_fk = postData['profile_id_fk'] as int;
+                    int post_id_fk = postData['post_id_fk'] as int;
+                    //int profile_id_fk = postData['profile_id_fk'];
                     String description = postData['description'].toString();
                     String type = postData['type'];
                     String imageUrl = postData['url'];
@@ -63,8 +64,8 @@ class _HomeState extends State<Home> {
                       return SinglePost(
                         description: description,
                         imageUrl: imageUrl,
-                        //post_id_fk: post_id_fk,
-                        //profile_id_fk: profile_id_fk,
+                        post_id_fk: post_id_fk,
+                        profile_id_fk: widget.profile_id,
                       );
                     } else {
                       return ListTile(

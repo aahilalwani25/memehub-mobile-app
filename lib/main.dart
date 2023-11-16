@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:memehub_mobile_app/Bloc/Reactions/reaction_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/hommies/hommies_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/profile/profile_bloc.dart';
@@ -61,7 +62,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => ProfileBloc(),
           ),
-          BlocProvider(create: (context) => HommiesBloc())
+          BlocProvider(create: (context) => HommiesBloc()),
+          BlocProvider(create: (context) => ReactionBloc())
         ],
         child: MaterialApp(
           color: Colors.black,

@@ -33,3 +33,17 @@ class PostFetchedEvent extends PostEvent{
 }
 
 class SharedButtonPressed extends PostEvent{}
+
+class ReactionEvent extends PostEvent{
+  
+  int post_id_fk=0;
+int profile_id_fk=0;
+int reaction_type_id_fk=0;
+   
+ ReactionEvent({required this.reaction_type_id_fk,required this.post_id_fk,required this.profile_id_fk,});
+
+
+  @override
+  List<Object> get props => [reaction_type_id_fk,post_id_fk,profile_id_fk];
+
+}
