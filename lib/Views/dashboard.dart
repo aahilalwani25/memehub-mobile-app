@@ -44,7 +44,7 @@ class Dashboard extends StatelessWidget {
             case 0:
             return CupertinoTabView(
               builder: (context){
-                return const CupertinoPageScaffold(child:homescreen());
+                return  CupertinoPageScaffold(child:homescreen(profile_id: id,));
               },
             );
             case 1:

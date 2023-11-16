@@ -31,3 +31,5 @@ class PostButtonPressedEvent extends PostEvent{
 
 class PostFetchedEvent extends PostEvent{
 }
+
+class SharedButtonPressed extends PostEvent{}

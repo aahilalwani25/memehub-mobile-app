@@ -20,14 +20,17 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       //http://127.0.0.1:8000/api/user/register
       emit(SignupLoadingState());
       final response = await http.post(
-        Uri.parse('http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/register'),
+        Uri.parse(
+            'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/register'),
         headers: {'Accept': 'application/json'},
-        body: {""
+        body: {
           'email': event.email,
           'name': event.name,
           'password': event.password,
           'password_confirmation': event.password_confirmation,
-          
+          'gender_id': event.gender_id,
+          'dob': event.dob.toString(),
+          'mobileno': event.mobile
         },
       );
 
@@ -40,9 +43,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       }
     });
 
-    on<AcceptthetermsEvent>((event, emit) {
-      emit(AcceptTheTermsState(agree: event.agree));
-    });
+    // on<AcceptthetermsEvent>((event, emit) {
+    //   emit(AcceptTheTermsState(agree: event.agree));
+    // });
 
     on<AcceptTheTermsNotAcceptedEvent>((event, emit) {
       emit(AcceptTheTermsNotAcceptedState(error: event.error));
@@ -54,18 +57,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     });
 
     on<DoBPressed>((event, emit) async {
-      DateTime selectedDate = DateTime.now(); // Initial date
-
-      DateTime? picked = await showDatePicker(
-        context: event.context,
-        initialDate: selectedDate,
-        firstDate: DateTime(1900), // Set the earliest year you want to allow
-        lastDate: DateTime.now(), // Set the latest year you want to allow
-      );
-
-      if (picked != null && picked != selectedDate) {
-        emit(NewDobState(dob: DateTime(picked.year, picked.month, picked.day)));
-      }
+      
+      emit(NewDobState(dob: event.dob));
+      
     });
   }
 }

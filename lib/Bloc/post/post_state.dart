@@ -36,3 +36,5 @@ class PostFetchedState extends PostState {
   @override
   List<Object?> get props => [postDataList];
 }
+
+class SharedState extends PostState{}

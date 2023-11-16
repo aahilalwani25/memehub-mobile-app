@@ -53,10 +53,10 @@ class ProfileScreen extends StatelessWidget {
       body: BlocConsumer<ProfileBloc, ProfileState>(
         listener: (context, state) {
           // TODO: implement listener
-          context.read<ProfileBloc>().add(AddHomieButtonPressed(
-                my_homie_id_fk: my_homie_id_fk,
-                my_profile_id_fk: my_profile_id_fk,
-              ));
+          // context.read<ProfileBloc>().add(AddHomieButtonPressed(
+          //       my_homie_id_fk: my_homie_id_fk,
+          //       my_profile_id_fk: my_profile_id_fk,
+          //     ));
         },
         builder: (context, state) {
           return SingleChildScrollView(
@@ -79,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                           Row(
                               children: [
                                 Stack(children: [
                                   const CircleAvatar(
@@ -210,10 +210,12 @@ class ProfileScreen extends StatelessWidget {
                                                     my_profile_id_fk,
                                               ));
                                         },
-                                        child: (state is HomieRequestedState)
+                                        child: (state is HomieRequestSentState)
                                             ? const Text("Requested")
                                             : (state is Loading)
                                                 ? const CircularProgressIndicator()
+                                                : (state is HomieRequestNotSentState)
+                                                ? const Text("Request Not Sent")
                                                 : const Text("Add homie"))
                                     : Container(),
                               ],

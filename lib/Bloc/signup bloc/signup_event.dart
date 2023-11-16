@@ -35,9 +35,12 @@ class GenderSelectedEvent extends SignupEvent{
 }
 
 class RegisterButtonPressedEvent extends SignupEvent{
-  String name,email,password,password_confirmation ;
+  String name,email,password,password_confirmation;
+  String? mobile=null;
   bool accepttheterms;
-  RegisterButtonPressedEvent({ required this.name, required this.email, required this.password,required this.password_confirmation, required this.accepttheterms });
+  String gender_id;
+  DateTime dob;
+  RegisterButtonPressedEvent({ required this.gender_id,required this.dob, this.mobile,required this.name, required this.email, required this.password,required this.password_confirmation, required this.accepttheterms });
 
   @override
   List<Object> get props => [name,email,password,password_confirmation,accepttheterms];
@@ -46,9 +49,9 @@ class RegisterButtonPressedEvent extends SignupEvent{
 class SignupLoadingEvent extends SignupEvent{}
 
 class DoBPressed extends SignupEvent{
-  BuildContext context;
+  DateTime dob;
 
-  DoBPressed({required this.context});
+  DoBPressed({required this.dob});
   @override
-  List<Object> get props => [context];
+  List<Object> get props => [dob];
 }

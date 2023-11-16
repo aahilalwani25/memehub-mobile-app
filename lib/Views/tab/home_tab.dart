@@ -5,7 +5,9 @@ import 'package:memehub_mobile_app/global/components/single_post.dart';
 import '../../Bloc/post/post_bloc.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  int profile_id=0;
+
+  Home({super.key, required this.profile_id});
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +20,36 @@ class Home extends StatelessWidget {
           builder: (context, state) {
             if (state is PostFetchedState) {
               final postDataList = state.postDataList;
-              
+
               //print(postDataList);
               return SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: postDataList!.map((postData) {
-                    print(postData);
+                    //if post is a shared post
+
                     int id = postData['id'] as int;
+                    int post_id_fk = postData['post_id_fk'] as int;
+                    int profile_id_fk = postData['profile_id_fk'] as int;
                     String description = postData['description'].toString();
                     String type = postData['type'];
                     String imageUrl = postData['url'];
                     //print(id);
 
                     if (type == "image") {
-                      return SinglePost(description, imageUrl);
+                      return SinglePost(
+                        description: description,
+                        imageUrl: imageUrl,
+                        post_id_fk: post_id_fk,
+                        profile_id_fk: profile_id_fk,
+                      );
                     } else {
                       return ListTile(
                         title: Text('ID: $id'),
                         subtitle: Text(description),
                       );
                     }
-                    
                   }).toList(),
                 ),
               );

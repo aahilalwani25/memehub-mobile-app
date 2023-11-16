@@ -10,7 +10,9 @@ sealed class ProfileState extends Equatable {
 final class ProfileInitial extends ProfileState {
 }
 
-class HomieRequestedState extends ProfileState{}
+class HomieRequestSentState extends ProfileState{}
+
+class HomieRequestNotSentState extends ProfileState{}
 
 class HomieAcceptedState extends ProfileState{}
 

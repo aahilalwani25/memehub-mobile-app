@@ -1,26 +1,29 @@
 import 'dart:ui';
 
+import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:memehub_mobile_app/Views/signin_screen.dart';
-import 'package:memehub_mobile_app/global/components/dob_date.dart';
 import 'package:memehub_mobile_app/global/components/gender.dart';
 import 'package:memehub_mobile_app/global/components/input_text.dart';
-import 'package:memehub_mobile_app/global/components/radio_button.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Bloc/signup bloc/signup_bloc.dart';
 import '../global/components/toast_message.dart';
+import 'package:intl/intl.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmpasswordController =
       TextEditingController();
-  final TextEditingController _dateOfBirthController = TextEditingController();
+
+  DateTime dob = DateTime.now();
+  int gender_id=0;
 
   @override
   Widget build(BuildContext context) {
@@ -86,17 +89,6 @@ class SignupScreen extends StatelessWidget {
                     width: styles.getWidth(0.8),
                     height: styles.getHeight(0.85),
                     child: Column(children: [
-                      // SizedBox(
-                      //   height: 35,
-                      //   child: Text(
-                      //     'Join Us',
-                      //     textAlign: TextAlign.center,
-                      //     style: Theme.of(context)
-                      //         .textTheme
-                      //         .titleLarge!
-                      //         .copyWith(fontWeight: FontWeight.bold),
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 35,
                         child: Text('Help us to share joy :)',
@@ -151,64 +143,6 @@ class SignupScreen extends StatelessWidget {
                           return null;
                         },
                       ).show(),
-                      // Input(
-                      //   styles: styles,
-                      //   obscureText: true,
-                      //   hintText: 'Confirm Password',
-                      //   context: context,
-                      //   icon: const Icon(Icons.password),
-                      //   controller: _confirmpasswordController,
-                      //   textInputType: TextInputType.visiblePassword,
-                      //   validator: (value) {
-                      //     if (value!.isEmpty) {
-                      //       return "Please enter your Confirm Password";
-                      //     } else if (value != _passwordController.text) {
-                      //       return "Passwords do not match!";
-                      //     }
-
-                      //     return null;
-                      //   },
-                      // ).show(),
-
-                      // Row(
-                      //   children: [
-                      //     Checkbox(
-                      //         value: (state is AcceptTheTermsState)
-                      //             ? state.agree
-                      //             : false,
-                      //         onChanged: (value) {
-                      //           context
-                      //               .read<SignupBloc>()
-                      //               .add(AcceptthetermsEvent(agree: value!));
-                      //         }),
-                      //     Container(
-                      //       alignment: const Alignment(0.75, 0),
-                      //       child: Text(
-                      //         'I accept the terms.',
-                      //         style: Theme.of(context).textTheme.bodySmall,
-                      //       ),
-                      //     ),
-
-                      //     (state is AcceptTheTermsNotAcceptedState)? Text(state.error):Container()
-                      //   ],
-                      // ),
-
-                      // const Text('Gender'),
-                      // RadioButton(
-                      //     title: 'Male',
-                      //     value: 1,
-                      //     groupValue:
-                      //         (state is GenderState) ? state.genderId : 0,
-                      //     state: state,
-                      //     context: context),
-                      // RadioButton(
-                      // title: 'Female',
-                      // value: 2,
-                      // groupValue:
-                      //     (state is GenderState) ? state.genderId : 0,
-                      // state: state,
-                      // context: context),
-
                       Container(
                         height: 70, // 80
                         child: SingleChildScrollView(
@@ -216,16 +150,20 @@ class SignupScreen extends StatelessWidget {
                           child: GenderSelector(),
                         ),
                       ),
-
                       Container(
-                        height: 80, // Set an appropriate height
-                        width: styles.getWidth(0.72),
-                        child: dob(),
-                      ),
-
+                          height: 80, // Set an appropriate height
+                          width: styles.getWidth(0.72),
+                          child: CupertinoDateTextBox(
+                            initialValue: dob,
+                            onDateChange: (DateTime dob) {
+                              context.read<SignupBloc>().add(DoBPressed(dob: dob));
+                            },
+                            hintText: DateFormat.yMd().format(dob),
+                          )),
                       Container(
                         width: styles.getWidth(0.72),
                         child: IntlPhoneField(
+                          controller: _phoneController,
                           decoration: const InputDecoration(
                             labelText: 'Phone Number',
                             border: OutlineInputBorder(
@@ -238,34 +176,6 @@ class SignupScreen extends StatelessWidget {
                           },
                         ),
                       ),
-
-                      // Container(
-                      //   height: 80, // Set an appropriate height
-                      //   width: styles.getWidth(0.72),
-                      //   child: dob(),
-                      // ),
-
-                      // TextFormField(
-                      //   //keyboardType: TextInputType.datetime,
-                      //   //controller: _dateOfBirthController,
-                      //   decoration: const InputDecoration(
-                      //     labelText: 'Date of Birth',
-                      //     suffixIcon: Icon(Icons.calendar_today),
-                      //   ),
-                      //   onTap: () {
-                      //     context
-                      //         .read<SignupBloc>()
-                      //         .add(DoBPressed(context: context));
-                      //   },
-                      //   readOnly: true, // Prevent manual input
-                      //   validator: (value) {
-                      //     if (value!.isEmpty) {
-                      //       return 'Please select your Date of Birth';
-                      //     }
-                      //     return null;
-                      //   },
-                      // ),
-
                       Container(
                           width: 151,
                           height: 45,
@@ -279,6 +189,9 @@ class SignupScreen extends StatelessWidget {
                                 if (formKey.currentState!.validate()) {
                                   context.read<SignupBloc>().add(
                                       RegisterButtonPressedEvent(
+                                          dob: dob,
+                                          gender_id: "1",
+                                          mobile: _phoneController.text,
                                           name: _usernameController.text,
                                           email: _emailController.text,
                                           password: _passwordController.text,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SinglePost extends StatelessWidget {
-  final String? imageUrl, description; 
-  final int post_id_fk, profile_id_fk;
-  SinglePost({super.key, this.description=null,this.imageUrl=null, required this.post_id_fk, required this.profile_id_fk});
+class Shared_Post extends StatelessWidget {
+  String? post_description, shared_description, shared_username, post_username, shared_time, post_usertime;
+  Shared_Post({super.key, required this.post_description, required this.shared_description, required this.shared_username, required this.post_username, required this.shared_time, required this.post_usertime});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class SinglePost extends StatelessWidget {
           ),
         ),
         ListTile(
-          title: Text(description!),
+          title: Text(post_description!),
         ),
         Image.network('https://picsum.photos/250?image=9'),
         Row(
@@ -67,12 +67,14 @@ class SinglePost extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.chat_bubble_outline_sharp),
                 onPressed: () {},
-              ),
+              )
             ),
             Expanded(
               child: IconButton(
                 icon: const Icon(Icons.send_sharp),
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
               ),
             ),
           ],

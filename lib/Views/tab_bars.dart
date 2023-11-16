@@ -3,7 +3,8 @@ import 'tab/home_tab.dart';
 import 'tab/trending_tab.dart';
 
 class homescreen extends StatelessWidget{
-  const homescreen({Key? key}) : super(key: key);
+  int profile_id=0;
+   homescreen({Key? key, required this.profile_id}) : super(key: key);
   @override
   Widget build(BuildContext context){
   return DefaultTabController(
@@ -13,9 +14,9 @@ class homescreen extends StatelessWidget{
      appBar: AppBar(
       title: const Text('HOME SCREEN'),
      ),
-     body: const Column(
+     body: Column(
       children: [
-        TabBar(tabs:[
+        const TabBar(tabs:[
           Tab(
             icon:  Icon(
               Icons.home,
@@ -40,7 +41,7 @@ class homescreen extends StatelessWidget{
         child: TabBarView(
           children:[
             //1tab
-            Home(),
+            Home(profile_id: profile_id,),
             //2 tab
             Trending(),
           ]

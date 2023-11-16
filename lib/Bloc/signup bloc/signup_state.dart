@@ -9,15 +9,15 @@ sealed class SignupState extends Equatable {
 
 final class SignupInitial extends SignupState {}
 
-class AcceptTheTermsState extends SignupState{
-  bool agree;
+// class AcceptTheTermsState extends SignupState{
+//   bool agree;
 
-  AcceptTheTermsState({required this.agree});
+//   AcceptTheTermsState({required this.agree});
 
-@override
-  List<Object> get props => [agree];
+// @override
+//   List<Object> get props => [agree];
  
-}
+// }
 
 class AcceptTheTermsNotAcceptedState extends SignupState{
   String error;
