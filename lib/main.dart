@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,7 +12,13 @@ import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
 import 'Bloc/signup bloc/signup_bloc.dart';
 import 'Views/signin_screen.dart';
-import 'package:native_notify/native_notify.dart';
+//import 'package:native_notify/native_notify.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message)async {
+  await Firebase.initializeApp();
+}
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,11 +26,12 @@ void main() async {
   //FlutterNativeSplash.removeAfter(initialization);
   await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
-  // NativeNotify.initialize(3757, 'vdT6M831jk2JKPbXtET3Hi');
+  //NativeNotify.initialize(3757, 'vdT6M831jk2JKPbXtET3Hi');
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
 }
 
