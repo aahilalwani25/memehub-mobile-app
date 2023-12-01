@@ -7,12 +7,18 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_event.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_state.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
+import 'package:memehub_mobile_app/global/styles.dart';
 import 'package:http/http.dart' as http;
 
 class SinglePost extends StatefulWidget {
   final String? imageUrl, description;
   final int post_id_fk, profile_id_fk;
+  //final String name;
+  //final int id;
+  TextEditingController descriptionController= TextEditingController();
   int reaction = 0;
+  //final privacies = ['Public', 'Private'];
+  
 
   SinglePost({
     Key? key,
@@ -20,6 +26,8 @@ class SinglePost extends StatefulWidget {
     this.imageUrl,
     required this.post_id_fk,
     required this.profile_id_fk,
+    //required this.name,
+    //required this.id,
   }) : super(key: key);
 
   @override
@@ -115,11 +123,79 @@ class _SinglePostState extends State<SinglePost> {
                   Expanded(
                     child: IconButton(
                       icon: const Icon(Icons.send_sharp),
-                      onPressed: () {},
+                      onPressed: () {
+                         _showSettingsBottomSheet(context);
+                      },
                     ),
                   ),
                 ],
               ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+   void _showSettingsBottomSheet(BuildContext context) {
+      Styles styles = Styles(context: context);
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+               Container(
+                    child: Row(
+                      children: [
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              AssetImage('assets/images/profilepicture.jpeg'),
+                        ),
+                        SizedBox(
+                          width: styles.getWidth(0.09),
+                        ),
+                        //Text(widget.name),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      // DropdownButton(
+                      //   borderRadius:
+                      //       const BorderRadius.all(Radius.circular(20)),
+                      //   value: (state is PrivacyChangedState)
+                      //       ? state.privacy
+                      //       : 'Public',
+                      //   icon: const Icon(Icons.keyboard_arrow_down),
+                      //   items: widget.privacies.map((String items) {
+                      //     return DropdownMenuItem(
+                      //       value: items,
+                      //       child: Text(items),
+                      //     );
+                      //   }).toList(),
+                      //   onChanged: (String? newValue) {
+                      //     context.read<PostBloc>().add(
+                      //         PrivacyButtonPressedEvent(privacy: newValue!));
+                      //   },
+                      // ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: styles.getWidth(1),
+                    height: styles.getHeight(0.3),
+                    child: TextField(
+                      controller: widget.descriptionController,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 10,
+                      decoration: const InputDecoration(
+                        hintText: "What's on your giggle?",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
             ],
           ),
         );

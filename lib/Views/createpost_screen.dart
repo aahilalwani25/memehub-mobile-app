@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
@@ -36,6 +37,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (builder) => Home(
                       profile_id: widget.id,
+                      // name: widget.name,
+                      // my_profile_id: widget.id,
                     )));
           }
 
