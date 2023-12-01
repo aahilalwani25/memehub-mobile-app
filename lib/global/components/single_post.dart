@@ -76,6 +76,7 @@ class _SinglePostState extends State<SinglePost> {
                 children: [
                   Expanded(
                     child: GestureDetector(
+                      
                         onTap: () async {
                           //single tap
                           // context.read<PostBloc>().add(ReactionEvent(
@@ -150,7 +151,7 @@ class _SinglePostState extends State<SinglePost> {
       print(data);
 
       setState(() {
-        widget.reaction = 1;
+        widget.reaction = 2;
       });
     }
   }

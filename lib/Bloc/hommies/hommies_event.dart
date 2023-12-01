@@ -15,5 +15,10 @@ class HommiesFetchedEvent extends HommiesEvent{
   List<Object> get props => [id];
 }
 
+class HommyRemoveEvent extends HommiesEvent{
+  final int id;
+  HommyRemoveEvent({required this.id});
+}
+
 
 

@@ -38,7 +38,7 @@ class HommiesScreen extends StatelessWidget {
                               AssetImage("assets/images/profilepicture.jpeg"),
                         ),
                         title: Text(hommieData["username"]),
-                        trailing: ElevatedButton(
+                        trailing:ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.red),
                                 onPressed: () {},
@@ -48,14 +48,30 @@ class HommiesScreen extends StatelessWidget {
                                 ),
                               )
                             
-                            // (hommieData["is_status"]=="Pending")?Row(
-                            //   children: [
-                            //     ElevatedButton(onPressed: (){}, child: Text("Accept")),
-                            //     ElevatedButton(onPressed: (){}, child: Text("Reject")),
-                            //   ],
-                            // ):
+                      ):ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              AssetImage("assets/images/profilepicture.jpeg"),
+                        ),
+                        title: Row(
+                          children: [
+                            Expanded(child: Text(hommieData["username"])),
+                            ElevatedButton(onPressed: (){
+
+                            }, child: Text("Accept")),
+                            ElevatedButton(onPressed: (){
+                              
+                            }, child: Text("Reject")),
+                          ],
+                        ),
+                        // trailing://Row(
+                        //       //children: [
+                        //         ElevatedButton(onPressed: (){}, child: Text("Remove")),
+                        //     //     ElevatedButton(onPressed: (){}, child: Text("Reject")),
+                        //     //   ],
+                        //     // )
                             
-                      ):Container();
+                      );
                     }).toList(),
                   ),
                 );
