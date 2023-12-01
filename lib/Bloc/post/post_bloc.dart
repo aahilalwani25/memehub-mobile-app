@@ -30,6 +30,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
 
     on<PostButtonPressedEvent>((event, emit) async {
+      emit(postuploadloading());
       try {
         print(event.description);
         final client = http.Client();
@@ -49,24 +50,37 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           'image', event.imageFile!.path,
           // contentType: MediaType('image', 'jpeg')
         ));
-        client.send(request).then((response) {
-          http.Response.fromStream(response).then((onValue) {
-            try {
-              // get your response here...
-              if (onValue.statusCode == 200) {
-                print("Success");
-                emit(PostSuccessfullyState());
-              } else {
-                print(onValue.statusCode);
-                print(onValue.body);
-                //throw Exception(onValue.body);
-              }
-            } catch (e) {
-              // handle exeption
-              print(e);
-            }
-          });
-        });
+
+        var res= await client.send(request);
+
+        if(res.statusCode==200){
+          var r= await http.Response.fromStream(res);
+          if(r.statusCode==200){
+            print("success");
+            emit(PostSuccessfullyState());
+          }
+        }else{
+          print(res.statusCode);
+          
+        }
+        // client.send(request).then((response) {
+        //   http.Response.fromStream(response).then((onValue) {
+        //     try {
+        //       // get your response here...
+        //       if (onValue.statusCode == 200) {
+        //         print("Success");
+        //         emit(PostSuccessfullyState());
+        //       } else {
+        //         print(onValue.statusCode);
+        //         print(onValue.body);
+        //         //throw Exception(onValue.body);
+        //       }
+        //     } catch (e) {
+        //       // handle exeption
+        //       print(e);
+        //     }
+        //   });
+        // });
       } catch (e) {
         print("error: $e");
       }

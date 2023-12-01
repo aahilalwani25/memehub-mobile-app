@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
+import 'package:memehub_mobile_app/Views/tab/home_tab.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
 import '../global/components/toast_message.dart';
@@ -9,7 +10,8 @@ class CreatePostScreen extends StatefulWidget {
   final String name;
   final int id;
 
-  CreatePostScreen({Key? key, required this.name, required this.id}) : super(key: key);
+  CreatePostScreen({Key? key, required this.name, required this.id})
+      : super(key: key);
 
   @override
   _CreatePostScreenState createState() => _CreatePostScreenState();
@@ -29,7 +31,32 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       body: BlocConsumer<PostBloc, PostState>(
         listener: (context, state) {
           if (state is PostSuccessfullyState) {
-            ToastMessage(context: context, message: "Post successful", type: 'success').show();
+            ToastMessage(context: context, message: "Posted", type: 'success')
+                .show();
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (builder) => Home(
+                      profile_id: widget.id,
+                    )));
+          }
+
+          if (state is postuploadloading) {
+            showDialog(
+                context: context,
+                builder: (builder) {
+                  return AlertDialog(
+                    content: SizedBox(
+                      height: styles.getHeight(0.1),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                          Text('Loading..'),
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }
         },
         builder: (context, state) {
@@ -43,12 +70,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     ),
                     onPressed: () {
                       context.read<PostBloc>().add(PostButtonPressedEvent(
-                        imageFile: (state is PhotoAddedState) ? state.photoFile : null,
-                        description: _descriptionController.text,
-                        id: widget.id,
-                      ));
+                            imageFile: (state is PhotoAddedState)
+                                ? state.photoFile
+                                : null,
+                            description: _descriptionController.text,
+                            id: widget.id,
+                          ));
                     },
-                    child: const Text(
+                    child: Text(
                       'POST',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -58,7 +87,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       children: [
                         const CircleAvatar(
                           radius: 20,
-                          backgroundImage: AssetImage('assets/images/profilepicture.jpeg'),
+                          backgroundImage:
+                              AssetImage('assets/images/profilepicture.jpeg'),
                         ),
                         SizedBox(
                           width: styles.getWidth(0.09),
@@ -71,8 +101,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       DropdownButton(
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
-                        value: (state is PrivacyChangedState) ? state.privacy : 'Public',
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        value: (state is PrivacyChangedState)
+                            ? state.privacy
+                            : 'Public',
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: privacies.map((String items) {
                           return DropdownMenuItem(
@@ -81,7 +114,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           );
                         }).toList(),
                         onChanged: (String? newValue) {
-                          context.read<PostBloc>().add(PrivacyButtonPressedEvent(privacy: newValue!));
+                          context.read<PostBloc>().add(
+                              PrivacyButtonPressedEvent(privacy: newValue!));
                         },
                       ),
                     ],
@@ -147,7 +181,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     );
   }
 
-  Widget buildElevatedButton({required IconData icon, required String label, required void Function()? onPressed}) {
+  Widget buildElevatedButton(
+      {required IconData icon,
+      required String label,
+      required void Function()? onPressed}) {
     Styles styles = Styles(context: context);
     return SizedBox(
       width: styles.getWidth(0.9),
