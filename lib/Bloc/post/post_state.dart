@@ -47,3 +47,4 @@ class ReactionState extends PostState{
   @override
   List<Object?> get props => [reaction_type_id_fk];
 }
+class postuploadloading extends PostState{}

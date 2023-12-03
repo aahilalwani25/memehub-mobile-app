@@ -48,30 +48,7 @@ class HommiesScreen extends StatelessWidget {
                                 ),
                               )
                             
-                      ):ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage:
-                              AssetImage("assets/images/profilepicture.jpeg"),
-                        ),
-                        title: Row(
-                          children: [
-                            Expanded(child: Text(hommieData["username"])),
-                            ElevatedButton(onPressed: (){
-
-                            }, child: Text("Accept")),
-                            ElevatedButton(onPressed: (){
-                              
-                            }, child: Text("Reject")),
-                          ],
-                        ),
-                        // trailing://Row(
-                        //       //children: [
-                        //         ElevatedButton(onPressed: (){}, child: Text("Remove")),
-                        //     //     ElevatedButton(onPressed: (){}, child: Text("Reject")),
-                        //     //   ],
-                        //     // )
-                            
-                      );
+                      ):Container();
                     }).toList(),
                   ),
                 );

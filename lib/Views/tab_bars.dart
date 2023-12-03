@@ -1,61 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:memehub_mobile_app/Views/tab/notification_screen.dart';
 import 'tab/home_tab.dart';
 import 'tab/trending_tab.dart';
 
-class homescreen extends StatelessWidget{
+class homescreen extends StatelessWidget {
   int profile_id;
-   homescreen({Key? key, required this.profile_id}) : super(key: key);
+  homescreen({Key? key, required this.profile_id}) : super(key: key);
   @override
-  Widget build(BuildContext context){
-  return DefaultTabController(
-
-    length: 2,
-    child: Scaffold(
-     appBar: AppBar(
-      title: const Text('HOME SCREEN'),
-     ),
-     body: Column(
-      children: [
-        const TabBar(tabs:[
-          Tab(
-            icon:  Icon(
-              Icons.home,
-              color: Colors.black,
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(''),
+          actions: [
+            GestureDetector(
+              child: Icon(Icons.notifications),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (builder) => notification_screen(id: this.profile_id,)));
+              },
             ),
-          ),
-          Tab(
-            icon:  Icon(
-              Icons.arrow_upward_outlined,
-              color: Colors.black,
+            SizedBox(
+              width: 20,
             ),
-          ),
-          // Tab(
-          //   icon:  Icon(
-          //     Icons.settings,
-          //     color: Colors.black,
-          //   ),
-          // )
-        ] 
+            Icon(Icons.chat),
+            SizedBox(
+              width: 20,
+            ),
+          ],
         ),
-      Expanded(
-        child: TabBarView(
-          children:[
-            //1tab
-            Home(profile_id: profile_id,),
-            // Home(profile_id: profile_id,),
-            //2 tab
-            Trending(),
-          ]
-      
-          ),
-          ),
-      ],
-     ),
-    ),
-    
-  );
-
-}
-
-
+        body: Column(
+          children: [
+            const TabBar(tabs: [
+              Tab(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ),
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.arrow_upward_outlined,
+                  color: Colors.black,
+                ),
+              ),
+              // Tab(
+              //   icon:  Icon(
+              //     Icons.settings,
+              //     color: Colors.black,
+              //   ),
+              // )
+            ]),
+            Expanded(
+              child: TabBarView(children: [
+                //1tab
+                Home(
+                  profile_id: profile_id,
+                ),
+                // Home(profile_id: profile_id,),
+                //2 tab
+                Trending(),
+              ]),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
