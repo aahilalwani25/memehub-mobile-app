@@ -7,11 +7,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_event.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_state.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
+import 'package:memehub_mobile_app/Controllers/reaction_controller.dart';
+import 'package:memehub_mobile_app/Views/Comment/comments.dart';
+import 'package:memehub_mobile_app/Views/shared_post_view.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class SinglePost extends StatefulWidget {
+  ReactionController reactionController = ReactionController();
   final String? imageUrl, description, username, updated_at;
   final int post_id_fk, profile_id_fk;
   //final String name;
@@ -89,11 +93,27 @@ class _SinglePostState extends State<SinglePost> {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                        onTap: () async {
-                          changeReaction(1);
+                        onTap: () {
+                          widget.reactionController
+                              .addReaction(
+                                  1, widget.post_id_fk, widget.profile_id_fk)
+                              .then((value) {
+                            setState(() {
+                              widget.reaction = value;
+                            });
+                          });
+
+                          print(widget.reaction);
                         },
                         onDoubleTap: () {
-                          changeReaction(2);
+                          widget.reactionController
+                              .addReaction(
+                                  2, widget.post_id_fk, widget.profile_id_fk)
+                              .then((value) {
+                            setState(() {
+                              widget.reaction = value;
+                            });
+                          });
                         },
                         child: widget.reaction == 1
                             ? Icon(
@@ -109,14 +129,25 @@ class _SinglePostState extends State<SinglePost> {
                   Expanded(
                     child: IconButton(
                       icon: const Icon(Icons.chat_bubble_outline_sharp),
-                      onPressed: () {},
+                      onPressed: () {
+                        Comments().show(context, widget.post_id_fk.toString());
+                      },
                     ),
                   ),
                   Expanded(
                     child: IconButton(
                       icon: const Icon(Icons.send_sharp),
                       onPressed: () {
-                        _showSettingsBottomSheet(context);
+                        Shared_Post(
+                          postId: widget.post_id_fk,
+                          username: widget.username!,
+                          originalPostDescription: widget.description,
+                          image: Image.network(
+                            widget.imageUrl!,
+                            width: 50,
+                            height: 50,
+                          ),
+                        ).show(context);
                       },
                     ),
                   ),
@@ -136,7 +167,7 @@ class _SinglePostState extends State<SinglePost> {
       builder: (BuildContext context) {
         return Container(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
                 child: Row(
@@ -149,6 +180,7 @@ class _SinglePostState extends State<SinglePost> {
                     SizedBox(
                       width: styles.getWidth(0.09),
                     ),
+
                     //Text(widget.name),
                   ],
                 ),
@@ -184,7 +216,7 @@ class _SinglePostState extends State<SinglePost> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 10,
                   decoration: const InputDecoration(
-                    hintText: "What's on your giggle?",
+                    hintText: "Share your giggle....",
                     border: InputBorder.none,
                   ),
                 ),
@@ -199,41 +231,13 @@ class _SinglePostState extends State<SinglePost> {
   String formatDate(String dateTime) {
     String originalDateString = dateTime;
 
-  // Parse the original date string
-  DateTime originalDate = DateTime.parse(originalDateString);
+    // Parse the original date string
+    DateTime originalDate = DateTime.parse(originalDateString);
 
-  // Format the date and time in the desired format
-  String formattedDateTime = DateFormat('dd MMMM yyyy, HH:mm:ss').format(originalDate);
+    // Format the date and time in the desired format
+    String formattedDateTime =
+        DateFormat('dd MMMM yyyy, HH:mm:ss').format(originalDate);
 
-  return(formattedDateTime);  // Output: 24 October 2023, 00:43:45
-  }
-
-  void changeReaction(int id) async {
-    final response = await http.post(
-      Uri.parse(
-          'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/profile/add-reaction'),
-      headers: {'Accept': 'application/json'},
-      body: {
-        'post_id_fk': widget.post_id_fk.toString(),
-        'profile_id_fk': widget.profile_id_fk.toString(),
-        'reaction_type_id_fk': id.toString()
-      },
-    );
-    Map<String, dynamic> data = json.decode(response.body);
-
-    if (data['status'] == 200 && data['response'] == true) {
-      print(data);
-
-      setState(() {
-        widget.reaction = 1;
-      });
-    }
-    if (data['status'] == 201 && data['response'] == false) {
-      print(data);
-
-      setState(() {
-        widget.reaction = 2;
-      });
-    }
+    return (formattedDateTime); // Output: 24 October 2023, 00:43:45
   }
 }

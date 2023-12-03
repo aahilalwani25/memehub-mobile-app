@@ -97,6 +97,10 @@ class _Homies_ScreenState extends State<Homies> {
                 final hommiesList = state.hommies;
 
                 print(hommiesList);
+
+                if(hommiesList.length>0){
+
+                
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(
@@ -120,6 +124,9 @@ class _Homies_ScreenState extends State<Homies> {
                     }).toList(),
                   ),
                 );
+                }else{
+                  return const Center(child: Text("NO HOMIES TO SHOW"));
+                }
               } else {
                 return const Center(child: Text("NO HOMIES TO SHOW"));
               }

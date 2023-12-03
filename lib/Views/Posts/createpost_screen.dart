@@ -5,7 +5,7 @@ import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/Views/tab/home_tab.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 
-import '../global/components/toast_message.dart';
+import '../../global/components/toast_message.dart';
 
 class CreatePostScreen extends StatefulWidget {
   final String name;
