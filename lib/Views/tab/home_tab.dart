@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Views/notification_services.dart';
 import 'package:memehub_mobile_app/global/components/single_post.dart';
@@ -58,16 +59,20 @@ class _HomeState extends State<Home> {
                     //int profile_id_fk = postData['profile_id_fk'];
                     String description = postData['description'].toString();
                     String type = postData['type'];
-                    String imageUrl = postData['url'];
                     String username= postData['username'];
+                    String updated_at= postData['updated_at'];
+                    var url= (postData['url'].toString().split('/'));
+                    String image_url= 'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/${url[6]}/${url[7]}';
+                    
 
                     if (type == "image") {
                       return SinglePost(
                         description: description,
-                        imageUrl: imageUrl,
+                        imageUrl: image_url,
                         post_id_fk: post_id_fk,
                         profile_id_fk: widget.profile_id,
                         username: username,
+                        updated_at:updated_at,
                       );
                     } else {
                       return ListTile(

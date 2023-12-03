@@ -9,27 +9,28 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class SinglePost extends StatefulWidget {
-  final String? imageUrl, description, username;
+  final String? imageUrl, description, username, updated_at;
   final int post_id_fk, profile_id_fk;
   //final String name;
   //final int id;
-  TextEditingController descriptionController= TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   int reaction = 0;
   //final privacies = ['Public', 'Private'];
-  
 
-  SinglePost({
-    Key? key,
-    this.description,
-    this.imageUrl,
-    required this.post_id_fk,
-    required this.profile_id_fk,
-    //required this.name,
-    //required this.id,
-    required this.username
-  }) : super(key: key);
+  SinglePost(
+      {Key? key,
+      this.description,
+      this.imageUrl,
+      required this.post_id_fk,
+      required this.profile_id_fk,
+      //required this.name,
+      //required this.id,
+      required this.username,
+      required this.updated_at})
+      : super(key: key);
 
   @override
   _SinglePostState createState() => _SinglePostState();
@@ -63,8 +64,7 @@ class _SinglePostState extends State<SinglePost> {
                             Text(widget.username.toString()),
                             Row(
                               children: [
-                                Text('October 31, 2023'),
-                                Text('\t12:00 PM'),
+                                Text(formatDate(widget.updated_at!)),
                               ],
                             ),
                           ],
@@ -80,28 +80,19 @@ class _SinglePostState extends State<SinglePost> {
               ListTile(
                 title: Text(widget.description!),
               ),
-              Image.network('http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}//picsum.photos/250?image=9'),
+              Image.network(
+                widget.imageUrl!,
+                width: 300,
+                height: 300,
+              ),
               Row(
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      
                         onTap: () async {
-                          //single tap
-                          // context.read<PostBloc>().add(ReactionEvent(
-                          //       reaction_type_id_fk: 1, //haha
-                          //       post_id_fk: widget.post_id_fk,
-                          //       profile_id_fk: widget.profile_id_fk,
-                          //     ));
                           changeReaction(1);
                         },
                         onDoubleTap: () {
-                          //double tap
-                          // context.read<PostBloc>().add(ReactionEvent(
-                          //       reaction_type_id_fk: 1, //heart
-                          //       post_id_fk: widget.post_id_fk,
-                          //       profile_id_fk: widget.profile_id_fk,
-                          //     ));
                           changeReaction(2);
                         },
                         child: widget.reaction == 1
@@ -125,7 +116,7 @@ class _SinglePostState extends State<SinglePost> {
                     child: IconButton(
                       icon: const Icon(Icons.send_sharp),
                       onPressed: () {
-                         _showSettingsBottomSheet(context);
+                        _showSettingsBottomSheet(context);
                       },
                     ),
                   ),
@@ -137,8 +128,9 @@ class _SinglePostState extends State<SinglePost> {
       },
     );
   }
-   void _showSettingsBottomSheet(BuildContext context) {
-      Styles styles = Styles(context: context);
+
+  void _showSettingsBottomSheet(BuildContext context) {
+    Styles styles = Styles(context: context);
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -146,62 +138,74 @@ class _SinglePostState extends State<SinglePost> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-               Container(
-                    child: Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 20,
-                          backgroundImage:
-                              AssetImage('assets/images/profilepicture.jpeg'),
-                        ),
-                        SizedBox(
-                          width: styles.getWidth(0.09),
-                        ),
-                        //Text(widget.name),
-                      ],
+              Container(
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 20,
+                      backgroundImage:
+                          AssetImage('assets/images/profilepicture.jpeg'),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      // DropdownButton(
-                      //   borderRadius:
-                      //       const BorderRadius.all(Radius.circular(20)),
-                      //   value: (state is PrivacyChangedState)
-                      //       ? state.privacy
-                      //       : 'Public',
-                      //   icon: const Icon(Icons.keyboard_arrow_down),
-                      //   items: widget.privacies.map((String items) {
-                      //     return DropdownMenuItem(
-                      //       value: items,
-                      //       child: Text(items),
-                      //     );
-                      //   }).toList(),
-                      //   onChanged: (String? newValue) {
-                      //     context.read<PostBloc>().add(
-                      //         PrivacyButtonPressedEvent(privacy: newValue!));
-                      //   },
-                      // ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: styles.getWidth(1),
-                    height: styles.getHeight(0.3),
-                    child: TextField(
-                      controller: widget.descriptionController,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 10,
-                      decoration: const InputDecoration(
-                        hintText: "What's on your giggle?",
-                        border: InputBorder.none,
-                      ),
+                    SizedBox(
+                      width: styles.getWidth(0.09),
                     ),
+                    //Text(widget.name),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  // DropdownButton(
+                  //   borderRadius:
+                  //       const BorderRadius.all(Radius.circular(20)),
+                  //   value: (state is PrivacyChangedState)
+                  //       ? state.privacy
+                  //       : 'Public',
+                  //   icon: const Icon(Icons.keyboard_arrow_down),
+                  //   items: widget.privacies.map((String items) {
+                  //     return DropdownMenuItem(
+                  //       value: items,
+                  //       child: Text(items),
+                  //     );
+                  //   }).toList(),
+                  //   onChanged: (String? newValue) {
+                  //     context.read<PostBloc>().add(
+                  //         PrivacyButtonPressedEvent(privacy: newValue!));
+                  //   },
+                  // ),
+                ],
+              ),
+              SizedBox(
+                width: styles.getWidth(1),
+                height: styles.getHeight(0.3),
+                child: TextField(
+                  controller: widget.descriptionController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 10,
+                  decoration: const InputDecoration(
+                    hintText: "What's on your giggle?",
+                    border: InputBorder.none,
                   ),
+                ),
+              ),
             ],
           ),
         );
       },
     );
+  }
+
+  String formatDate(String dateTime) {
+    String originalDateString = dateTime;
+
+  // Parse the original date string
+  DateTime originalDate = DateTime.parse(originalDateString);
+
+  // Format the date and time in the desired format
+  String formattedDateTime = DateFormat('dd MMMM yyyy, HH:mm:ss').format(originalDate);
+
+  return(formattedDateTime);  // Output: 24 October 2023, 00:43:45
   }
 
   void changeReaction(int id) async {
