@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,7 +10,7 @@ import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:http/http.dart' as http;
 
 class SinglePost extends StatefulWidget {
-  final String? imageUrl, description;
+  final String? imageUrl, description, username;
   final int post_id_fk, profile_id_fk;
   int reaction = 0;
 
@@ -20,6 +20,7 @@ class SinglePost extends StatefulWidget {
     this.imageUrl,
     required this.post_id_fk,
     required this.profile_id_fk,
+    required this.username
   }) : super(key: key);
 
   @override
@@ -45,13 +46,13 @@ class _SinglePostState extends State<SinglePost> {
                       backgroundImage:
                           AssetImage('assets/images/profilepicture.jpeg'),
                     ),
-                    const Expanded(
+                    Expanded(
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('John Doe'),
+                            Text(widget.username.toString()),
                             Row(
                               children: [
                                 Text('October 31, 2023'),
@@ -71,7 +72,7 @@ class _SinglePostState extends State<SinglePost> {
               ListTile(
                 title: Text(widget.description!),
               ),
-              Image.network('https://picsum.photos/250?image=9'),
+              Image.network('http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}//picsum.photos/250?image=9'),
               Row(
                 children: [
                   Expanded(

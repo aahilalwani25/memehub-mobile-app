@@ -59,6 +59,7 @@ class _HomeState extends State<Home> {
                     String description = postData['description'].toString();
                     String type = postData['type'];
                     String imageUrl = postData['url'];
+                    String username= postData['username'];
 
                     if (type == "image") {
                       return SinglePost(
@@ -66,6 +67,7 @@ class _HomeState extends State<Home> {
                         imageUrl: imageUrl,
                         post_id_fk: post_id_fk,
                         profile_id_fk: widget.profile_id,
+                        username: username,
                       );
                     } else {
                       return ListTile(
