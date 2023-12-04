@@ -36,7 +36,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 .show();
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (builder) => Home(
-                      profile_id: widget.id,
+                      profile_id: widget.id, my_profile_id: widget.id,
                       // name: widget.name,
                       // my_profile_id: widget.id,
                     )));

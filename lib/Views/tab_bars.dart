@@ -57,6 +57,7 @@ class homescreen extends StatelessWidget {
                 //1tab
                 Home(
                   profile_id: profile_id,
+                  my_profile_id: profile_id,
                 ),
                 // Home(profile_id: profile_id,),
                 //2 tab

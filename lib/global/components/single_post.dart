@@ -16,7 +16,7 @@ import 'package:intl/intl.dart';
 class SinglePost extends StatefulWidget {
   ReactionController reactionController = ReactionController();
   final String? imageUrl, description, username, updated_at;
-  final int post_id_fk, profile_id_fk;
+  final int post_id_fk, profile_id_fk, my_profile_id;
   //final String name;
   //final int id;
   TextEditingController descriptionController = TextEditingController();
@@ -32,6 +32,7 @@ class SinglePost extends StatefulWidget {
       //required this.name,
       //required this.id,
       required this.username,
+      required this.my_profile_id,
       required this.updated_at})
       : super(key: key);
 
@@ -129,7 +130,7 @@ class _SinglePostState extends State<SinglePost> {
                     child: IconButton(
                       icon: const Icon(Icons.chat_bubble_outline_sharp),
                       onPressed: () {
-                        Comments(post_id_fk: widget.post_id_fk).show(context, widget.post_id_fk.toString());
+                        Comments(post_id_fk: widget.post_id_fk, profile_id: widget.my_profile_id).show(context);
                       },
                     ),
                   ),

@@ -7,8 +7,8 @@ import 'package:memehub_mobile_app/global/components/single_post.dart';
 import '../../Bloc/post/post_bloc.dart';
 
 class Home extends StatefulWidget {
-  final int profile_id;
-  const Home({Key? key, required this.profile_id}) : super(key: key);
+  final int profile_id, my_profile_id;
+  const Home({Key? key, required this.profile_id, required this.my_profile_id}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -73,6 +73,7 @@ class _HomeState extends State<Home> {
                         profile_id_fk: widget.profile_id,
                         username: username,
                         updated_at:updated_at,
+                        my_profile_id: widget.my_profile_id,
                       );
                     } else {
                       return ListTile(
