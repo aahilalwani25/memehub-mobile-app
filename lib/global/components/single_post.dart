@@ -1,8 +1,7 @@
-import 'dart:convert';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+//import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+//import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_bloc.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_event.dart';
 // import 'package:memehub_mobile_app/Bloc/Reactions/reaction_state.dart';
@@ -11,7 +10,7 @@ import 'package:memehub_mobile_app/Controllers/reaction_controller.dart';
 import 'package:memehub_mobile_app/Views/Comment/comments.dart';
 import 'package:memehub_mobile_app/Views/shared_post_view.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class SinglePost extends StatefulWidget {
@@ -130,7 +129,7 @@ class _SinglePostState extends State<SinglePost> {
                     child: IconButton(
                       icon: const Icon(Icons.chat_bubble_outline_sharp),
                       onPressed: () {
-                        Comments().show(context, widget.post_id_fk.toString());
+                        Comments(post_id_fk: widget.post_id_fk).show(context, widget.post_id_fk.toString());
                       },
                     ),
                   ),
@@ -152,74 +151,6 @@ class _SinglePostState extends State<SinglePost> {
                     ),
                   ),
                 ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  void _showSettingsBottomSheet(BuildContext context) {
-    Styles styles = Styles(context: context);
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Container(
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 20,
-                      backgroundImage:
-                          AssetImage('assets/images/profilepicture.jpeg'),
-                    ),
-                    SizedBox(
-                      width: styles.getWidth(0.09),
-                    ),
-
-                    //Text(widget.name),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // DropdownButton(
-                  //   borderRadius:
-                  //       const BorderRadius.all(Radius.circular(20)),
-                  //   value: (state is PrivacyChangedState)
-                  //       ? state.privacy
-                  //       : 'Public',
-                  //   icon: const Icon(Icons.keyboard_arrow_down),
-                  //   items: widget.privacies.map((String items) {
-                  //     return DropdownMenuItem(
-                  //       value: items,
-                  //       child: Text(items),
-                  //     );
-                  //   }).toList(),
-                  //   onChanged: (String? newValue) {
-                  //     context.read<PostBloc>().add(
-                  //         PrivacyButtonPressedEvent(privacy: newValue!));
-                  //   },
-                  // ),
-                ],
-              ),
-              SizedBox(
-                width: styles.getWidth(1),
-                height: styles.getHeight(0.3),
-                child: TextField(
-                  controller: widget.descriptionController,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 10,
-                  decoration: const InputDecoration(
-                    hintText: "Share your giggle....",
-                    border: InputBorder.none,
-                  ),
-                ),
               ),
             ],
           ),

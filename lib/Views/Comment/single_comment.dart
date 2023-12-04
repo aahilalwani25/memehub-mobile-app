@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memehub_mobile_app/global/styles.dart';
+//import 'package:memehub_mobile_app/global/styles.dart';
 
 class Comment extends StatefulWidget {
   final int profileIdFk;
