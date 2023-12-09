@@ -12,7 +12,6 @@ import 'package:memehub_mobile_app/Views/tab/connect_with_screen.dart';
 import 'package:memehub_mobile_app/firebase_options.dart';
 import 'Bloc/authentication/authentication_bloc.dart';
 import 'Bloc/signup bloc/signup_bloc.dart';
-import 'Views/signin_screen.dart';
 //import 'package:native_notify/native_notify.dart';
 
 @pragma('vm:entry-point')

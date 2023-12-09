@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:memehub_mobile_app/Models/reels_list.dart';
+import 'package:memehub_mobile_app/Views/Reels/reels_view.dart';
 import 'package:memehub_mobile_app/Views/tab/notification_screen.dart';
+import 'package:reels_viewer/reels_viewer.dart';
 import 'tab/home_tab.dart';
 import 'tab/trending_tab.dart';
 
@@ -41,7 +44,7 @@ class homescreen extends StatelessWidget {
               ),
               Tab(
                 icon: Icon(
-                  Icons.arrow_upward_outlined,
+                  Icons.videocam_sharp,
                   color: Colors.black,
                 ),
               ),
@@ -61,7 +64,7 @@ class homescreen extends StatelessWidget {
                 ),
                 // Home(profile_id: profile_id,),
                 //2 tab
-                Trending(),
+                Reels_View(),
               ]),
             ),
           ],
