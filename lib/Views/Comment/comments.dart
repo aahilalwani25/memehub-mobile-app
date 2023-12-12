@@ -121,7 +121,7 @@ class Comments {
                   itemBuilder: (itemBuilder, index) {
                     return Comment(
                         profileIdFk: 0,
-                        username: "ayub latif", //comments[index]['username'],
+                        username: comments![index]['username'],
                         comment: comments![index]['description'],
                         date: comments![index]['updated_at'],
                         time: comments![index]['updated_at']);

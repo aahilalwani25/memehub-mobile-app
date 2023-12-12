@@ -130,7 +130,10 @@ class _SinglePostState extends State<SinglePost> {
                     child: IconButton(
                       icon: const Icon(Icons.chat_bubble_outline_sharp),
                       onPressed: () {
-                        Comments(post_id_fk: widget.post_id_fk, profile_id: widget.my_profile_id).show(context);
+                        Comments(
+                                post_id_fk: widget.post_id_fk,
+                                profile_id: widget.my_profile_id)
+                            .show(context);
                       },
                     ),
                   ),
