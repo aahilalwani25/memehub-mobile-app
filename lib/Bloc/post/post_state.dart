@@ -26,6 +26,17 @@ class PhotoAddedState extends PostState {
   List<Object> get props => [photoFile];
 }
 
+class VideoAddedState extends PostState {
+  File videoFile;
+  VideoPlayerController videoPlayerController;
+  late Future<void> initializeVideoPlayerFuture;
+
+  VideoAddedState({required this.videoFile, required this.videoPlayerController, required this.initializeVideoPlayerFuture});
+
+  @override
+  List<Object> get props => [videoFile, videoPlayerController];
+}
+
 class PostSuccessfullyState extends PostState {}
 
 class PostFetchedState extends PostState {

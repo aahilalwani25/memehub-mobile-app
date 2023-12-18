@@ -17,6 +17,7 @@ class PrivacyButtonPressedEvent extends PostEvent{
 }
 
 class AddPhotoButtonPressed extends PostEvent{}
+class AddVideoButtonPressed extends PostEvent{}
 
 class PostButtonPressedEvent extends PostEvent{
   File? imageFile;

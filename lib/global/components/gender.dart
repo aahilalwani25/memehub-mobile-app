@@ -45,6 +45,8 @@ class Gender {
 }
 
 class GenderSelector extends StatefulWidget {
+  int gender_id=0;
+  GenderSelector({required this.gender_id});
   @override
   _GenderSelectorState createState() => _GenderSelectorState();
 }
@@ -73,6 +75,8 @@ class _GenderSelectorState extends State<GenderSelector> {
               setState(() {
                 genders.forEach((gender) => gender.isSelected = false);
                 genders[index].isSelected = true;
+                widget.gender_id= index+1;
+                print(widget.gender_id);
               });
             },
             child: CustomRadio(genders[index]),

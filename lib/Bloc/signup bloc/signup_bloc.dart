@@ -8,12 +8,19 @@ part 'signup_event.dart';
 part 'signup_state.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
+
+  
+
   SignupBloc() : super(SignupInitial()) {
     on<SignupEvent>((event, emit) {
       // TODO: implement event handler
     });
 
     //on<AcceptthetermsEvent>((event, emit) => emit(AcceptTheTermsState(agree: event.agree)));
+
+    on<GenderChangedEvent>((event, emit){
+
+    });
 
     on<RegisterButtonPressedEvent>((event, emit) async {
       //login logic here
@@ -27,10 +34,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           'email': event.email,
           'name': event.name,
           'password': event.password,
-          'password_confirmation': event.password_confirmation,
-          'gender_id': event.gender_id,
-          'dob': event.dob.toString(),
-          'mobileno': event.mobile
+          'password_confirmation': event.password,
+          'gender': event.gender_id,
+          'date_of_birth': event.dob.toString(),
+          //'mobileno': event.mobile
         },
       );
 

@@ -8,7 +8,8 @@ import '../../Bloc/post/post_bloc.dart';
 
 class Home extends StatefulWidget {
   final int profile_id, my_profile_id;
-  const Home({Key? key, required this.profile_id, required this.my_profile_id}) : super(key: key);
+  const Home({Key? key, required this.profile_id, required this.my_profile_id})
+      : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -16,19 +17,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late PostBloc _postBloc;
- NotificationServices notificationServices = NotificationServices();
-
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
-     super.initState();
+    super.initState();
     notificationServices.requestNotificationPermission();
     notificationServices.forgroundMessage();
     notificationServices.firebaseInit(context);
     notificationServices.setupInteractMessage(context);
     notificationServices.isTokenRefresh();
 
-    notificationServices.getDeviceToken().then((value){
+    notificationServices.getDeviceToken().then((value) {
       if (kDebugMode) {
         print('device token');
         print(value);
@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
           builder: (context, state) {
             if (state is PostFetchedState) {
               final postDataList = state.postDataList;
-              
+
               //print(postDataList);
               return SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -59,22 +59,24 @@ class _HomeState extends State<Home> {
                     //int profile_id_fk = postData['profile_id_fk'];
                     String description = postData['description'].toString();
                     String type = postData['type'];
-                    String username= postData['username'];
-                    String updated_at= postData['updated_at'];
-                    var url= (postData['url'].toString().split('/'));
-                    String image_url= 'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/${url[6]}/${url[7]}';
-                    
+                    String username = postData['username'];
+                    String updated_at = postData['updated_at'];
+                    String extension = postData['extention'];
+                    var url = (postData['url'].toString().split('/'));
+                    String image_url =
+                        'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/${url[6]}/${url[7]}';
 
-                    if (type == "image") {
+                    if (type == "image" && extension != "mp4") {
                       return SinglePost(
                         description: description,
                         imageUrl: image_url,
                         post_id_fk: post_id_fk,
                         profile_id_fk: widget.profile_id,
                         username: username,
-                        updated_at:updated_at,
+                        updated_at: updated_at,
                         my_profile_id: widget.my_profile_id,
                       );
+                    
                     } else {
                       return ListTile(
                         title: Text('ID: $id'),

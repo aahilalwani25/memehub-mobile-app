@@ -21,6 +21,7 @@ class SignupScreen extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmpasswordController =
       TextEditingController();
+  
 
   DateTime dob = DateTime.now();
   int gender_id=0;
@@ -147,7 +148,7 @@ class SignupScreen extends StatelessWidget {
                         height: 70, // 80
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: GenderSelector(),
+                          child: GenderSelector(gender_id: gender_id,),
                         ),
                       ),
                       Container(
@@ -185,8 +186,10 @@ class SignupScreen extends StatelessWidget {
                                 backgroundColor: Colors.white,
                               ),
                               onPressed: () {
+                                print(gender_id);
                                 // Validate returns true if the form is valid, otherwise false.
                                 if (formKey.currentState!.validate()) {
+                                  
                                   context.read<SignupBloc>().add(
                                       RegisterButtonPressedEvent(
                                           dob: dob,
@@ -196,7 +199,7 @@ class SignupScreen extends StatelessWidget {
                                           email: _emailController.text,
                                           password: _passwordController.text,
                                           password_confirmation:
-                                              _confirmpasswordController.text,
+                                              _passwordController.text,
                                           accepttheterms: true));
                                 }
                                 // }}

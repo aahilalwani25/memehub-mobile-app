@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:memehub_mobile_app/Bloc/post/post_bloc.dart';
 import 'package:memehub_mobile_app/Views/tab/home_tab.dart';
 import 'package:memehub_mobile_app/global/styles.dart';
-
+import 'package:video_player/video_player.dart';
 import '../../global/components/toast_message.dart';
 
 class CreatePostScreen extends StatefulWidget {
@@ -23,7 +22,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final privacies = ['Public', 'Private'];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(widget.id);
     Styles styles = Styles(context: context);
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +48,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     )));
           }
 
-          if (state is postuploadloading) {
+          else if (state is postuploadloading) {
             showDialog(
                 context: context,
                 builder: (builder) {
@@ -61,6 +67,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   );
                 });
           }
+          // else{
+          //   ToastMessage(context: context, message: "Posted", type: 'error')
+          //       .show();
+          // }
         },
         builder: (context, state) {
           return SafeArea(
@@ -75,7 +85,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       context.read<PostBloc>().add(PostButtonPressedEvent(
                             imageFile: (state is PhotoAddedState)
                                 ? state.photoFile
-                                : null,
+                                : (state is VideoAddedState)
+                                ? state.videoFile
+                                :null,
                             description: _descriptionController.text,
                             id: widget.id,
                           ));
@@ -142,7 +154,96 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           width: styles.getWidth(1),
                           height: styles.getHeight(0.6),
                         )
-                      : Container(),
+                      : (state is VideoAddedState)
+                          ? FutureBuilder(
+                              future: state.initializeVideoPlayerFuture,
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.done) {
+                                  // If the VideoPlayerController has finished initialization, use
+                                  // the data it provides to limit the aspect ratio of the video.
+                                  return Column(
+                                    children: [
+                                      AspectRatio(
+                                        aspectRatio: state.videoPlayerController
+                                            .value.aspectRatio,
+                                        // Use the VideoPlayer widget to display the video.
+                                        child: VideoPlayer(
+                                            state.videoPlayerController),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () async {
+                                                if (state.videoPlayerController
+                                                    .value.isPlaying) {
+                                                  await state
+                                                      .videoPlayerController
+                                                      .pause();
+                                                } else {
+                                                  // Check if the video has completed playing
+                                                  if (state
+                                                          .videoPlayerController
+                                                          .value
+                                                          .position ==
+                                                      state
+                                                          .videoPlayerController
+                                                          .value
+                                                          .duration) {
+                                                    // If the video is completed, seek to the beginning
+                                                    await state
+                                                        .videoPlayerController
+                                                        .seekTo(Duration.zero);
+                                                    // await state
+                                                    //     .videoPlayerController
+                                                    //     .pause();
+                                                  }
+                                                  await state
+                                                      .videoPlayerController
+                                                      .play();
+                                                }
+                                                setState(() {});
+                                              },
+                                              icon: (state.videoPlayerController
+                                                      .value.isPlaying)
+                                                  ? Icon(Icons.pause)
+                                                  : Icon(Icons.play_arrow)),
+                                          // IconButton(
+                                          //     onPressed: () async {
+                                          //       if (state.videoPlayerController
+                                          //           .value.isLooping) {
+                                          //         //if the video is currently playing, pause it.
+                                          //         await state
+                                          //             .videoPlayerController
+                                          //             .setLooping(false);
+                                          //       } else {
+                                          //         //If the video is paused or ended, play it.
+                                          //         await state
+                                          //             .videoPlayerController
+                                          //             .setLooping(true);
+                                          //       }
+                                          //       setState(() {});
+                                          //     },
+                                          //     icon: (state.videoPlayerController
+                                          //             .value.isLooping)
+                                          //         ? Icon(Icons.loop_rounded)
+                                          //         : Icon(Icons.lock)),
+                                        ],
+                                      )
+                                    ],
+                                  );
+                                } else {
+                                  // If the VideoPlayerController is still initializing, show a
+                                  // loading spinner.
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              },
+                            )
+                          : Container(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -155,8 +256,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       ),
                       buildElevatedButton(
                         icon: Icons.video_camera_back,
-                        label: 'Add Video',
-                        onPressed: () {},
+                        label: 'Add Reel',
+                        onPressed: () {
+                          context.read<PostBloc>().add(AddVideoButtonPressed());
+                        },
                       ),
                       buildElevatedButton(
                         icon: Icons.tag_faces,

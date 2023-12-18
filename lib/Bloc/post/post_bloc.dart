@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:memehub_mobile_app/Controllers/media_controller.dart';
 import 'package:http/http.dart' as http;
+import 'package:video_player/video_player.dart';
 part 'post_event.dart';
 part 'post_state.dart';
 
@@ -16,6 +17,19 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
     on<PrivacyButtonPressedEvent>((event, emit) {
       emit(PrivacyChangedState(privacy: event.privacy));
+    });
+
+    on<AddVideoButtonPressed>((event, emit) async {
+      final media = AddMediaController();
+
+      File video = await media.getVideoFromGallery();
+      VideoPlayerController _videoController =
+          VideoPlayerController.file(video);
+      _videoController.initialize();
+      emit(VideoAddedState(
+          videoFile: video,
+          videoPlayerController: _videoController,
+          initializeVideoPlayerFuture: _videoController.initialize()));
     });
 
     on<AddPhotoButtonPressed>((event, emit) async {
@@ -33,6 +47,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(postuploadloading());
       try {
         print(event.description);
+        print(event.id);
         final client = http.Client();
         final url = Uri.parse(
             'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/profile/post');
@@ -51,15 +66,16 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           // contentType: MediaType('image', 'jpeg')
         ));
 
-        var res= await client.send(request);
+        var res = await client.send(request);
 
-        if(res.statusCode==200){
-          var r= await http.Response.fromStream(res);
-          if(r.statusCode==200){
+        if (res.statusCode == 200) {
+          var r = await http.Response.fromStream(res);
+          if (r.statusCode == 200) {
             print("success");
             emit(PostSuccessfullyState());
+            
           }
-        }else{
+        } else {
           print(res.statusCode);
           
         }

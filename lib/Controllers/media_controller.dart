@@ -7,14 +7,14 @@ class AddMediaController {
   AddMediaController();
 
   final picker = ImagePicker();
-
-//Image Picker function to get image from gallery
+  
+  //Image Picker function to get image from gallery
   Future<File> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile == null) {
       media = null;
-    }else{
+    } else {
       media = File(pickedFile.path);
     }
 
@@ -30,5 +30,16 @@ class AddMediaController {
     }
 
     return File(pickedFile.path);
+  }
+
+  Future<File> getVideoFromGallery() async{
+    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
+     if (pickedFile == null) {
+      media = null;
+    } else {
+      media = File(pickedFile.path);
+    }
+
+    return media!;
   }
 }
