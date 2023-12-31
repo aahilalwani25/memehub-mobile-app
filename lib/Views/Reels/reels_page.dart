@@ -5,16 +5,17 @@ import 'package:reels_viewer/src/models/reel_model.dart';
 import 'package:reels_viewer/src/utils/url_checker.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../Models/reel_model.dart';
 import 'screen_options.dart';
 // import 'components/like_icon.dart';
 // import 'components/screen_options.dart';
 
 class ReelsPage extends StatefulWidget {
-  final ReelModel item;
+  final Reel_Model item;
   final bool showVerifiedTick;
   final Function(String)? onShare;
   final Function(String)? onLike;
-  final Function(String)? onComment;
+  final Function(String,String)? onComment;
   final Function()? onClickMoreBtn;
   final Function()? onFollow;
   final SwiperController swiperController;
@@ -51,7 +52,7 @@ class _ReelsPageState extends State<ReelsPage> {
   }
 
   Future initializePlayer() async {
-    _videoPlayerController = VideoPlayerController.network(widget.item.url);
+    _videoPlayerController = VideoPlayerController.network(widget.item.videoUrl);
     await Future.wait([_videoPlayerController!.initialize()]);
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController!,
@@ -95,13 +96,13 @@ class _ReelsPageState extends State<ReelsPage> {
                   height: MediaQuery.of(context).size.height,
                   child: GestureDetector(
                     onDoubleTap: () {
-                      if (!widget.item.isLiked) {
-                        _liked = true;
-                        if (widget.onLike != null) {
-                          widget.onLike!(widget.item.url);
-                        }
-                        setState(() {});
-                      }
+                      // if (!widget.item.isLiked) {
+                      //   _liked = true;
+                      //   if (widget.onLike != null) {
+                      //     widget.onLike!(widget.item.url);
+                      //   }
+                      //   setState(() {});
+                      // }
                     },
                     child: Chewie(
                       controller: _chewieController!,

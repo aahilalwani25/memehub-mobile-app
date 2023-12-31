@@ -10,6 +10,7 @@ class Comments {
   final _formkey = GlobalKey<FormState>();
   int post_id_fk, profile_id;
   CommentController _commentController = CommentController();
+  bool is_loading_fetch_comments = true;
 
   Comments({required this.post_id_fk, required this.profile_id});
 
@@ -56,6 +57,7 @@ class Comments {
     _commentController.fetchComments(post_id_fk.toString()).then((value) {
       print(value);
       comments = value;
+      is_loading_fetch_comments = false;
     });
     showModalBottomSheet(
         context: context,
@@ -90,8 +92,8 @@ class Comments {
                           print(post_id_fk);
                           print(profile_id);
                           _commentController
-                              .addComment(commenTextController.text,
-                                  post_id_fk, profile_id)
+                              .addComment(commenTextController.text, post_id_fk,
+                                  profile_id)
                               .then((value) {
                             if (value) {
                               ToastMessage(
@@ -116,18 +118,34 @@ class Comments {
               ),
 
               //bottomNavigationBar: ,
-              body:(comments!.isNotEmpty)? ListView.builder(
-                  itemCount: comments!.length,
-                  itemBuilder: (itemBuilder, index) {
-                    return Comment(
-                        profileIdFk: 0,
-                        username: comments![index]['username'],
-                        comment: comments![index]['description'],
-                        date: comments![index]['updated_at'],
-                        time: comments![index]['updated_at']);
-                  }):Container(),
+              body: (comments!.isNotEmpty)
+                  ? ListView.builder(
+                      itemCount: comments!.length,
+                      itemBuilder: (itemBuilder, index) {
+                        return Comment(
+                            profileIdFk: 0,
+                            username: comments![index]['username'],
+                            comment: comments![index]['description'],
+                            date: comments![index]['updated_at'],
+                            time: comments![index]['updated_at']);
+                      })
+                  : (is_loading_fetch_comments)
+                      ? Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                CircularProgressIndicator(),
+                                Text("Loading...")
+                              ]),
+                      )
+                      : Center(
+                          child: Text("No Comments"),
+                        ),
             ),
           );
         });
   }
+
+
 }

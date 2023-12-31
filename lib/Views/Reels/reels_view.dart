@@ -2,9 +2,12 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Bloc/post/post_bloc.dart';
+import '../../Controllers/comment_controller.dart';
 import '../../Models/reels_list.dart';
 import 'package:flutter/material.dart';
 //import 'package:reels_viewer/reels_viewer.dart';
+import '../../global/components/toast_message.dart';
+import '../Comment/single_comment.dart';
 import './reels_viewer.dart';
 
 class Reels_View extends StatefulWidget {
@@ -17,6 +20,11 @@ class Reels_View extends StatefulWidget {
 
 class _Reels_ViewState extends State<Reels_View> {
   late PostBloc _postBloc;
+  CommentController _commentController = CommentController();
+  bool is_loading_fetch_comments = true;
+  List<dynamic>? comments = [];
+  TextEditingController commenTextController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -31,8 +39,8 @@ class _Reels_ViewState extends State<Reels_View> {
       create: (context) => _postBloc,
       child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
         if (state is PostFetchedState) {
-          final reelsDataList = fetchReels(state.postDataList!);
-          print(reelsDataList[0].url);
+          final reelsDataList = fetchReels(state.postDataList!, widget.my_profile_id);
+          //print(reelsDataList[0].videoUrl);
           return ReelsViewer(
             reelsList: reelsDataList,
             appbarTitle: 'Meme Reels',
@@ -40,16 +48,14 @@ class _Reels_ViewState extends State<Reels_View> {
               log('Shared reel url ==> $url');
             },
             onLike: (url) {
-              log('Liked reel url ==> $url');
+              print('Liked reel url ==> $url');
             },
-            onFollow: () {
-              log('======> Clicked on follow <======');
-            },
-            onComment: (comment) {
-              log('Comment on reel ==> $comment');
+            
+            onComment: (post_id_fk, my_profile_id) {
+              //show(context, int.parse(post_id_fk));
             },
             onClickMoreBtn: () {
-              log('======> Clicked on more option <======');
+              print('======> Clicked on more option <======');
             },
             onClickBackArrow: () {
               log('======> Clicked on back arrow <======');
@@ -67,4 +73,11 @@ class _Reels_ViewState extends State<Reels_View> {
       }),
     );
   }
+  
+  @override
+  void dispose() {
+    // Clean up resources, subscriptions, and references here
+    super.dispose();
+  }
+  
 }

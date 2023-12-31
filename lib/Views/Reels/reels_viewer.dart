@@ -1,11 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:reels_viewer/src/models/reel_model.dart';
+import '../../Models/reel_model.dart';
 import './reels_page.dart';
 
 class ReelsViewer extends StatefulWidget {
   /// use reel model and provide list of reels, list contains reels object, object contains url and other parameters
-  final List<ReelModel> reelsList;
+  final List<Reel_Model> reelsList;
+  //final String my_profile_id
 
   /// use to show/hide verified tick, by default true
   final bool showVerifiedTick;
@@ -17,7 +19,7 @@ class ReelsViewer extends StatefulWidget {
   final Function(String)? onLike;
 
   /// function invoke when user click on comment btn and return reel comment
-  final Function(String)? onComment;
+  final Function(String,String)? onComment;
 
 
   /// function invoke when reel change and return current index
