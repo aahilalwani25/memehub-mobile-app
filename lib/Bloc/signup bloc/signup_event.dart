@@ -43,14 +43,14 @@ class GenderChangedEvent extends SignupEvent{
 
 class RegisterButtonPressedEvent extends SignupEvent{
   String name,email,password,password_confirmation;
-  String? mobile=null;
+  String mobile;
   bool accepttheterms;
   String gender_id;
   DateTime dob;
-  RegisterButtonPressedEvent({ required this.gender_id,required this.dob, this.mobile,required this.name, required this.email, required this.password,required this.password_confirmation, required this.accepttheterms });
+  RegisterButtonPressedEvent({ required this.gender_id,required this.dob, required this.mobile,required this.name, required this.email, required this.password,required this.password_confirmation, required this.accepttheterms });
 
   @override
-  List<Object> get props => [name,email,password,password_confirmation,accepttheterms];
+  List<Object> get props => [name,email,password,password_confirmation,mobile,gender_id,accepttheterms];
 }
 
 class SignupLoadingEvent extends SignupEvent{}

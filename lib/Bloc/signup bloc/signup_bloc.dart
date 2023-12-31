@@ -8,9 +8,6 @@ part 'signup_event.dart';
 part 'signup_state.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
-
-  
-
   SignupBloc() : super(SignupInitial()) {
     on<SignupEvent>((event, emit) {
       // TODO: implement event handler
@@ -18,14 +15,14 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
     //on<AcceptthetermsEvent>((event, emit) => emit(AcceptTheTermsState(agree: event.agree)));
 
-    on<GenderChangedEvent>((event, emit){
-
-    });
+    on<GenderChangedEvent>((event, emit) {});
 
     on<RegisterButtonPressedEvent>((event, emit) async {
       //login logic here
       //http://127.0.0.1:8000/api/user/register
       emit(SignupLoadingState());
+      String new_dob = '${event.dob.year}-${event.dob.month}-${event.dob.day}';
+      
       final response = await http.post(
         Uri.parse(
             'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/api/user/register'),
@@ -35,9 +32,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           'name': event.name,
           'password': event.password,
           'password_confirmation': event.password,
-          'gender': event.gender_id,
-          'date_of_birth': event.dob.toString(),
-          //'mobileno': event.mobile
+          'gender_id': event.gender_id,
+          'dob': new_dob,
+          'mobileno': event.mobile
         },
       );
 
@@ -64,9 +61,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     });
 
     on<DoBPressed>((event, emit) async {
-      
       emit(NewDobState(dob: event.dob));
-      
     });
   }
 }

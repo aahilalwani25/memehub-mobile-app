@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:memehub_mobile_app/Models/reels_list.dart';
 import 'package:memehub_mobile_app/Views/Reels/reels_view.dart';
 import 'package:memehub_mobile_app/Views/tab/notification_screen.dart';
-import 'package:reels_viewer/reels_viewer.dart';
 import 'tab/home_tab.dart';
-import 'tab/trending_tab.dart';
 
 class homescreen extends StatelessWidget {
   int profile_id;
@@ -64,7 +61,7 @@ class homescreen extends StatelessWidget {
                 ),
                 // Home(profile_id: profile_id,),
                 //2 tab
-                Reels_View(),
+                Reels_View(my_profile_id: profile_id,),
               ]),
             ),
           ],

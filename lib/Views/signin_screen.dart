@@ -166,9 +166,12 @@ class SigninScreen extends StatelessWidget {
                           textInputType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Please enter your  Email";
+                              return "Please enter your Email";
                             }
-
+                            if (!value.contains("@") ||
+                                !value.contains("com")) {
+                              return "Invalid email format.";
+                            }
                             return null;
                           },
                         ).show(),
@@ -188,13 +191,19 @@ class SigninScreen extends StatelessWidget {
                             return null;
                           },
                         ).show(),
-                        Container(
-                          alignment: const Alignment(0.75, 0),
-                          child: Text(
-                            'Forgot Passowrd?',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ),
+                        // Container(
+                        //   alignment: const Alignment(0.75, 0),
+                        //   child: Text(
+                        //     'Forgot Passowrd?',
+                        //     style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black),
+                        //   ),
+                        // ),
+
+                        // Row(
+                        //   children: [
+                        //     Checkbox(value: false, onChanged: (val) {})
+                        //   ],
+                        // ),
                         Container(
                             width: 250,
                             height: 45,
@@ -225,7 +234,10 @@ class SigninScreen extends StatelessWidget {
                           alignment: const Alignment(0, -10),
                           child: Text(
                             'Don\'t have an account?',
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(color: Colors.black),
                           ),
                         ),
                         Container(

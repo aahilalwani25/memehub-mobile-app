@@ -88,6 +88,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 : (state is VideoAddedState)
                                 ? state.videoFile
                                 :null,
+                            is_reel: (state is PhotoAddedState)?'false':'true',
                             description: _descriptionController.text,
                             id: widget.id,
                           ));

@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (builder) => const Settingpage()));
+                  MaterialPageRoute(builder: (builder) => const SettingsPage()));
             },
             icon: const Icon(Icons.settings),
           ),

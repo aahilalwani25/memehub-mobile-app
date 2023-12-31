@@ -7,14 +7,15 @@ List<ReelModel> fetchReels(List<dynamic> postDataList) {
     int post_id_fk = reel['post_id_fk'] as int;
     //int profile_id_fk = postData['profile_id_fk'];
     String description = reel['description'].toString();
-    String type = reel['type'];
+    //String type = reel['type'];
     String username = reel['username'];
     String updated_at = reel['updated_at'];
     String extension = reel['extention'];
+    //String profile_img_url= reel['profile_img_url'];
     var url = (reel['url'].toString().split('/'));
     
 
-    if (type == "image" && extension == "mp4") {
+    if (extension == "mp4") {
       String video_url =
         'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/${url[6]}/${url[7]}';
       reelsList.add(

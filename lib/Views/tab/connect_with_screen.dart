@@ -74,24 +74,24 @@ class ConnectWithScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        context
-                            .read<AuthenticationBloc>()
-                            .add(LoginButtonWithGooglePressedEvent());
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     context
+                    //         .read<AuthenticationBloc>()
+                    //         .add(LoginButtonWithGooglePressedEvent());
 
-                        // if(state is AuthenticationState){
+                    //     // if(state is AuthenticationState){
 
-                        // }
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: const Color(0xFFF5F5F5),
-                        child: Image.asset(
-                          'assets/images/google_logo.png',
-                          height: 40,
-                        ),
-                      ),
-                    ),
+                    //     // }
+                    //   },
+                    //   child: CircleAvatar(
+                    //     backgroundColor: const Color(0xFFF5F5F5),
+                    //     child: Image.asset(
+                    //       'assets/images/google_logo.png',
+                    //       height: 40,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(height: 100),

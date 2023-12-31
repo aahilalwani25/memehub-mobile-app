@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Bloc/post/post_bloc.dart';
 
 class Trending extends StatelessWidget {
-  const Trending({super.key});
+  int my_profile_id;
+  Trending({super.key, required this.my_profile_id});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class Trending extends StatelessWidget {
       body: BlocProvider<PostBloc>(
         create: (context) => PostBloc()
           ..add(
-              PostFetchedEvent()), // Use FetchPostsEvent to start data fetching
+              PostFetchedEvent(is_reel: 'true', profile_id_fk: my_profile_id)), // Use FetchPostsEvent to start data fetching
         child: BlocBuilder<PostBloc, PostState>(
           builder: (context, state) {
             if (state is PostFetchedState) {

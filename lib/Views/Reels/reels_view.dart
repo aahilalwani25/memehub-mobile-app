@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import './reels_viewer.dart';
 
 class Reels_View extends StatefulWidget {
-  const Reels_View({super.key});
+  int my_profile_id;
+  Reels_View({super.key, required this.my_profile_id});
 
   @override
   State<Reels_View> createState() => _Reels_ViewState();
@@ -21,7 +22,7 @@ class _Reels_ViewState extends State<Reels_View> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _postBloc = PostBloc()..add(PostFetchedEvent());
+    _postBloc = PostBloc()..add(PostFetchedEvent(is_reel: 'true', profile_id_fk: widget.my_profile_id));
   }
 
   @override

@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         print(value);
       }
     });
-    _postBloc = PostBloc()..add(PostFetchedEvent());
+    _postBloc = PostBloc()..add(PostFetchedEvent(is_reel:'false', profile_id_fk:widget.my_profile_id));
   }
 
   @override
@@ -58,15 +58,17 @@ class _HomeState extends State<Home> {
                     int post_id_fk = postData['post_id_fk'] as int;
                     //int profile_id_fk = postData['profile_id_fk'];
                     String description = postData['description'].toString();
-                    String type = postData['type'];
+                    //String type = postData['type'];
                     String username = postData['username'];
                     String updated_at = postData['updated_at'];
                     String extension = postData['extention'];
+                    String reaction_type_id_fk= postData['reaction_type_id_fk'].toString();
+
                     var url = (postData['url'].toString().split('/'));
                     String image_url =
                         'http://${dotenv.env['IP_ADDRESS']}:${dotenv.env['PORT']}/${url[6]}/${url[7]}';
 
-                    if (type == "image" && extension != "mp4") {
+                    if (extension != "mp4") {
                       return SinglePost(
                         description: description,
                         imageUrl: image_url,
@@ -75,6 +77,7 @@ class _HomeState extends State<Home> {
                         username: username,
                         updated_at: updated_at,
                         my_profile_id: widget.my_profile_id,
+                        reaction_type_id_fk: reaction_type_id_fk
                       );
                     
                     } else {

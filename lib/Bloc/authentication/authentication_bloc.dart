@@ -29,8 +29,9 @@ class AuthenticationBloc
 
         if (data['status'] == 200) {
           final String message= data['message'];
-          final int id = data['user']['id'];
+          final int id = data['profile']['id'];
           final String name = data['user']['name'];
+          
 
           emit(AuthenticationSuccess(
               message: message, id: id, name: name));
